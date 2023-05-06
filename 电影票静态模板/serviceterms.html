@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=990, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta charset="utf-8" />
+        <meta name="renderer" content="webkit">
+        <title>服务条款_江西电影票网</title>
+        <meta name="keywords"/>
+        <meta name="description" content="江西电影票网是江西最大的电影票在线选座平台，同时江西电影票网还提供电影排期，影院信息查询、江西本土电影行业资讯等服务。看电影，来江西电影票选座"/>
+        <link href="resource/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link href="resource/css/main.css" rel="stylesheet" />
+        <link href="resource/css/style.min.css?v=20180606" rel="stylesheet" />
+        
+        <script src="resource/js/jquery.1.7.2.min.js" type="text/javascript"></script>
+        <script src="resource/js/json2.min.js" type="text/javascript"></script>
+        <script src="resource/js/helper.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.expose.min.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.overlay.min.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.tabs.min.js" type="text/javascript"></script>
+         
+        <script type="text/javascript">
+            $(function () {
+                $(".bottom-nav li:first").css("margin-left","0");
+                $(".bottom-nav li:last").addClass("fn-nobg");
+                $(".top-nav .user-name").text(getCookie("NickName") + "(" + getCookie("Mobile") + ")");
+                $(".main-nav .location").toggle(function () {
+                    $(this).addClass("lsec").find(".other-city").show();
+                }, function () {
+                    $(this).removeClass("lsec").find(".other-city").hide();
+                });
+                $(window).scroll(function () {
+                    if ($(window).scrollTop() > 100) {
+                        $(".nav-scroll").fadeIn(1500);
+                    } else {
+                        $(".nav-scroll").fadeOut(1500);
+                    }
+                });
+                $(".scroll-top").click(function () {
+                    $("html, body").animate({
+                        scrollTop: "0px"
+                    }, {
+                        duration: 500,
+                        easing: "swing"
+                    });
+                    return false;
+                });
+                $(".nav-scroll .code").hover(function () {
+                    $(this).find("span").show();
+                }, function () {
+                    $(this).find("span").hide();
+                });
+            });
+
+            function changecity(citycode) {
+                if (window.location.toString().indexOf("cinemalist") > -1) {
+                    window.location = "/cinemalist/" + citycode + ".html";
+                }
+                else {
+                    document.getElementById("ccitycode").value = citycode;
+                    document.getElementById("citycodeform").submit();
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="top-nav">
+                <div class="container fn-clear">
+                      <span class="tip">欢迎来到江西电影票<a rel="#verlayLogin" href="javascript:void(0)" class="boxLogin blue">登录</a><a href="/register.html">注册</a></span>
+                    <ul>
+                        <li><a href="/account/usercenter.html" title="个人中心" data-flag="1">个人中心</a></li>
+                        <li><a href="/account/userorderlist.html" title="我的订单" data-flag="1">我的订单</a></li>
+                        <li><a href="/help/helpindex.html" title="帮助中心" target="_blank">帮助中心</a></li>
+                        <li>&nbsp;联系客服：0791-87871177</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main-nav">
+                <div class="container fn-clear">
+                    <div class="logo"><a href="/"><img src="resource/images/logo.png" alt="江西电影票" title="江西电影票" width="165"/></a></div>
+                    <div class="location" data-citycode="360100">
+                        <span class="lc">南昌</span>
+                        <ul class="other-city">
+                            <li><a onclick="changecity('360100')" href="javascript:void(0)">南昌</a></li>
+                            <li><a onclick="changecity('360200')" href="javascript:void(0)">景德镇</a></li>
+                            <li><a onclick="changecity('360300')" href="javascript:void(0)">萍乡</a></li>
+                            <li><a onclick="changecity('360400')" href="javascript:void(0)">九江</a></li>
+                            <li><a onclick="changecity('360500')" href="javascript:void(0)">新余</a></li>
+                            <li><a onclick="changecity('360600')" href="javascript:void(0)">鹰潭</a></li>
+                            <li><a onclick="changecity('360700')" href="javascript:void(0)">赣州</a></li>
+                            <li><a onclick="changecity('360800')" href="javascript:void(0)">吉安</a></li>
+                            <li><a onclick="changecity('360900')" href="javascript:void(0)">宜春</a></li>
+                            <li><a onclick="changecity('361000')" href="javascript:void(0)">抚州</a></li>
+                            <li><a onclick="changecity('361100')" href="javascript:void(0)">上饶</a></li>
+                        </ul>
+                    </div>
+                    <ul class="nav-list fn-clear">
+                        <li data-index="index"><a href="index.html">首页</a></li>
+                        <li data-index="film"><a href="filmshowlist.html">电影</a></li>
+                        <li data-index="cinema"><a href="cinemalist.html">影院</a></li>
+                       
+                        <li data-index="news"><a href="newslist.html">资讯</a></li>
+                    </ul>
+                    <div class="box-code-tg">
+                        
+                        <p class="code">
+                            <a href="javascript:void(0);">手机购影票</a>
+                            <span class="tag"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="body" class="main">
+                
+<div class="wrapper-helpcenter fn-clear">
+    <div class="menu-helpcenter">
+    <ul>
+        <li><a data-i="index" href="helpindex.html">关于我们</a></li>
+        <li><a data-i="contactus" href="contactus.html">联系我们</a></li>
+        <li><a data-i="recruitment" href="joinus.html" target="_blank">诚聘英才</a></li>
+        <li><a data-i="serviceterms" href="serviceterms.html">服务条款</a></li>
+        <li><a data-i="legalstatement" href="legalstatement.html">法律声明</a></li>
+        <li><a data-i="usehelp" href="usehelp.html">使用帮助</a></li>
+        <li><a data-i="cooperativepartner" href="cooperativepartner.html">合作伙伴</a></li>
+        <li><a data-i="feedback" href="feedback.html">意见反馈</a></li>
+    </ul>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".menu-helpcenter li a").each(function () {
+            if ($(this).attr("data-i") == "serviceterms") {
+                $(this).parent().addClass("act");
+            }
+        });
+    });
+</script>
+    <div class="box-con service-helpcenter">
+        <h1>服务条款</h1>
+        <div class="con">
+            <p>
+                江西电影票网（网址为：www.jxdyp.com）为江西省影票文化传媒有限公司开发的网站。本服务协议条款是江西电影票网与注册用户对于使用本网站的各项规则和条件的阐释，用户在注册和使用本网站提供的各项服务时，就代表用户已接受此协议条款，即协议条款生效。
+            </p>
+            <h3>一、知识产权</h3>
+            <p>
+                江西电影票网对于刊载的资料和信息，包括但不限于文字、图片、音频、视频、页面的设计、页面的编排等相关作品，禁止任何单位或个人未经书面授权进行复制、仿冒、剽窃、抄袭或非法使用，除部分内容明确注明版权所有者和信息提供者，或与本站网页相关的资料提供者共同享有著作权或共同享有明示或默示的使用授权外，其版权均属江西省影票传媒有限公司或相关权利人所有，依法受相关法律、法规及国际条约的保护。使用者若将江西电影票的作品内容用于商业用途，必须征得所有方同意或支付相应报酬，并注明出处。
+            </p>
+            <h3>二、用户的权利和义务</h3>
+            <p>
+                1、用户在使用本网站时，所提供相应的个人资料，用户需保证提供资料的真实性和完整性，便于注册用户享受到网站提供给用户的服务和保护，如果用户提供虚假信息导致自己得不到本网站的相关权益，由用户自己承担相应的责任。采取必要的措施保障自己账号和密码的安全。因用户主观过错导致密码和账号的泄露，所产生的经济损失，江西电影票网概不负责。
+            </p>
+            <p>
+                2、用户的个人资料中填写的内容需遵守法律法规的相关规定，不能涉及危害国家安全、危害社会稳定、违反法律法规以及迷信、淫秽等有害信息。本网站将依法对用户所填写的信息进行监督，对侵害他人及国家利益的信息予以删除。
+            </p>
+            <p>
+                3、本网站有权将有关信息呈交法律相关部门作为证据使用，在用户于本网站所承载的信息可能作为用户违反相关法律法规之时。
+            </p>
+            <p>
+                4、用户不得在本网站上从事非法的各类活动，不得以本网站为平台或媒介传播违反道德和法律的信息，本网站对此类用户有权直接删除其发表的内容，暂停或永久停止账号的使用，诉诸法律等。
+            </p>
+            <p>
+                5、用户有权对自己在本网站上所记录的个人资料，交易信息进行查阅、修改或删除等行为。
+            </p>
+            <h3>三、隐私保护</h3>
+            <p>
+                1、保护注册用户隐私是江西电影票网对于双方互利合作的前提和保证。
+            </p>
+            <p>
+                2、本网站对用户真实、有效的个人资料提供隐私保障，如用户使用虚假的信息，导致其他人的权利受到侵害，将由用户本人对虚假信息所产生的不利后果承担相应责任。
+            </p>
+            <p>
+                3、与本网站合作的项目中，本着互利共赢的目的，可能涉及合作方处取得的用户的个人资料和数据，也在本网站负有的保护用户隐私之列。
+            </p>
+            <p>
+                4、根据国家相关法律的规定或政府部门的要求，需提供用户信息，本网站将不因此承担相关责任。
+            </p>
+            <p>
+                5、本网站与合作方涉及到用户的个人隐私情况的，双方将共同对用户的个人信息负有保护义务。
+            </p>
+            <h3>四、 服务协议的修改</h3>
+            <p>
+                本网站有权在必要时通过在网页上发出公告等合理方式修改本服务条款以及各单项服务的相关条款。用户在享受各项服务时，应当及时查阅了解修改的内容，并自觉遵守本服务条款以及该单项服务的相关条款。用户如继续使用本服务条款涉及的服务，则视为对修改内容的同意；用户在不同意修改内容的情况下，有权停止使用本服务条款涉及的服务。
+            </p>
+            <h3>
+                五、服务协议的变更、中断和终止
+            </h3>
+            <p>
+                1、本网站保留随时变更或中断服务的权利。用户同意本网站有权行使上述权利且不需对用户或第三方承担任何责任。
+            </p>
+            <p>
+                2、用户或本网站可随时根据实际情况终止服务。本网站有权单方不经通知终止向用户提供某一项或多项服务；用户有权单方不经通知，单方终止接受本网站的服务。 结束用户服务后，用户使用本网站服务的权利立即终止。从终止之日起，本网站不再对用户承担任何义务。
+            </p>
+            <p>
+                3、用户知道并同意，服务变更、中断与终止之内容。用户不得因服务的变更、中断或者终止而要求本网站继续提供服务或者承担任何形式的赔偿责任。
+            </p>
+            <h3>六、未成年用户</h3>
+            <p>
+                不满十八周岁的未成年用户需在监护人的指导下阅读本协议和使用本服务内容。
+            </p>
+            <h3>七、本网站权利声明</h3>
+            <p>
+                本网站不行使、未能及时行使或者未充分行使本条款或者按照法律规定所享有的权利，不应被视为放弃该权利，也不影响本网站在将来行使该权利。
+            </p>
+            <p>
+                在法律允许的最大范围内，本网站保留对本服务条款的最终解释权。
+            </p>
+            <h3>八、不可抗力和免责</h3>
+            <p>
+                 1、在使用本网站的过程中，可能会遇到不可抗力等风险因素，使服务发生中断。不可抗力是指不能预见、不能克服并不能避免且对一方或双方造成重大影响的客观事件，包括但不限于自然灾害如洪水、地震、瘟疫流行和风暴等以及社会事件如战争、动乱、政府行为等。发生此类状况时，本网站将会积极与相关单位配合，及时进行修复，由此造成的损失，本网站在法律允许的范围内免责。
+            </p>
+            <p>
+                2、用户选择的银联、第三方支付等多种支付方式，在支付过程中因用户自身原因或第三方支付平台原因造成的异常使其账户无法正常使用或遭受损失，我司对此概不负责，一切损失由用户自行承担。
+            </p>
+            <p>
+                3、用户从本网站所购买的电影票为有价证券，用户应妥善保管。如因用户保管不当造成电影票的遗失，用户应自行承担由此造成的全部损失。
+            </p>
+            <h3>九、争议解决</h3>
+            <p>
+                用户与本网站因本协议的履行发生争议的应通过友好协商解决，协商解决不成的，任一方有权将争议提交至我公司所在地人民法院管辖，通过诉讼解决纠纷。
+            </p>
+            <h3>十、其他</h3>
+            <p>1、如果用户对本服务协议存有任何疑问，可以联系我们。</p>
+            <p>2、在法律允许范围内，本网站享有对本服务协议的解释权。</p>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="footer">
+            <div class="info-help fn-clear">
+                <div class="container">
+                    <div class="logo"><img src="resource/images/logo_1.png" alt="江西电影票" /></div>
+                    <div class="help-nav">
+                        <ul>
+                            <li><a href="/help/usehelp.html#chooseat" target="_blank">如何选座</a></li>
+                            <li><a href="/help/usehelp.html#dopay" target="_blank">如何支付</a></li>
+                            <li><a href="/help/usehelp.html#geticket" target="_blank">如何取票</a></li>
+                            <li><a href="/help/usehelp.html#buyfailed" target="_blank">购票失败</a></li>
+                            <li><a href="/help/usehelp.html#reglogin" target="_blank">注册登录</a></li>
+                            <li><a href="/help/usehelp.html">使用帮助</a></li>
+                        </ul>
+                    </div>
+                    <div class="contact-info">
+                        <span>0791-87871177</span>
+                    </div>
+                    <span class="code"></span>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="container fn-clear">
+                    <ul>
+                        <li><a href="/help/helpindex.html" target="_blank">关于我们</a></li>
+                        <li><a href="/help/contactus.html" target="_blank">联系我们</a></li>
+                        <li><a href="/help/joinus.html" target="_blank">诚聘英才</a></li>
+                        <li><a href="/help/legalstatement.html" target="_blank">法律声明</a></li>
+                        <li><a href="/help/serviceterms.html" target="_blank">服务条款</a></li>
+                        <li><a href="/help/cooperativepartner.html" target="_blank">合作伙伴</a></li>
+                    </ul>
+                    <span>经营性ICP：赣B2-20140012&nbsp;&nbsp;<a href="http://www.beian.miit.gov.cn" rel="nofollow" target="_blank">赣ICP备14000663号</a>&nbsp; &copy;江西省影票文化传媒有限公司版权所有</span>
+                </div>
+            </div>
+        </div>
+        <div class="verlayLogin" id="verlayLogin">
+            <div class="container">
+                <h2>&nbsp;</h2>
+                <div class="tag">
+                    <ul>
+                        <li><a href="#"data-tag="2">手机验证码登录</a>/</li>
+                        <li><a href="#" data-tag="1">账户登录</a></li>
+                    </ul>
+                </div>
+                <div class="box-form" style="display:block;">
+                    <p><input name="telc" class="telc" type="text" maxlength="15" placeholder="手机号" /></p>
+                    <div class="img-code-wrap">
+                        <div class="img-code"><input name="imgCode" type="text" maxlength="8" placeholder="输入右侧验证码" /></div>
+                        <span class="img-code-show"><img src="" width="100%" /></span>
+                    </div>
+                    <p class="box-checkcode">
+                        <input name="checkCode" class="check-code" type="text" maxlength="8" placeholder="输入验证码" />
+                        <span class="btn send-checkcode">获取验证码</span>
+                    </p>
+                </div>
+
+                <div class="box-form">
+                    <p><input name="tel" class="tel" type="text" value="手机号" /></p>
+                    <p><input name="password" class="pwd bgpwd2" type="password" /></p>
+                    <div class="remember-status fn-clear">
+                        <label><input type="checkbox" name="rememberStatus" class="rememberst"/>记住密码一周</label>
+                    </div>
+                </div>
+                <div class="login"><p class="btn" id="doLogin">登录</p></div>
+                <div class="intro fn-clear">
+                    <span class="fn-left"><a href="/forgetpwd.html">忘记密码</a></span>
+                    <span class="fn-right"><a href="/register.html">立即注册</a></span>
+                </div>
+                
+            </div>
+        </div>
+        <div class="nav-scroll">
+            <p class="scroll-top"><a href="javascript:void(0);"></a></p>
+            <p class="feedback"><a href="/help/feedback.html" target="_blank"></a></p>
+            <p class="code">
+                <span></span>
+            </p>
+        </div>
+        <script type="text/javascript">
+            var linkLogin = "";
+            var scrollFunc = function (e) {
+                e = e || window.event;
+                if (e && e.preventDefault) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                } else {
+                    e.returnvalue = false;
+
+                    return false;
+                }
+            }
+            $(".top-nav li a").click(function () {
+                if ($(this).attr("data-flag") == 1) {
+                    linkLogin = $(this).attr("href");
+                    if ("False".toLowerCase() != "true") {
+                        $(".boxLogin").overlay({ api: true }).load();
+                        return false;
+                    }
+                }
+            });
+            $(".img-code-show img").on('click', function () {
+                $(this).attr("src", "/account/CheckCode.html?v=" + Math.random());
+            });
+            $(".main-nav .code a").hover(function () {
+                $(this).siblings(".tag").show();
+            }, function () {
+                $(this).siblings(".tag").hide();
+            });
+            $(".verlayLogin").keydown(function (e) {
+                var curKey = e.which; 
+                if (curKey == 13) {
+                    $("#doLogin").trigger("click");
+                }
+            });
+            $(".boxLogin").overlay({
+                closeOnClick: false,
+                top: 'center',
+                mask: {
+                    color: '#000',
+                    closeSpeed: 700,
+                    opacity: 0.7
+                },
+                onBeforeLoad: function (k) {
+                    $('body').on('mousewheel', function (e) {
+                        scrollFunc(e);
+                    });
+                },
+                onClose: function () {
+                    $('body').off('mousewheel');
+                }
+            });
+            var cursec = 60;
+            var submiting = false;
+            $(".verlayLogin .send-checkcode").click(function () {
+                var $this = $(this);
+                if (submiting) return false;
+                var telc = $.trim($(".verlayLogin .telc").val());
+                var imgCode = $.trim($("input[name=imgCode]").val());
+                if (!telc) {
+                    alert("请输入手机号码！");
+                    return;
+                }
+                if (!imgCode) {
+                    alert("请输入图形验证码！");
+                    return;
+                }
+                $.ajax({
+                    url: '/account/SendSmsRandom.html',
+                    data: { Mobile: telc, ValilCode: imgCode },
+                    type: 'post',
+                    dataType: 'json',
+                    beforeSend: function () {
+                        submiting = true;
+                        $this.text("正在发送");
+                        $this.addClass("disable");
+                    },
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            submiting = true;
+                            if (cursec < 60) {
+                                return;
+                            }
+                            var timer = setInterval(function () {
+                                if (cursec == 60) {
+                                    $this.addClass("disable");
+                                }
+                                $this.text(cursec + "秒后重发");
+                                if (cursec == 0) {
+                                    window.clearInterval(timer);
+                                    submiting = false;
+                                    cursec = 60;
+                                    $this.text("获取验证码");
+                                    $this.removeClass("disable");
+                                } else {
+                                    cursec--;
+                                }
+                            }, 1000);
+                        } else {
+                            $(".img-code-show img").attr("src", "/account/CheckCode.html?v=" + Math.random());
+                            submiting = false;
+                            alert(data.ErrMsg);
+                            $this.removeClass("disable");
+                            $this.text("获取验证码");
+                        }
+                    },
+                    error: function () {
+                        submiting = false;
+                        $this.removeClass("disable");
+                        alert("获取验证码失败");
+                    }
+                });
+            });
+            $("#verlayLogin input.tel").focus(function () {
+                if ($(this).val() == "手机号") {
+                    $(this).val("");
+                }
+            });
+            $("#verlayLogin input.tel").blur(function () {
+                if ($(this).val() == "") {
+                    $(this).val("手机号");
+                }
+            });
+            $("#verlayLogin input.pwd").focus(function () {
+                $(this).removeClass("bgpwd2");
+            });
+            $("#verlayLogin input.pwd").blur(function () {
+                if ($(this).val() == "") {
+                    $(this).addClass("bgpwd2");
+                }
+            });
+            $("#doLogin").click(function () {
+                var tag=$(this).attr("data-tag");
+                var tel = $.trim($(".verlayLogin .tel").val());
+                var pwd = $.trim($(".verlayLogin .pwd").val());
+                var telc = $.trim($(".verlayLogin .telc").val());
+                var checkCode = $.trim($(".verlayLogin .check-code").val());
+                var isCheckRemember = false;
+                if ($(".rememberst").is(':checked')) {
+                    isCheckRemember = true;
+                }
+                if (tag == 1) {
+                    if (!tel || tel == "手机号") {
+                        alert("请输入手机号码！");
+                        return;
+                    }
+                    if (!pwd) {
+                        alert("请输入密码！");
+                        return;
+                    }
+                    postdata = { Mobile: tel, Pass: pwd, Type: tag };
+                }
+                if (tag == 2) {
+                    if (!telc) {
+                        alert("请输入手机号码！");
+                        return;
+                    }
+                    if (!checkCode) {
+                        alert("请输入验证码！");
+                        return;
+                    }
+                    postdata = { Mobile: telc, Pass: checkCode, Type: tag };
+                }
+                $.ajax({
+                    url: '/account/VerifyMember.html',
+                    data: postdata,
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            if (isCheckRemember) {
+                                SetCookie("LocalToken", data.ErrMsg, 7);
+                                SetCookie("LocalMobile", data.Mobile, 7);
+                            }
+                            setsessionstorage(data);
+                            if (linkLogin) {
+                                window.location.href = linkLogin;
+                            } else {
+                                window.location.reload();
+                            }
+                        } else {
+                            alert(data.ErrMsg);
+                        } 
+                    },
+                    error: function () {
+                        alert("网络错误,稍后再试！");
+                    }
+                });
+            });
+            $(".loginout").click(function () {
+                loginout();
+            });
+            $(".verlayLogin .tag ul").tabs(".verlayLogin .box-form", {
+                onClick: function () {
+                    $("#doLogin").attr("data-tag", this.getCurrentTab().attr("data-tag"));
+                }
+            });
+            
+            function loginout(){
+                $.ajax({
+                    url: '/account/loginout.html',
+                    data: {},
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            clearsessionstorage();
+                            window.location = "/";
+                        } else {
+                            alert(data.ErrMsg);
+                        }
+                    },
+                    error: function () {
+                        alert("网络错误,稍后再试！");
+                    }
+                });
+            }
+            
+        </script>
+        <form id="citycodeform" method="post" enctype="application/x-www-form-urlencoded"  action="/">
+           <input type="hidden"  name="CityCode" id="ccitycode"/>
+        </form>
+        
+        
+    </body>
+</html>

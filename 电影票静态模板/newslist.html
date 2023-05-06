@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=990, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta charset="utf-8" />
+        <meta name="renderer" content="webkit">
+        <title>江西电影资讯_江西电影票网</title>
+        <meta name="keywords"/>
+        <meta name="description" content="江西电影票网是江西最大的电影票在线选座平台，同时江西电影票网还提供电影排期，影院信息查询、江西本土电影行业资讯等服务。看电影，来江西电影票选座"/>
+        <link href="resource/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link href="resource/css/main.css" rel="stylesheet" />
+        <link href="resource/css/style.min.css?v=20180606" rel="stylesheet" />
+        
+        <script src="resource/js/jquery.1.7.2.min.js" type="text/javascript"></script>
+        <script src="resource/js/json2.min.js" type="text/javascript"></script>
+        <script src="resource/js/helper.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.expose.min.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.overlay.min.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.tabs.min.js" type="text/javascript"></script>
+          
+    <link href="resource/css/jqpagination.css" rel="stylesheet" />
+    <script src="resource/js/jquery.jqpagination.min.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+            $(function () {
+                $(".bottom-nav li:first").css("margin-left","0");
+                $(".bottom-nav li:last").addClass("fn-nobg");
+                $(".top-nav .user-name").text(getCookie("NickName") + "(" + getCookie("Mobile") + ")");
+                $(".main-nav .location").toggle(function () {
+                    $(this).addClass("lsec").find(".other-city").show();
+                }, function () {
+                    $(this).removeClass("lsec").find(".other-city").hide();
+                });
+                $(window).scroll(function () {
+                    if ($(window).scrollTop() > 100) {
+                        $(".nav-scroll").fadeIn(1500);
+                    } else {
+                        $(".nav-scroll").fadeOut(1500);
+                    }
+                });
+                $(".scroll-top").click(function () {
+                    $("html, body").animate({
+                        scrollTop: "0px"
+                    }, {
+                        duration: 500,
+                        easing: "swing"
+                    });
+                    return false;
+                });
+                $(".nav-scroll .code").hover(function () {
+                    $(this).find("span").show();
+                }, function () {
+                    $(this).find("span").hide();
+                });
+            });
+
+            function changecity(citycode) {
+                if (window.location.toString().indexOf("cinemalist") > -1) {
+                    window.location = "/cinemalist/" + citycode + ".html";
+                }
+                else {
+                    document.getElementById("ccitycode").value = citycode;
+                    document.getElementById("citycodeform").submit();
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="top-nav">
+                <div class="container fn-clear">
+                      <span class="tip">欢迎来到江西电影票<a rel="#verlayLogin" href="javascript:void(0)" class="boxLogin blue">登录</a><a href="/register.html">注册</a></span>
+                    <ul>
+                        <li><a href="/account/usercenter.html" title="个人中心" data-flag="1">个人中心</a></li>
+                        <li><a href="/account/userorderlist.html" title="我的订单" data-flag="1">我的订单</a></li>
+                        <li><a href="/help/helpindex.html" title="帮助中心" target="_blank">帮助中心</a></li>
+                        <li>&nbsp;联系客服：0791-87871177</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main-nav">
+                <div class="container fn-clear">
+                    <div class="logo"><a href="/"><img src="resource/images/logo.png" alt="江西电影票" title="江西电影票" width="165"/></a></div>
+                    <div class="location" data-citycode="360100">
+                        <span class="lc">南昌</span>
+                        <ul class="other-city">
+                            <li><a onclick="changecity('360100')" href="javascript:void(0)">南昌</a></li>
+                            <li><a onclick="changecity('360200')" href="javascript:void(0)">景德镇</a></li>
+                            <li><a onclick="changecity('360300')" href="javascript:void(0)">萍乡</a></li>
+                            <li><a onclick="changecity('360400')" href="javascript:void(0)">九江</a></li>
+                            <li><a onclick="changecity('360500')" href="javascript:void(0)">新余</a></li>
+                            <li><a onclick="changecity('360600')" href="javascript:void(0)">鹰潭</a></li>
+                            <li><a onclick="changecity('360700')" href="javascript:void(0)">赣州</a></li>
+                            <li><a onclick="changecity('360800')" href="javascript:void(0)">吉安</a></li>
+                            <li><a onclick="changecity('360900')" href="javascript:void(0)">宜春</a></li>
+                            <li><a onclick="changecity('361000')" href="javascript:void(0)">抚州</a></li>
+                            <li><a onclick="changecity('361100')" href="javascript:void(0)">上饶</a></li>
+                        </ul>
+                    </div>
+                    <ul class="nav-list fn-clear">
+                        <li data-index="index"><a href="index.html">首页</a></li>
+                        <li data-index="film"><a href="filmshowlist.html">电影</a></li>
+                        <li data-index="cinema"><a href="cinemalist.html">影院</a></li>
+                        
+                        <li data-index="news"><a href="newslist.html">资讯</a></li>
+                        
+                    </ul>
+                    <div class="box-code-tg">
+                        
+                        <p class="code">
+                            <a href="javascript:void(0);">手机购影票</a>
+                            <span class="tag"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="body" class="main">
+                
+<div class="wrap-newslist fn-clear pt30">
+    <div class="box-news-list">
+        <div class="title fn-clear">
+            <span class="fn-left titb">资讯</span>
+            <ul class="fn-left">
+                <li data-i="dianyingzixun" ><a href="/newslist/dianyingzixun_1.html">电影资讯</a>/</li>
+                <li data-i="xingyezixun" ><a href="/newslist/xingyezixun_1.html">行业资讯</a>/</li>
+                <li data-i="ganyingfengcai"><a href="/newslist/ganyingfengcai_1.html")">赣影风采</a>/</li>
+                <li data-i="jingcaiyingping"><a href="/newslist/jingcaiyingping_1.html")">精彩影评</a></li>
+            </ul>
+        </div>
+        <ul class="news-list" id="newslist">
+                <li class="fn-clear">
+                        <img class="pic" src="resource/images/20200102110226232308934.png" width="120" height="80" />
+                    <div class="con">
+                        <h2><a href="newsdetail.html" target="_blank">江西银行白金卡6元观影</a></h2>
+                        <p>活动时间：2019年5月1日至2020年4月30日。白金卡客户无需抢券，每月可至“江西银行信用卡”官方微信-粉丝福利-惠生活活动入口自动获取一次白金卡6元观影专享权益。</p>
+                    </div>
+                </li>
+                <li class="fn-clear">
+                        <img class="pic" src="resource/images/20200102103849482308296.jpg" width="120" height="80" />
+                    <div class="con">
+                        <h2><a href="newsdetail.html" target="_blank">北京银行1元、10元观影</a></h2>
+                        <p>活动期间，北京银行信用卡持卡用户每自然月可计积分消费金额累计满888元（含），次月10日后即可获得2次10元特惠购票权益。</p>
+                    </div>
+                </li>
+                <li class="fn-clear">
+                        <img class="pic" src="resource/images/20191118163939119871031.jpg" width="120" height="80" />
+                    <div class="con">
+                        <h2><a href="newsdetail.html" target="_blank"> 陈思诚不再执导《唐探4》将筹备新系列电影</a></h2>
+                        <p>《唐探3》将展现世界电影里前所未见的日本场景，涩谷、新宿、秋叶原，这些耳熟能详的地标，会第一次通过大银幕呈现。他还透露，电影《唐人街探案3》是他导演的最后一部《唐探》作品，之后会以编剧和监制的身份，继续参与《唐探》系列。</p>
+                    </div>
+                </li>
+                <li class="fn-clear">
+                        <img class="pic" src="resource/images/20191118162052807375260.jpg" width="120" height="80" />
+                    <div class="con">
+                        <h2><a href="newsdetail.html" target="_blank">《触不可及》超前点映好评不断 毒师老白“脸”技获赞</a></h2>
+                        <p>作为一部集结好莱坞群星阵容的电影，《触不可及》延续了美式幽默风格，用接连不断的生活笑料，刻画出两个人生“失败者”之间，最真实真挚的友情。</p>
+                    </div>
+                </li>
+                <li class="fn-clear">
+                        <img class="pic" src="resource/images/20191118161052354253732.jpg" width="120" height="80" />
+                    <div class="con">
+                        <h2><a href="newsdetail.html" target="_blank">南方车站的聚会》曝新特辑 “贪心”胡歌挑战极限</a></h2>
+                        <p>由刁亦男执导，胡歌、桂纶镁领衔主演，廖凡、万茜特别出演，奇道主演的电影《南方车站的聚会》</p>
+                    </div>
+                </li>
+                <li class="fn-clear">
+                        <img class="pic" src="resource/images/20191118154131713622784.jpg" width="120" height="80" />
+                    <div class="con">
+                        <h2><a href="newsdetail.html" target="_blank">金牌班底  林超贤新作《紧急救援》展现华语电影新高度</a></h2>
+                        <p>电影《紧急救援》取材自真实海上救援事件，由林超贤导演、梁凤英监制，彭于晏、王彦霖、辛芷蕾、蓝盈莹、王雨甜、徐洋、陈家乐、李岷城等主演，将于2020年大年初一正式上映。</p>
+                    </div>
+                </li>
+                <li class="fn-clear">
+                    <div class="con">
+                        <h2><a href="newsdetail.html" target="_blank">恭喜！《哪吒》《流浪》等入围“澳洲奥斯卡最佳亚洲电影”提名</a></h2>
+                        <p>近日公布了第九届“最佳亚洲电影”提名，将于12月4日颁奖，罗素&#183;克劳任评委主席。</p>
+                    </div>
+                </li>
+                <li class="fn-clear">
+                        <img class="pic" src="resource/images/20191015152345093163877.jpg" width="120" height="80" />
+                    <div class="con">
+                        <h2><a href="newsdetail.html" target="_blank">《越域重生》定档11.1 “越狱天团”大银幕首次集结</a></h2>
+                        <p>电影《越狱重生》将于11月1日全国院线公映。该影片由《越狱》原班人马主演。</p>
+                    </div>
+                </li>
+                <li class="fn-clear">
+                        <img class="pic" src="resource/images/20191015151205702533472.jpg" width="120" height="80" />
+                    <div class="con">
+                        <h2><a href="newsdetail.html" target="_blank">《好莱坞往事》群星闪耀 影迷大赞昆汀：不愧是你</a></h2>
+                        <p>《好莱坞往事》是昆汀&#183;塔伦蒂诺第九部长片作品，影片对真实历史事件进行了改编，已经让观众对于故事十分好奇。</p>
+                    </div>
+                </li>
+                <li class="fn-clear">
+                        <img class="pic" src="resource/images/2019090217050210252284.jpg" width="120" height="80" />
+                    <div class="con">
+                        <h2><a href="newsdetail.html" target="_blank">定档！李安《双子杀手》10月18日内地上映</a></h2>
+                        <p>李安新作《双子杀手》发布定档预告，正式宣布内地定档10月18日。</p>
+                    </div>
+                </li>
+        </ul>
+            <div class="fn-acenter">
+                 <div id="pager" class="fn-clear"></div>
+            </div>
+    </div>
+    <div class="film-show">
+        <div class="title"><span class="titb">正在热映</span></div>
+        <ul>
+                <li>
+                    <h3><a href="/filmdetail/8f451de8-0148-495f-87b5-00634b7634fb.html" target="_blank">寻梦环游记</a></h3>
+                    <div class="nscore" data-average="9.4" data-id="ac"></div>
+                    <p>墨西哥亡灵节</p>
+                    <span class="photo"><a href="/filmdetail/8f451de8-0148-495f-87b5-00634b7634fb.html" target="_blank"><img src="resource/images/20171120090729666696221.jpg" width="72" height="100" alt="" /></a></span>
+                    <span class="tscore yellow">9.4</span>
+                </li>
+                <li>
+                    <h3><a href="/filmdetail/5a72fc63-ba28-43b1-9ca9-01a753f10dbd.html" target="_blank">今生只为遇见你</a></h3>
+                    <div class="nscore" data-average="" data-id="ac"></div>
+                    <p>暂无介绍</p>
+                    <span class="photo"><a href="/filmdetail/5a72fc63-ba28-43b1-9ca9-01a753f10dbd.html" target="_blank"><img src="resource/images/20200810095438657492237.jpg" width="72" height="100" alt="" /></a></span>
+                    <span class="tscore yellow"></span>
+                </li>
+                <li>
+                    <h3><a href="/filmdetail/b6b91f25-dd5d-4f43-9e05-053614e6fb8b.html" target="_blank">魔发精灵2</a></h3>
+                    <div class="nscore" data-average="8.6" data-id="ac"></div>
+                    <p>暂无介绍</p>
+                    <span class="photo"><a href="/filmdetail/b6b91f25-dd5d-4f43-9e05-053614e6fb8b.html" target="_blank"><img src="resource/images/20200810095509516857465.jpg" width="72" height="100" alt="" /></a></span>
+                    <span class="tscore yellow">8.6</span>
+                </li>
+                <li>
+                    <h3><a href="/filmdetail/86b854c9-050f-4eec-bda4-13c8b377a30d.html" target="_blank">绝地战警：疾速追击</a></h3>
+                    <div class="nscore" data-average="8.2" data-id="ac"></div>
+                    <p>暂无介绍</p>
+                    <span class="photo"><a href="/filmdetail/86b854c9-050f-4eec-bda4-13c8b377a30d.html" target="_blank"><img src="resource/images/2020072712474473238814.jpg" width="72" height="100" alt="" /></a></span>
+                    <span class="tscore yellow">8.2</span>
+                </li>
+                <li>
+                    <h3><a href="/filmdetail/bcd9569b-1026-4047-864a-15dbc7249a54.html" target="_blank">大话西游之大圣娶亲</a></h3>
+                    <div class="nscore" data-average="8.8" data-id="ac"></div>
+                    <p>一生所爱</p>
+                    <span class="photo"><a href="/filmdetail/bcd9569b-1026-4047-864a-15dbc7249a54.html" target="_blank"><img src="resource/images/20170328102804077577419.jpg" width="72" height="100" alt="" /></a></span>
+                    <span class="tscore yellow">8.8</span>
+                </li>
+        </ul>
+    </div>
+</div>
+
+        </div>
+        <div class="footer">
+            <div class="info-help fn-clear">
+                <div class="container">
+                    <div class="logo"><img src="resource/images/logo_1.png" alt="江西电影票" /></div>
+                    <div class="help-nav">
+                        <ul>
+                            <li><a href="/help/usehelp.html#chooseat" target="_blank">如何选座</a></li>
+                            <li><a href="/help/usehelp.html#dopay" target="_blank">如何支付</a></li>
+                            <li><a href="/help/usehelp.html#geticket" target="_blank">如何取票</a></li>
+                            <li><a href="/help/usehelp.html#buyfailed" target="_blank">购票失败</a></li>
+                            <li><a href="/help/usehelp.html#reglogin" target="_blank">注册登录</a></li>
+                            <li><a href="/help/usehelp.html">使用帮助</a></li>
+                        </ul>
+                    </div>
+                    <div class="contact-info">
+                        <span>0791-87871177</span>
+                    </div>
+                    <span class="code"></span>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="container fn-clear">
+                    <ul>
+                        <li><a href="/help/helpindex.html" target="_blank">关于我们</a></li>
+                        <li><a href="/help/contactus.html" target="_blank">联系我们</a></li>
+                        <li><a href="/help/joinus.html" target="_blank">诚聘英才</a></li>
+                        <li><a href="/help/legalstatement.html" target="_blank">法律声明</a></li>
+                        <li><a href="/help/serviceterms.html" target="_blank">服务条款</a></li>
+                        <li><a href="/help/cooperativepartner.html" target="_blank">合作伙伴</a></li>
+                    </ul>
+                    <span>经营性ICP：赣B2-20140012&nbsp;&nbsp;<a href="http://www.beian.miit.gov.cn" rel="nofollow" target="_blank">赣ICP备14000663号</a>&nbsp; &copy;江西省影票文化传媒有限公司版权所有</span>
+                </div>
+            </div>
+        </div>
+        <div class="verlayLogin" id="verlayLogin">
+            <div class="container">
+                <h2>&nbsp;</h2>
+                <div class="tag">
+                    <ul>
+                        <li><a href="#"data-tag="2">手机验证码登录</a>/</li>
+                        <li><a href="#" data-tag="1">账户登录</a></li>
+                    </ul>
+                </div>
+                <div class="box-form" style="display:block;">
+                    <p><input name="telc" class="telc" type="text" maxlength="15" placeholder="手机号" /></p>
+                    <div class="img-code-wrap">
+                        <div class="img-code"><input name="imgCode" type="text" maxlength="8" placeholder="输入右侧验证码" /></div>
+                        <span class="img-code-show"><img src="" width="100%" /></span>
+                    </div>
+                    <p class="box-checkcode">
+                        <input name="checkCode" class="check-code" type="text" maxlength="8" placeholder="输入验证码" />
+                        <span class="btn send-checkcode">获取验证码</span>
+                    </p>
+                </div>
+
+                <div class="box-form">
+                    <p><input name="tel" class="tel" type="text" value="手机号" /></p>
+                    <p><input name="password" class="pwd bgpwd2" type="password" /></p>
+                    <div class="remember-status fn-clear">
+                        <label><input type="checkbox" name="rememberStatus" class="rememberst"/>记住密码一周</label>
+                    </div>
+                </div>
+                <div class="login"><p class="btn" id="doLogin">登录</p></div>
+                <div class="intro fn-clear">
+                    <span class="fn-left"><a href="/forgetpwd.html">忘记密码</a></span>
+                    <span class="fn-right"><a href="/register.html">立即注册</a></span>
+                </div>
+                
+            </div>
+        </div>
+        <div class="nav-scroll">
+            <p class="scroll-top"><a href="javascript:void(0);"></a></p>
+            <p class="feedback"><a href="/help/feedback.html" target="_blank"></a></p>
+            <p class="code">
+                <span></span>
+            </p>
+        </div>
+        <script type="text/javascript">
+            var linkLogin = "";
+            var scrollFunc = function (e) {
+                e = e || window.event;
+                if (e && e.preventDefault) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                } else {
+                    e.returnvalue = false;
+
+                    return false;
+                }
+            }
+            $(".top-nav li a").click(function () {
+                if ($(this).attr("data-flag") == 1) {
+                    linkLogin = $(this).attr("href");
+                    if ("False".toLowerCase() != "true") {
+                        $(".boxLogin").overlay({ api: true }).load();
+                        return false;
+                    }
+                }
+            });
+            $(".img-code-show img").on('click', function () {
+                $(this).attr("src", "/account/CheckCode.html?v=" + Math.random());
+            });
+            $(".main-nav .code a").hover(function () {
+                $(this).siblings(".tag").show();
+            }, function () {
+                $(this).siblings(".tag").hide();
+            });
+            $(".verlayLogin").keydown(function (e) {
+                var curKey = e.which; 
+                if (curKey == 13) {
+                    $("#doLogin").trigger("click");
+                }
+            });
+            $(".boxLogin").overlay({
+                closeOnClick: false,
+                top: 'center',
+                mask: {
+                    color: '#000',
+                    closeSpeed: 700,
+                    opacity: 0.7
+                },
+                onBeforeLoad: function (k) {
+                    $('body').on('mousewheel', function (e) {
+                        scrollFunc(e);
+                    });
+                },
+                onClose: function () {
+                    $('body').off('mousewheel');
+                }
+            });
+            var cursec = 60;
+            var submiting = false;
+            $(".verlayLogin .send-checkcode").click(function () {
+                var $this = $(this);
+                if (submiting) return false;
+                var telc = $.trim($(".verlayLogin .telc").val());
+                var imgCode = $.trim($("input[name=imgCode]").val());
+                if (!telc) {
+                    alert("请输入手机号码！");
+                    return;
+                }
+                if (!imgCode) {
+                    alert("请输入图形验证码！");
+                    return;
+                }
+                $.ajax({
+                    url: '/account/SendSmsRandom.html',
+                    data: { Mobile: telc, ValilCode: imgCode },
+                    type: 'post',
+                    dataType: 'json',
+                    beforeSend: function () {
+                        submiting = true;
+                        $this.text("正在发送");
+                        $this.addClass("disable");
+                    },
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            submiting = true;
+                            if (cursec < 60) {
+                                return;
+                            }
+                            var timer = setInterval(function () {
+                                if (cursec == 60) {
+                                    $this.addClass("disable");
+                                }
+                                $this.text(cursec + "秒后重发");
+                                if (cursec == 0) {
+                                    window.clearInterval(timer);
+                                    submiting = false;
+                                    cursec = 60;
+                                    $this.text("获取验证码");
+                                    $this.removeClass("disable");
+                                } else {
+                                    cursec--;
+                                }
+                            }, 1000);
+                        } else {
+                            $(".img-code-show img").attr("src", "/account/CheckCode.html?v=" + Math.random());
+                            submiting = false;
+                            alert(data.ErrMsg);
+                            $this.removeClass("disable");
+                            $this.text("获取验证码");
+                        }
+                    },
+                    error: function () {
+                        submiting = false;
+                        $this.removeClass("disable");
+                        alert("获取验证码失败");
+                    }
+                });
+            });
+            $("#verlayLogin input.tel").focus(function () {
+                if ($(this).val() == "手机号") {
+                    $(this).val("");
+                }
+            });
+            $("#verlayLogin input.tel").blur(function () {
+                if ($(this).val() == "") {
+                    $(this).val("手机号");
+                }
+            });
+            $("#verlayLogin input.pwd").focus(function () {
+                $(this).removeClass("bgpwd2");
+            });
+            $("#verlayLogin input.pwd").blur(function () {
+                if ($(this).val() == "") {
+                    $(this).addClass("bgpwd2");
+                }
+            });
+            $("#doLogin").click(function () {
+                var tag=$(this).attr("data-tag");
+                var tel = $.trim($(".verlayLogin .tel").val());
+                var pwd = $.trim($(".verlayLogin .pwd").val());
+                var telc = $.trim($(".verlayLogin .telc").val());
+                var checkCode = $.trim($(".verlayLogin .check-code").val());
+                var isCheckRemember = false;
+                if ($(".rememberst").is(':checked')) {
+                    isCheckRemember = true;
+                }
+                if (tag == 1) {
+                    if (!tel || tel == "手机号") {
+                        alert("请输入手机号码！");
+                        return;
+                    }
+                    if (!pwd) {
+                        alert("请输入密码！");
+                        return;
+                    }
+                    postdata = { Mobile: tel, Pass: pwd, Type: tag };
+                }
+                if (tag == 2) {
+                    if (!telc) {
+                        alert("请输入手机号码！");
+                        return;
+                    }
+                    if (!checkCode) {
+                        alert("请输入验证码！");
+                        return;
+                    }
+                    postdata = { Mobile: telc, Pass: checkCode, Type: tag };
+                }
+                $.ajax({
+                    url: '/account/VerifyMember.html',
+                    data: postdata,
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            if (isCheckRemember) {
+                                SetCookie("LocalToken", data.ErrMsg, 7);
+                                SetCookie("LocalMobile", data.Mobile, 7);
+                            }
+                            setsessionstorage(data);
+                            if (linkLogin) {
+                                window.location.href = linkLogin;
+                            } else {
+                                window.location.reload();
+                            }
+                        } else {
+                            alert(data.ErrMsg);
+                        } 
+                    },
+                    error: function () {
+                        alert("网络错误,稍后再试！");
+                    }
+                });
+            });
+            $(".loginout").click(function () {
+                loginout();
+            });
+            $(".verlayLogin .tag ul").tabs(".verlayLogin .box-form", {
+                onClick: function () {
+                    $("#doLogin").attr("data-tag", this.getCurrentTab().attr("data-tag"));
+                }
+            });
+            
+            function loginout(){
+                $.ajax({
+                    url: '/account/loginout.html',
+                    data: {},
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            clearsessionstorage();
+                            window.location = "/";
+                        } else {
+                            alert(data.ErrMsg);
+                        }
+                    },
+                    error: function () {
+                        alert("网络错误,稍后再试！");
+                    }
+                });
+            }
+            
+        </script>
+        <form id="citycodeform" method="post" enctype="application/x-www-form-urlencoded"  action="/">
+           <input type="hidden"  name="CityCode" id="ccitycode"/>
+        </form>
+        
+    <link href="resource/css/jquery.jRating.css" rel="stylesheet" />
+    <script src="resource/js/jquery.jRating.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".box-news-list .title li").each(function () {
+                if ($(this).attr("data-i") == "newsall") {
+                    $(this).addClass("act");
+                }
+            });
+            $('.nscore').jRating({
+                rateMax: 10,
+                isDisabled: true,
+                bigStarsPath: 'resource/images/ico_tb_stars.png'
+            });
+            $("#pager").pager({ pagenumber: parseInt('1'), pagecount: parseInt('168'), buttonClickCallback: PageClick });
+        })
+        PageClick = function (pageclickednumber) {
+            window.location = "/newslist/" + 'newsall' + "_" + pageclickednumber+".html";
+        }
+    </script>
+
+        
+    </body>
+</html>

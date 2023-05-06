@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=990, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta charset="utf-8" />
+        <meta name="renderer" content="webkit">
+        <title>正在热映电影_江西电影票网</title>
+        <meta name="keywords"/>
+        <meta name="description" content="江西电影票网是江西最大的电影票在线选座平台，同时江西电影票网还提供电影排期，影院信息查询、江西本土电影行业资讯等服务。看电影，来江西电影票选座"/>
+        <link href="resource/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link href="resource/css/main.css" rel="stylesheet" />
+        <link href="resource/css/style.min.css?v=20180606" rel="stylesheet" />
+        
+        <script src="resource/js/jquery.1.7.2.min.js" type="text/javascript"></script>
+        <script src="resource/js/json2.min.js" type="text/javascript"></script>
+        <script src="resource/js/helper.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.expose.min.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.overlay.min.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.tabs.min.js" type="text/javascript"></script>
+          
+    <link href="resource/css/jquery.jPages.css" rel="stylesheet" />
+    <script src="resource/js/jquery.jPages.min.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+            $(function () {
+                $(".bottom-nav li:first").css("margin-left","0");
+                $(".bottom-nav li:last").addClass("fn-nobg");
+                $(".top-nav .user-name").text(getCookie("NickName") + "(" + getCookie("Mobile") + ")");
+                $(".main-nav .location").toggle(function () {
+                    $(this).addClass("lsec").find(".other-city").show();
+                }, function () {
+                    $(this).removeClass("lsec").find(".other-city").hide();
+                });
+                $(window).scroll(function () {
+                    if ($(window).scrollTop() > 100) {
+                        $(".nav-scroll").fadeIn(1500);
+                    } else {
+                        $(".nav-scroll").fadeOut(1500);
+                    }
+                });
+                $(".scroll-top").click(function () {
+                    $("html, body").animate({
+                        scrollTop: "0px"
+                    }, {
+                        duration: 500,
+                        easing: "swing"
+                    });
+                    return false;
+                });
+                $(".nav-scroll .code").hover(function () {
+                    $(this).find("span").show();
+                }, function () {
+                    $(this).find("span").hide();
+                });
+            });
+
+            function changecity(citycode) {
+                if (window.location.toString().indexOf("cinemalist") > -1) {
+                    window.location = "/cinemalist/" + citycode + ".html";
+                }
+                else {
+                    document.getElementById("ccitycode").value = citycode;
+                    document.getElementById("citycodeform").submit();
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="top-nav">
+                <div class="container fn-clear">
+                      <span class="tip">欢迎来到江西电影票<a rel="#verlayLogin" href="javascript:void(0)" class="boxLogin blue">登录</a><a href="register.html">注册</a></span>
+                    <ul>
+                        <li><a href="/account/usercenter.html" title="个人中心" data-flag="1">个人中心</a></li>
+                        <li><a href="/account/userorderlist.html" title="我的订单" data-flag="1">我的订单</a></li>
+                        <li><a href="/help/helpindex.html" title="帮助中心" target="_blank">帮助中心</a></li>
+                        <li>&nbsp;联系客服：0791-87871177</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main-nav">
+                <div class="container fn-clear">
+                    <div class="logo"><a href="/"><img src="resource/images/logo.png" alt="江西电影票" title="江西电影票" width="165"/></a></div>
+                    <div class="location" data-citycode="360100">
+                        <span class="lc">南昌</span>
+                        <ul class="other-city">
+                            <li><a onclick="changecity('360100')" href="javascript:void(0)">南昌</a></li>
+                            <li><a onclick="changecity('360200')" href="javascript:void(0)">景德镇</a></li>
+                            <li><a onclick="changecity('360300')" href="javascript:void(0)">萍乡</a></li>
+                            <li><a onclick="changecity('360400')" href="javascript:void(0)">九江</a></li>
+                            <li><a onclick="changecity('360500')" href="javascript:void(0)">新余</a></li>
+                            <li><a onclick="changecity('360600')" href="javascript:void(0)">鹰潭</a></li>
+                            <li><a onclick="changecity('360700')" href="javascript:void(0)">赣州</a></li>
+                            <li><a onclick="changecity('360800')" href="javascript:void(0)">吉安</a></li>
+                            <li><a onclick="changecity('360900')" href="javascript:void(0)">宜春</a></li>
+                            <li><a onclick="changecity('361000')" href="javascript:void(0)">抚州</a></li>
+                            <li><a onclick="changecity('361100')" href="javascript:void(0)">上饶</a></li>
+                        </ul>
+                    </div>
+                    <ul class="nav-list fn-clear">
+                        <li data-index="index"><a href="index.html">首页</a></li>
+                        <li data-index="film"><a href="filmshowlist.html">电影</a></li>
+                        <li data-index="cinema"><a href="cinemalist.html">影院</a></li>
+                       
+                        <li data-index="news"><a href="newslist.html">资讯</a></li>
+                        
+                    </ul>
+                    <div class="box-code-tg">
+                        
+                        <p class="code">
+                            <a href="javascript:void(0);">手机购影票</a>
+                            <span class="tag"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="body" class="main">
+                
+<div class="wrapper-filmlist fn-clear">
+    <div class="box-filmlist">
+        <div class="title">
+            <span><a href="filmshowlist.html" class="pr act">正在热映</a>/</span>
+            <span><a href="filmfuturelist.html">即将上映</a></span>
+            <em>共 23 部热映电影</em>
+        </div>
+        <ul id="filmShowNow">
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">寻梦环游记</a><span>9.4分</span></h3>
+                <p class="tip">墨西哥亡灵节</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>喜剧 / 动画 / 音乐 / 冒险 制片国家/地区: 美国</span><span>105 分钟</span></p>
+                <p><span>导演：</span><span>李&#183;昂克里奇 / 阿德里安&#183;莫利纳</span></p>
+                <p class="actor"><span>主演：</span><span>盖尔&#183;加西亚&#183;贝纳尔 / 安东尼&#183;冈萨雷斯 / 本杰明&#183;布拉特 / 芮妮&#183;维克托 / 安娜&#183;奥菲丽亚&#183;莫吉亚</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20171120090729666696221.jpg" width="145" height="200" alt="寻梦环游记" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">1家影院上映1场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">魔发精灵2</a><span>8.6分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>英语</span><span>90分钟 / 动画 / 歌舞 / 奇幻 / 冒险 / 美国</span><span>90 分钟</span></p>
+                <p><span>导演：</span><span>迈克&#183;米歇尔, 大卫&#183;史密斯</span></p>
+                <p class="actor"><span>主演：</span><span>安娜&#183;肯德里克,贾斯汀&#183;汀布莱克,詹米&#183;多南,山姆&#183;洛克威尔,詹姆斯&#183;柯登</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20200810095509516857465.jpg" width="145" height="200" alt="魔发精灵2" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">3家影院上映3场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">绝地战警：疾速追击</a><span>8.2分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>英语</span><span>124分钟 / 喜剧 / 动作 / 美国</span><span>124 分钟</span></p>
+                <p><span>导演：</span><span>阿迪尔&#183;埃尔&#183;阿比, 比拉勒&#183;法拉赫</span></p>
+                <p class="actor"><span>主演：</span><span>威尔&#183;史密斯,马丁&#183;劳伦斯</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/2020072712474473238814.jpg" width="145" height="200" alt="绝地战警：疾速追击" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">1家影院上映1场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">大话西游之大圣娶亲</a><span>8.8分</span></h3>
+                <p class="tip">一生所爱</p>
+                <p class="tag fn-clear"><span>粤语 / 汉语普通话</span><span>喜剧 / 动作 / 爱情 / 奇幻 / 冒险</span><span>95 分钟</span></p>
+                <p><span>导演：</span><span>刘镇伟</span></p>
+                <p class="actor"><span>主演：</span><span>周星驰 / 吴孟达 / 朱茵 / 蔡少芬 / 蓝洁瑛</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20170328102804077577419.jpg" width="145" height="200" alt="大话西游之大圣娶亲" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">2家影院上映2场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">误杀</a><span>9.2分</span></h3>
+                <p class="tip">殊死一搏的较量。</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>剧情 / 犯罪 / 中国大陆</span><span>112 分钟</span></p>
+                <p><span>导演：</span><span>柯汶利</span></p>
+                <p class="actor"><span>主演：</span><span>肖央,谭卓,陈冲,姜皓文,秦沛</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20191203112536837491049.jpg" width="145" height="200" alt="误杀" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">3家影院上映6场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">哪吒之魔童降世</a><span>9.5分</span></h3>
+                <p class="tip">生而为魔,那又如何?</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>动画 / 中国大陆</span><span>110 分钟</span></p>
+                <p><span>导演：</span><span>饺子</span></p>
+                <p class="actor"><span>主演：</span><span></span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20190708085809257748315.jpg" width="145" height="200" alt="哪吒之魔童降世" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">3家影院上映7场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">荞麦疯长</a><span>6.2分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>剧情 / 爱情 / 中国大陆</span><span>112 分钟</span></p>
+                <p><span>导演：</span><span>徐展雄</span></p>
+                <p class="actor"><span>主演：</span><span>马思纯,钟楚曦,黄景瑜</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20200115101409986272484.jpg" width="145" height="200" alt="荞麦疯长" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">37家影院上映120场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">八佰</a><span>9.1分</span></h3>
+                <p class="tip">四百人对外号称八百人</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>剧情 / 战争 / 历史 / 中国大陆 / 160分钟</span><span>147 分钟</span></p>
+                <p><span>导演：</span><span>管虎</span></p>
+                <p class="actor"><span>主演：</span><span>王千源,张译,姜武,黄志忠,张俊一,欧豪,张承</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20190617110719866001852.jpg" width="145" height="200" alt="八佰" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">43家影院上映948场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">我在时间尽头等你</a><span>7.9分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>爱情 / 奇幻 / 中国大陆 / 115分钟</span><span>115 分钟</span></p>
+                <p><span>导演：</span><span>姚婷婷</span></p>
+                <p class="actor"><span>主演：</span><span>李鸿其,李一桐</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20200115002955333534454.jpg" width="145" height="200" alt="我在时间尽头等你" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">46家影院上映430场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">1/2的魔法</a><span>8.9分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>英语</span><span>102分钟 / 剧情 / 喜剧 / 冒险 / 动画 / 奇幻 / 美国</span><span>102 分钟</span></p>
+                <p><span>导演：</span><span>丹&#183;斯坎伦</span></p>
+                <p class="actor"><span>主演：</span><span>汤姆&#183;赫兰德,克里斯&#183;帕拉特,奥克塔维亚&#183;斯宾瑟,朱莉娅&#183;路易斯-德利法斯</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20200810095337110575129.jpg" width="145" height="200" alt="1/2的魔法" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">20家影院上映40场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">何以为家</a><span>9.1分</span></h3>
+                <p class="tip">状告亲生父母</p>
+                <p class="tag fn-clear"><span>阿拉伯语,阿姆哈拉语</span><span>剧情 / 黎巴嫩,法国,美国 / 117分钟</span><span>117 分钟</span></p>
+                <p><span>导演：</span><span>娜丁&#183;拉巴基</span></p>
+                <p class="actor"><span>主演：</span><span>赞恩&#183;阿尔&#183;拉菲亚,约丹诺斯&#183;希费罗</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/2019042409524134925695.jpg" width="145" height="200" alt="何以为家" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">1家影院上映1场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">北平会馆</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>98分钟 / 惊悚 / 恐怖 / 悬疑 / 中国大陆</span><span>98 分钟</span></p>
+                <p><span>导演：</span><span>李路,李路</span></p>
+                <p class="actor"><span>主演：</span><span>朱梓瑜,吴大可,刘亦彤</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20200810095419220063204.jpg" width="145" height="200" alt="北平会馆" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">12家影院上映20场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">大话西游之月光宝盒</a><span>9.2分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>粤语 / 汉语普通话</span><span>喜剧 / 动作 / 爱情 / 奇幻 / 冒险</span><span>87 分钟</span></p>
+                <p><span>导演：</span><span>刘镇伟</span></p>
+                <p class="actor"><span>主演：</span><span> 周星驰 / 吴孟达 / 罗家英 / 蓝洁瑛 / 莫文蔚 / 江约诚 / 陆树铭 / 刘镇伟 / 朱茵 / 李健仁</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20170417100354145798485.jpg" width="145" height="200" alt="大话西游之月光宝盒" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">1家影院上映3场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">大鱼海棠</a><span>8.5分</span></h3>
+                <p class="tip">鱼游回来了</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>动画 / 奇幻</span><span>105 分钟</span></p>
+                <p><span>导演：</span><span>梁旋 / 张春</span></p>
+                <p class="actor"><span>主演：</span><span>动画</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20160523143748520626975.jpg" width="145" height="200" alt="大鱼海棠" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">1家影院上映2场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">疯狂动物城</a><span>9.5分</span></h3>
+                <p class="tip">天敌变搭档 玩转动物城</p>
+                <p class="tag fn-clear"><span>英语</span><span> 动作 / 动画 / 冒险</span><span>109 分钟</span></p>
+                <p><span>导演：</span><span>拜伦&#183;霍华德 / 瑞奇&#183;摩尔 / 杰拉德&#183;布什</span></p>
+                <p class="actor"><span>主演：</span><span> 金妮弗&#183;古德温 / 杰森&#183;贝特曼 / 夏奇拉 / 伊德里斯&#183;艾尔巴 / J&#183;K&#183;西蒙斯</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20160219162234267078197.jpg" width="145" height="200" alt="疯狂动物城" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">1家影院上映1场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">哈利&#183;波特与魔法石</a><span>9.3分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>英语</span><span>152分钟 / 冒险 / 奇幻 / 家庭 / 美国,英国</span><span>152 分钟</span></p>
+                <p><span>导演：</span><span>克里斯&#183;哥伦布</span></p>
+                <p class="actor"><span>主演：</span><span>丹尼尔&#183;雷德克里夫,艾玛&#183;沃特森,鲁伯特&#183;格林特,理查德&#183;哈里斯,艾伦&#183;瑞克曼</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20200731103903191252091.jpg" width="145" height="200" alt="哈利&#183;波特与魔法石" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">19家影院上映32场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">战狼2</a><span>9.5分</span></h3>
+                <p class="tip">战死沙场</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>动作</span><span>123 分钟</span></p>
+                <p><span>导演：</span><span>吴京</span></p>
+                <p class="actor"><span>主演：</span><span>吴京 / 弗兰克&#183;格里罗 / 卢靖姗 / 吴刚 / 张翰</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20170620094221891904702.jpg" width="145" height="200" alt="战狼2" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">2家影院上映2场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">阿里巴巴与神灯</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>冒险 / 动画 / 喜剧 / 中国大陆 / 82分钟</span><span>80 分钟</span></p>
+                <p><span>导演：</span><span>朱葛</span></p>
+                <p class="actor"><span>主演：</span><span>杨进,周杭,丁莹莹</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20191202003004641474750.jpg" width="145" height="200" alt="阿里巴巴与神灯" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">2家影院上映4场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">雪人奇缘</a><span>9.1分</span></h3>
+                <p class="tip">让世界感受中国美</p>
+                <p class="tag fn-clear"><span>英文,汉语普通话</span><span>100分钟 / 喜剧 / 动画 / 冒险 / 中国大陆,美国</span><span>100 分钟</span></p>
+                <p><span>导演：</span><span>吉尔&#183;卡尔顿, 托德&#183;维尔德曼</span></p>
+                <p class="actor"><span>主演：</span><span>汪可盈,张子枫,丹增&#183;诺盖&#183;特雷纳</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20200810095459516924933.jpg" width="145" height="200" alt="雪人奇缘" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">1家影院上映1场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">白蛇：缘起</a><span>9.1分</span></h3>
+                <p class="tip">失忆白蛇</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>爱情 / 奇幻 / 动画 / 中国大陆 / 95分钟</span><span>99 分钟</span></p>
+                <p><span>导演：</span><span>黄家康, 赵霁</span></p>
+                <p class="actor"><span>主演：</span><span>张喆 / 杨天翔 / 唐小喜 / 刘薇 / 张遥函 / 更多...</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20190109114011225693383.jpg" width="145" height="200" alt="白蛇：缘起" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">4家影院上映6场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">星际穿越</a><span>9.2分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>英语</span><span>169分钟 / 冒险 / 剧情 / 科幻 / 美国,英国,加拿大,冰岛</span><span>169 分钟</span></p>
+                <p><span>导演：</span><span>克里斯托弗&#183;诺兰</span></p>
+                <p class="actor"><span>主演：</span><span>马修&#183;麦康纳,安妮&#183;海瑟薇,杰西卡&#183;查斯坦,卡西&#183;阿弗莱克,迈克尔&#183;凯恩</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20200807215447458831343.jpg" width="145" height="200" alt="星际穿越" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">1家影院上映1场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">小妇人</a><span>8.8分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>英语</span><span>135分钟 / 爱情 / 剧情 / 美国</span><span>135 分钟</span></p>
+                <p><span>导演：</span><span>格雷塔&#183;葛韦格</span></p>
+                <p class="actor"><span>主演：</span><span>西尔莎&#183;罗南,艾玛&#183;沃森,佛罗伦斯&#183;珀,伊莱扎&#183;斯坎伦</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20200810095056138862325.jpg" width="145" height="200" alt="小妇人" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">34家影院上映78场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="filmdetail.html" target="_blank">王牌保镖</a><span>8.8分</span></h3>
+                <p class="tip">保镖救杀手</p>
+                <p class="tag fn-clear"><span>英语</span><span>喜剧 / 动作 / 犯罪</span><span>112 分钟</span></p>
+                <p><span>导演：</span><span>帕特里克&#183;休斯</span></p>
+                <p class="actor"><span>主演：</span><span>瑞恩&#183;雷诺兹 / 塞缪尔&#183;杰克逊 / 加里&#183;奥德曼 / 萨尔玛&#183;海耶克 / 艾洛蒂&#183;袁</span></p>
+                <span class="pic"><a href="filmdetail.html" target="_blank"><img src="resource/images/20170912143246971524224.jpg" width="145" height="200" alt="王牌保镖" /></a></span>
+                <div class="show-btn">
+                    <p class="ctip">1家影院上映1场</p>
+                    <p><a href="filmdetail.html" class="btn" target="_blank">选座购票</a></p>
+                </div>
+            </li>
+        </ul>
+            <div class="fn-acenter">
+                <div class="jpage"></div>
+            </div>
+        
+    </div>
+    <div class="active-filmtop-filmlist">
+        <div class="active">
+            <ul>
+                    <li>
+                        <p><a href="https://www.jxdyp.com/newsdetail/1708.html" target="_blank"><img src="resource/images/20200102111133607304498.jpg" width="270" height="156" alt="北京银行1元、10元观影" /></a></p>
+                        <p class="overhide"><a href="https://www.jxdyp.com/newsdetail/1708.html" target="_blank">北京银行1元、10元观影</a></p>
+                    </li>
+                    <li>
+                        <p><a href="https://www.jxdyp.com/newsdetail/1709.html" target="_blank"><img src="resource/images/20200102111441997936772.png" width="270" height="156" alt="江西银行白金卡6元观影" /></a></p>
+                        <p class="overhide"><a href="https://www.jxdyp.com/newsdetail/1709.html" target="_blank">江西银行白金卡6元观影</a></p>
+                    </li>
+            </ul>
+        </div>
+        <div class="film-top">
+            <div class="title"><span class="titb">一周票房排行</span></div>
+            <ul>
+                    <li class="fn-clear"><a href="filmdetail.html" title="八佰" target="_blank">八佰</a><span>9.1</span></li>
+                    <li class="fn-clear"><a href="filmdetail.html" title="我在时间尽头等你" target="_blank">我在时间尽头等你</a><span>7.9</span></li>
+                    <li class="fn-clear"><a href="filmdetail.html" title="哈利&#183;波特与魔法石" target="_blank">哈利&#183;波特与魔法石</a><span>9.3</span></li>
+                    <li class="fn-clear"><a href="filmdetail.html" title="1/2的魔法" target="_blank">1/2的魔法</a><span>8.9</span></li>
+                    <li class="fn-clear"><a href="filmdetail.html" title="荞麦疯长" target="_blank">荞麦疯长</a><span>6.2</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="footer">
+            <div class="info-help fn-clear">
+                <div class="container">
+                    <div class="logo"><img src="resource/images/logo_1.png" alt="江西电影票" /></div>
+                    <div class="help-nav">
+                        <ul>
+                            <li><a href="/help/usehelp.html#chooseat" target="_blank">如何选座</a></li>
+                            <li><a href="/help/usehelp.html#dopay" target="_blank">如何支付</a></li>
+                            <li><a href="/help/usehelp.html#geticket" target="_blank">如何取票</a></li>
+                            <li><a href="/help/usehelp.html#buyfailed" target="_blank">购票失败</a></li>
+                            <li><a href="/help/usehelp.html#reglogin" target="_blank">注册登录</a></li>
+                            <li><a href="/help/usehelp.html">使用帮助</a></li>
+                        </ul>
+                    </div>
+                    <div class="contact-info">
+                        <span>0791-87871177</span>
+                    </div>
+                    <span class="code"></span>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="container fn-clear">
+                    <ul>
+                        <li><a href="/help/helpindex.html" target="_blank">关于我们</a></li>
+                        <li><a href="/help/contactus.html" target="_blank">联系我们</a></li>
+                        <li><a href="/help/joinus.html" target="_blank">诚聘英才</a></li>
+                        <li><a href="/help/legalstatement.html" target="_blank">法律声明</a></li>
+                        <li><a href="/help/serviceterms.html" target="_blank">服务条款</a></li>
+                        <li><a href="/help/cooperativepartner.html" target="_blank">合作伙伴</a></li>
+                    </ul>
+                    <span>经营性ICP：赣B2-20140012&nbsp;&nbsp;<a href="http://www.beian.miit.gov.cn" rel="nofollow" target="_blank">赣ICP备14000663号</a>&nbsp; &copy;江西省影票文化传媒有限公司版权所有</span>
+                </div>
+            </div>
+        </div>
+        <div class="verlayLogin" id="verlayLogin">
+            <div class="container">
+                <h2>&nbsp;</h2>
+                <div class="tag">
+                    <ul>
+                        <li><a href="#"data-tag="2">手机验证码登录</a>/</li>
+                        <li><a href="#" data-tag="1">账户登录</a></li>
+                    </ul>
+                </div>
+                <div class="box-form" style="display:block;">
+                    <p><input name="telc" class="telc" type="text" maxlength="15" placeholder="手机号" /></p>
+                    <div class="img-code-wrap">
+                        <div class="img-code"><input name="imgCode" type="text" maxlength="8" placeholder="输入右侧验证码" /></div>
+                        <span class="img-code-show"><img src="" width="100%" /></span>
+                    </div>
+                    <p class="box-checkcode">
+                        <input name="checkCode" class="check-code" type="text" maxlength="8" placeholder="输入验证码" />
+                        <span class="btn send-checkcode">获取验证码</span>
+                    </p>
+                </div>
+
+                <div class="box-form">
+                    <p><input name="tel" class="tel" type="text" value="手机号" /></p>
+                    <p><input name="password" class="pwd bgpwd2" type="password" /></p>
+                    <div class="remember-status fn-clear">
+                        <label><input type="checkbox" name="rememberStatus" class="rememberst"/>记住密码一周</label>
+                    </div>
+                </div>
+                <div class="login"><p class="btn" id="doLogin">登录</p></div>
+                <div class="intro fn-clear">
+                    <span class="fn-left"><a href="forgetpwd.html">忘记密码</a></span>
+                    <span class="fn-right"><a href="register.html">立即注册</a></span>
+                </div>
+                
+            </div>
+        </div>
+        <div class="nav-scroll">
+            <p class="scroll-top"><a href="javascript:void(0);"></a></p>
+            <p class="feedback"><a href="/help/feedback.html" target="_blank"></a></p>
+            <p class="code">
+                <span></span>
+            </p>
+        </div>
+        <script type="text/javascript">
+            var linkLogin = "";
+            var scrollFunc = function (e) {
+                e = e || window.event;
+                if (e && e.preventDefault) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                } else {
+                    e.returnvalue = false;
+
+                    return false;
+                }
+            }
+            $(".top-nav li a").click(function () {
+                if ($(this).attr("data-flag") == 1) {
+                    linkLogin = $(this).attr("href");
+                    if ("False".toLowerCase() != "true") {
+                        $(".boxLogin").overlay({ api: true }).load();
+                        return false;
+                    }
+                }
+            });
+            $(".img-code-show img").on('click', function () {
+                $(this).attr("src", "/account/CheckCode.html?v=" + Math.random());
+            });
+            $(".main-nav .code a").hover(function () {
+                $(this).siblings(".tag").show();
+            }, function () {
+                $(this).siblings(".tag").hide();
+            });
+            $(".verlayLogin").keydown(function (e) {
+                var curKey = e.which; 
+                if (curKey == 13) {
+                    $("#doLogin").trigger("click");
+                }
+            });
+            $(".boxLogin").overlay({
+                closeOnClick: false,
+                top: 'center',
+                mask: {
+                    color: '#000',
+                    closeSpeed: 700,
+                    opacity: 0.7
+                },
+                onBeforeLoad: function (k) {
+                    $('body').on('mousewheel', function (e) {
+                        scrollFunc(e);
+                    });
+                },
+                onClose: function () {
+                    $('body').off('mousewheel');
+                }
+            });
+            var cursec = 60;
+            var submiting = false;
+            $(".verlayLogin .send-checkcode").click(function () {
+                var $this = $(this);
+                if (submiting) return false;
+                var telc = $.trim($(".verlayLogin .telc").val());
+                var imgCode = $.trim($("input[name=imgCode]").val());
+                if (!telc) {
+                    alert("请输入手机号码！");
+                    return;
+                }
+                if (!imgCode) {
+                    alert("请输入图形验证码！");
+                    return;
+                }
+                $.ajax({
+                    url: '/account/SendSmsRandom.html',
+                    data: { Mobile: telc, ValilCode: imgCode },
+                    type: 'post',
+                    dataType: 'json',
+                    beforeSend: function () {
+                        submiting = true;
+                        $this.text("正在发送");
+                        $this.addClass("disable");
+                    },
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            submiting = true;
+                            if (cursec < 60) {
+                                return;
+                            }
+                            var timer = setInterval(function () {
+                                if (cursec == 60) {
+                                    $this.addClass("disable");
+                                }
+                                $this.text(cursec + "秒后重发");
+                                if (cursec == 0) {
+                                    window.clearInterval(timer);
+                                    submiting = false;
+                                    cursec = 60;
+                                    $this.text("获取验证码");
+                                    $this.removeClass("disable");
+                                } else {
+                                    cursec--;
+                                }
+                            }, 1000);
+                        } else {
+                            $(".img-code-show img").attr("src", "/account/CheckCode.html?v=" + Math.random());
+                            submiting = false;
+                            alert(data.ErrMsg);
+                            $this.removeClass("disable");
+                            $this.text("获取验证码");
+                        }
+                    },
+                    error: function () {
+                        submiting = false;
+                        $this.removeClass("disable");
+                        alert("获取验证码失败");
+                    }
+                });
+            });
+            $("#verlayLogin input.tel").focus(function () {
+                if ($(this).val() == "手机号") {
+                    $(this).val("");
+                }
+            });
+            $("#verlayLogin input.tel").blur(function () {
+                if ($(this).val() == "") {
+                    $(this).val("手机号");
+                }
+            });
+            $("#verlayLogin input.pwd").focus(function () {
+                $(this).removeClass("bgpwd2");
+            });
+            $("#verlayLogin input.pwd").blur(function () {
+                if ($(this).val() == "") {
+                    $(this).addClass("bgpwd2");
+                }
+            });
+            $("#doLogin").click(function () {
+                var tag=$(this).attr("data-tag");
+                var tel = $.trim($(".verlayLogin .tel").val());
+                var pwd = $.trim($(".verlayLogin .pwd").val());
+                var telc = $.trim($(".verlayLogin .telc").val());
+                var checkCode = $.trim($(".verlayLogin .check-code").val());
+                var isCheckRemember = false;
+                if ($(".rememberst").is(':checked')) {
+                    isCheckRemember = true;
+                }
+                if (tag == 1) {
+                    if (!tel || tel == "手机号") {
+                        alert("请输入手机号码！");
+                        return;
+                    }
+                    if (!pwd) {
+                        alert("请输入密码！");
+                        return;
+                    }
+                    postdata = { Mobile: tel, Pass: pwd, Type: tag };
+                }
+                if (tag == 2) {
+                    if (!telc) {
+                        alert("请输入手机号码！");
+                        return;
+                    }
+                    if (!checkCode) {
+                        alert("请输入验证码！");
+                        return;
+                    }
+                    postdata = { Mobile: telc, Pass: checkCode, Type: tag };
+                }
+                $.ajax({
+                    url: '/account/VerifyMember.html',
+                    data: postdata,
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            if (isCheckRemember) {
+                                SetCookie("LocalToken", data.ErrMsg, 7);
+                                SetCookie("LocalMobile", data.Mobile, 7);
+                            }
+                            setsessionstorage(data);
+                            if (linkLogin) {
+                                window.location.href = linkLogin;
+                            } else {
+                                window.location.reload();
+                            }
+                        } else {
+                            alert(data.ErrMsg);
+                        } 
+                    },
+                    error: function () {
+                        alert("网络错误,稍后再试！");
+                    }
+                });
+            });
+            $(".loginout").click(function () {
+                loginout();
+            });
+            $(".verlayLogin .tag ul").tabs(".verlayLogin .box-form", {
+                onClick: function () {
+                    $("#doLogin").attr("data-tag", this.getCurrentTab().attr("data-tag"));
+                }
+            });
+            
+            function loginout(){
+                $.ajax({
+                    url: '/account/loginout.html',
+                    data: {},
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            clearsessionstorage();
+                            window.location = "/";
+                        } else {
+                            alert(data.ErrMsg);
+                        }
+                    },
+                    error: function () {
+                        alert("网络错误,稍后再试！");
+                    }
+                });
+            }
+            
+        </script>
+        <form id="citycodeform" method="post" enctype="application/x-www-form-urlencoded"  action="/">
+           <input type="hidden"  name="CityCode" id="ccitycode"/>
+        </form>
+        
+    <script type="text/javascript">
+        $(".box-filmlist .jpage").jPages({
+            containerID: "filmShowNow",
+            perPage: 10,
+            delay: 30,
+            fallback: 200,
+            minHeight: false,
+            previous: "上一页",
+            next: "下一页"
+        });
+    </script>
+
+       
+    </body>
+</html>

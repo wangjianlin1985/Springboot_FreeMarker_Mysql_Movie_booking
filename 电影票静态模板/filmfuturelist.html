@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=990, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta charset="utf-8" />
+        <meta name="renderer" content="webkit">
+        <title>即将热映电影_江西电影票网</title>
+        <meta name="keywords"/>
+        <meta name="description" content="江西电影票网是江西最大的电影票在线选座平台，同时江西电影票网还提供电影排期，影院信息查询、江西本土电影行业资讯等服务。看电影，来江西电影票选座"/>
+        <link href="resource/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link href="resource/css/main.css" rel="stylesheet" />
+        <link href="resource/css/style.min.css?v=20180606" rel="stylesheet" />
+        
+        <script src="resource/js/jquery.1.7.2.min.js" type="text/javascript"></script>
+        <script src="resource/js/json2.min.js" type="text/javascript"></script>
+        <script src="resource/js/helper.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.expose.min.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.overlay.min.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.tabs.min.js" type="text/javascript"></script>
+          
+    <link href="resource/css/jquery.jPages.css" rel="stylesheet" />
+    <script src="resource/js/jquery.jPages.min.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+            $(function () {
+                $(".bottom-nav li:first").css("margin-left","0");
+                $(".bottom-nav li:last").addClass("fn-nobg");
+                $(".top-nav .user-name").text(getCookie("NickName") + "(" + getCookie("Mobile") + ")");
+                $(".main-nav .location").toggle(function () {
+                    $(this).addClass("lsec").find(".other-city").show();
+                }, function () {
+                    $(this).removeClass("lsec").find(".other-city").hide();
+                });
+                $(window).scroll(function () {
+                    if ($(window).scrollTop() > 100) {
+                        $(".nav-scroll").fadeIn(1500);
+                    } else {
+                        $(".nav-scroll").fadeOut(1500);
+                    }
+                });
+                $(".scroll-top").click(function () {
+                    $("html, body").animate({
+                        scrollTop: "0px"
+                    }, {
+                        duration: 500,
+                        easing: "swing"
+                    });
+                    return false;
+                });
+                $(".nav-scroll .code").hover(function () {
+                    $(this).find("span").show();
+                }, function () {
+                    $(this).find("span").hide();
+                });
+            });
+
+            function changecity(citycode) {
+                if (window.location.toString().indexOf("cinemalist") > -1) {
+                    window.location = "/cinemalist/" + citycode + ".html";
+                }
+                else {
+                    document.getElementById("ccitycode").value = citycode;
+                    document.getElementById("citycodeform").submit();
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="top-nav">
+                <div class="container fn-clear">
+                      <span class="tip">欢迎来到江西电影票<a rel="#verlayLogin" href="javascript:void(0)" class="boxLogin blue">登录</a><a href="/register.html">注册</a></span>
+                    <ul>
+                        <li><a href="/account/usercenter.html" title="个人中心" data-flag="1">个人中心</a></li>
+                        <li><a href="/account/userorderlist.html" title="我的订单" data-flag="1">我的订单</a></li>
+                        <li><a href="/help/helpindex.html" title="帮助中心" target="_blank">帮助中心</a></li>
+                        <li>&nbsp;联系客服：0791-87871177</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main-nav">
+                <div class="container fn-clear">
+                    <div class="logo"><a href="/"><img src="resource/images/logo.png" alt="江西电影票" title="江西电影票" width="165"/></a></div>
+                    <div class="location" data-citycode="360100">
+                        <span class="lc">南昌</span>
+                        <ul class="other-city">
+                            <li><a onclick="changecity('360100')" href="javascript:void(0)">南昌</a></li>
+                            <li><a onclick="changecity('360200')" href="javascript:void(0)">景德镇</a></li>
+                            <li><a onclick="changecity('360300')" href="javascript:void(0)">萍乡</a></li>
+                            <li><a onclick="changecity('360400')" href="javascript:void(0)">九江</a></li>
+                            <li><a onclick="changecity('360500')" href="javascript:void(0)">新余</a></li>
+                            <li><a onclick="changecity('360600')" href="javascript:void(0)">鹰潭</a></li>
+                            <li><a onclick="changecity('360700')" href="javascript:void(0)">赣州</a></li>
+                            <li><a onclick="changecity('360800')" href="javascript:void(0)">吉安</a></li>
+                            <li><a onclick="changecity('360900')" href="javascript:void(0)">宜春</a></li>
+                            <li><a onclick="changecity('361000')" href="javascript:void(0)">抚州</a></li>
+                            <li><a onclick="changecity('361100')" href="javascript:void(0)">上饶</a></li>
+                        </ul>
+                    </div>
+                    <ul class="nav-list fn-clear">
+                        <li data-index="index"><a href="/">首页</a></li>
+                        <li data-index="film"><a href="/filmshowlist.html">电影</a></li>
+                        <li data-index="cinema"><a href="cinemalist.html">影院</a></li>
+                        <li data-index="event"><a href="/eventlist.html">活动</a></li>
+                        <li data-index="news"><a href="/newslist/newsall_1.html">资讯</a></li>
+                        <li data-index="gyk"><a href="/event/gyk.html">电子换票券</a></li>
+                    </ul>
+                    <div class="box-code-tg">
+                        
+                        <p class="code">
+                            <a href="javascript:void(0);">手机购影票</a>
+                            <span class="tag"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="body" class="main">
+                
+<div class="wrapper-filmlist fn-clear">
+    <div class="box-filmlist">
+        <div class="title">
+            <span><a href="filmshowlist.html" class="pr">正在热映</a>/</span>
+            <span><a href="filmfuturelist.html" class="act">即将上映</a></span>
+            <em>共 38 部即将上映电影</em>
+        </div>
+        <ul id="filmfuturelist">
+            <li>
+                <h3><a href="/filmdetail/d2b54d6d-dc5a-45f5-8883-c1cdfeb410bc.html" target="_blank">等你回家</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>86分钟 / 剧情 / 中国大陆</span><span>86 分钟</span></p>
+                <p><span>导演：</span><span>范丛柏</span></p>
+                <p><span>主演：</span><span>杨政,王宏,文超琳</span></p>
+                <span class="pic"><a href="/filmdetail/d2b54d6d-dc5a-45f5-8883-c1cdfeb410bc.html" target="_blank"><img src="resource/images/20200825131634392066017.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-08-26</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/6833f153-0f12-4404-9b2a-1a5c8642d26a.html" target="_blank">电力之战</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>英语</span><span>107分钟 / 传记 / 剧情 / 历史 / 美国</span><span>102 分钟</span></p>
+                <p><span>导演：</span><span>阿方索&#183;戈麦斯-雷洪</span></p>
+                <p><span>主演：</span><span>本尼迪克特&#183;康伯巴奇,迈克尔&#183;珊农,汤姆&#183;赫兰德,尼古拉斯&#183;霍尔特,凯瑟琳&#183;沃特森</span></p>
+                <span class="pic"><a href="/filmdetail/6833f153-0f12-4404-9b2a-1a5c8642d26a.html" target="_blank"><img src="resource/images/20200810143012000856575.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-08-28</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/01d356a6-e6fe-4079-bc70-cbbff8f927f7.html" target="_blank">漫长的告别</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>日语</span><span>127分钟 / 剧情 / 家庭 / 日本</span><span>128 分钟</span></p>
+                <p><span>导演：</span><span>中野量太</span></p>
+                <p><span>主演：</span><span>苍井优,竹内结子,松原智惠子,山崎努,蒲田优惟人</span></p>
+                <span class="pic"><a href="/filmdetail/01d356a6-e6fe-4079-bc70-cbbff8f927f7.html" target="_blank"><img src="resource/images/20200810095200298034734.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-08-28</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/a8b3210d-ddc0-4c2e-bc42-de7b3c5bd9dd.html" target="_blank">盗梦空间</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>英语,日语,法语</span><span>148分钟 / 动作 / 悬疑 / 科幻 / 剧情 / 美国,英国</span><span>148 分钟</span></p>
+                <p><span>导演：</span><span>克里斯托弗&#183;诺兰</span></p>
+                <p><span>主演：</span><span>莱昂纳多&#183;迪卡普里奥,约瑟夫&#183;高登-莱维特,艾伦&#183;佩姬,汤姆&#183;哈迪</span></p>
+                <span class="pic"><a href="/filmdetail/a8b3210d-ddc0-4c2e-bc42-de7b3c5bd9dd.html" target="_blank"><img src="resource/images/20200810095126374527618.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-08-28</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/39dbaf5f-cd7d-4fc1-ae43-01a6c77f42de.html" target="_blank">大河向东流之沁源故事</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>82分钟 / 剧情 / 中国</span><span>82 分钟</span></p>
+                <p><span>导演：</span><span>李珈西</span></p>
+                <p><span>主演：</span><span>赵小锐</span></p>
+                <span class="pic"><a href="/filmdetail/39dbaf5f-cd7d-4fc1-ae43-01a6c77f42de.html" target="_blank"><img src="resource/images/20200817210504531176307.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-08-28</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/5a72fc63-ba28-43b1-9ca9-01a753f10dbd.html" target="_blank">今生只为遇见你</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>英语</span><span>85分钟 / 喜剧 / 爱情 / 中国大陆</span><span>85 分钟</span></p>
+                <p><span>导演：</span><span>康与江</span></p>
+                <p><span>主演：</span><span>田志斌,于苏桐,何海蓝</span></p>
+                <span class="pic"><a href="/filmdetail/5a72fc63-ba28-43b1-9ca9-01a753f10dbd.html" target="_blank"><img src="resource/images/20200810095438704307777.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-08-28</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/565b01f9-fb6a-40a4-9295-150bb72effba.html" target="_blank">无疯也起浪</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>90分钟 / 喜剧 / 中国大陆</span><span>90 分钟</span></p>
+                <p><span>导演：</span><span>李智</span></p>
+                <p><span>主演：</span><span>王成思,冯秦川,陶亮,陈宇星,邵老五</span></p>
+                <span class="pic"><a href="/filmdetail/565b01f9-fb6a-40a4-9295-150bb72effba.html" target="_blank"><img src="resource/images/20200810095244298071872.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-08-28</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/f9898b97-548d-4727-9c94-2f16394c29e4.html" target="_blank">此路不通</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>114分钟 / 悬疑 / 中国大陆</span><span>114 分钟</span></p>
+                <p><span>导演：</span><span></span></p>
+                <p><span>主演：</span><span>郭宵珍,郝平,郝帅,卢艺</span></p>
+                <span class="pic"><a href="/filmdetail/f9898b97-548d-4727-9c94-2f16394c29e4.html" target="_blank"><img src="resource/images/2020081413451078710565.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-08-28</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/e805a885-892d-4168-b5e9-4cf201e1ff3b.html" target="_blank">活着唱着</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>105分钟 / 剧情 / 戏曲 / 中国大陆</span><span>105 分钟</span></p>
+                <p><span>导演：</span><span>马楠</span></p>
+                <p><span>主演：</span><span>赵小利,甘贵丹</span></p>
+                <span class="pic"><a href="/filmdetail/e805a885-892d-4168-b5e9-4cf201e1ff3b.html" target="_blank"><img src="resource/images/20200811001511294079205.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-08-28</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/56ce8284-09b8-426b-96e0-956cc5e517bd.html" target="_blank">城市梦</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>102分钟 / 纪录片 / 中国大陆</span><span>102 分钟</span></p>
+                <p><span>导演：</span><span>陈为军</span></p>
+                <p><span>主演：</span><span>胡毅峰,李忠于,书香,王天成</span></p>
+                <span class="pic"><a href="/filmdetail/56ce8284-09b8-426b-96e0-956cc5e517bd.html" target="_blank"><img src="resource/images/20200810181510111234928.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-08-28</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/8775c332-ad98-4390-9274-b39d16c3733d.html" target="_blank">倒水湾（戏曲 秦腔）</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>109分钟 / 剧情 / 戏曲 / 中国大陆</span><span>109 分钟</span></p>
+                <p><span>导演：</span><span>安炜</span></p>
+                <p><span>主演：</span><span>雷涛,孙筱,张雅琴</span></p>
+                <span class="pic"><a href="/filmdetail/8775c332-ad98-4390-9274-b39d16c3733d.html" target="_blank"><img src="resource/images/20200810095034351782867.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-08-28</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/7b275c57-9597-42c9-9d03-ff6db525fd4e.html" target="_blank">倒水湾</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>109分钟 / 剧情 / 戏曲 / 中国大陆</span><span>109 分钟</span></p>
+                <p><span>导演：</span><span>安炜</span></p>
+                <p><span>主演：</span><span>孙筱,雷涛,张雅琴</span></p>
+                <span class="pic"><a href="/filmdetail/7b275c57-9597-42c9-9d03-ff6db525fd4e.html" target="_blank"><img src="resource/images/20200810094929939086031.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-08-28</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/2106526c-673e-4463-a33c-fa7ed1cee89b.html" target="_blank">信条</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>英语</span><span>150分钟 / 科幻 / 动作 / 剧情 / 美国</span><span>150 分钟</span></p>
+                <p><span>导演：</span><span>克里斯托弗&#183;诺兰</span></p>
+                <p><span>主演：</span><span>约翰&#183;大卫&#183;华盛顿,罗伯特&#183;帕丁森,伊丽莎白&#183;德比茨基,肯尼思&#183;布拉纳,迈克尔&#183;凯恩</span></p>
+                <span class="pic"><a href="/filmdetail/2106526c-673e-4463-a33c-fa7ed1cee89b.html" target="_blank"><img src="resource/images/20200810095138657406671.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-04</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/7331d5b2-398f-4e0b-8a47-23cda4bcb5ee.html" target="_blank">假面饭店</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>日语</span><span>133分钟 / 剧情 / 悬疑 / 犯罪 / 日本</span><span>133 分钟</span></p>
+                <p><span>导演：</span><span>铃木雅之</span></p>
+                <p><span>主演：</span><span>木村拓哉,长泽雅美</span></p>
+                <span class="pic"><a href="/filmdetail/7331d5b2-398f-4e0b-8a47-23cda4bcb5ee.html" target="_blank"><img src="resource/images/20200811224509821179271.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-04</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/30806175-aa5c-499c-9322-d4f4d2f1836c.html" target="_blank">闺蜜心窍</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>90分钟 / 惊悚 / 恐怖 / 中国大陆,韩国</span><span>88 分钟</span></p>
+                <p><span>导演：</span><span>洪斗贤</span></p>
+                <p><span>主演：</span><span>金晨,姜潮,朱璇,王美人</span></p>
+                <span class="pic"><a href="/filmdetail/30806175-aa5c-499c-9322-d4f4d2f1836c.html" target="_blank"><img src="resource/images/20200810094954317187201.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-04</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/4490bab5-da06-417a-af34-e6e2d1589254.html" target="_blank">谁说我们不会爱2</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>91分钟 / 剧情 / 喜剧 / 爱情 / 中国大陆</span><span>91 分钟</span></p>
+                <p><span>导演：</span><span>刘宝贤</span></p>
+                <p><span>主演：</span><span>王栎鑫,潘时七,骆应钧,彭波</span></p>
+                <span class="pic"><a href="/filmdetail/4490bab5-da06-417a-af34-e6e2d1589254.html" target="_blank"><img src="resource/images/20200815143011132672650.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-04</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/f6d33b46-29b7-4398-af9c-c049b24f681e.html" target="_blank">半条被子</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>剧情 / 历史 / 战争 / 中国大陆</span><span>90 分钟</span></p>
+                <p><span>导演：</span><span>赵友</span></p>
+                <p><span>主演：</span><span>万斯佳,李凤鸣,李嘉明,张永达,郭常辉</span></p>
+                <span class="pic"><a href="/filmdetail/f6d33b46-29b7-4398-af9c-c049b24f681e.html" target="_blank"><img src="resource/images/20200810095212657381278.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-05</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/c4c239d2-f34e-4abb-af2c-743616f36ea9.html" target="_blank">你是最美</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>88分钟 / 剧情 / 中国大陆</span><span>88 分钟</span></p>
+                <p><span>导演：</span><span>王晓虎</span></p>
+                <p><span>主演：</span><span>马元,王嘉</span></p>
+                <span class="pic"><a href="/filmdetail/c4c239d2-f34e-4abb-af2c-743616f36ea9.html" target="_blank"><img src="resource/images/20200812164552040965609.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-08</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/c1fe0624-718e-47aa-9e67-0a91c8527512.html" target="_blank">妈妈不再摇滚</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>剧情 / 中国大陆 / 88分钟</span><span>88 分钟</span></p>
+                <p><span>导演：</span><span>马建军</span></p>
+                <p><span>主演：</span><span>邵淑环,陈铮,钟宇然,孙渤洋</span></p>
+                <span class="pic"><a href="/filmdetail/c1fe0624-718e-47aa-9e67-0a91c8527512.html" target="_blank"><img src="resource/images/20200721135000655224304.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-10</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/ee38aa8c-4702-496d-931e-6cc75a28ed6d.html" target="_blank">新愚公移山</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>动画 / 中国大陆</span><span>90 分钟</span></p>
+                <p><span>导演：</span><span></span></p>
+                <p><span>主演：</span><span></span></p>
+                <span class="pic"><a href="/filmdetail/ee38aa8c-4702-496d-931e-6cc75a28ed6d.html" target="_blank"><img src="resource/images/20200825093129094155733.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-10</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/265ee920-da10-4f51-81ea-2453a62f076b.html" target="_blank">辉夜大小姐想让我告白</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>日语</span><span>113分钟 / 喜剧 / 爱情 / 日本</span><span>113 分钟</span></p>
+                <p><span>导演：</span><span>河合勇人</span></p>
+                <p><span>主演：</span><span>平野紫耀,桥本环奈,佐野勇斗</span></p>
+                <span class="pic"><a href="/filmdetail/265ee920-da10-4f51-81ea-2453a62f076b.html" target="_blank"><img src="resource/images/20200826200128035602574.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-11</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/3c128815-c4fa-4205-8f9f-247ae3302e16.html" target="_blank">芙蓉渡</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>94分钟 / 剧情 / 中国大陆</span><span>94 分钟</span></p>
+                <p><span>导演：</span><span>周琦</span></p>
+                <p><span>主演：</span><span>王嘉,李君峰,李华,袁志顺</span></p>
+                <span class="pic"><a href="/filmdetail/3c128815-c4fa-4205-8f9f-247ae3302e16.html" target="_blank"><img src="resource/images/20200826144647054136178.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-11</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/3f5c28b4-b4db-46dd-aff9-b284ea224e56.html" target="_blank">我的女友是机器人</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>喜剧 / 爱情 / 中国大陆</span><span>90 分钟</span></p>
+                <p><span>导演：</span><span>王韦程</span></p>
+                <p><span>主演：</span><span>包贝尔,辛芷蕾,魏翔</span></p>
+                <span class="pic"><a href="/filmdetail/3f5c28b4-b4db-46dd-aff9-b284ea224e56.html" target="_blank"><img src="resource/images/20200820110131399363875.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-11</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/fa16e26e-a0c7-4401-aa20-ce040249b87c.html" target="_blank">爱上入殓师</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>83分钟 / 剧情 / 中国大陆</span><span>83 分钟</span></p>
+                <p><span>导演：</span><span>王晓杰</span></p>
+                <p><span>主演：</span><span>杨可,张玉轩</span></p>
+                <span class="pic"><a href="/filmdetail/fa16e26e-a0c7-4401-aa20-ce040249b87c.html" target="_blank"><img src="resource/images/20200812164511452012276.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-11</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/274b5923-36f1-4989-bbec-6a78ba390e26.html" target="_blank">那年李花正开时</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>91分钟 / 儿童 / 中国大陆</span><span>90 分钟</span></p>
+                <p><span>导演：</span><span>赵友</span></p>
+                <p><span>主演：</span><span>柳泉合,王艺霏,段炎妍,江露</span></p>
+                <span class="pic"><a href="/filmdetail/274b5923-36f1-4989-bbec-6a78ba390e26.html" target="_blank"><img src="resource/images/20200810095044155394875.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-12</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/cd628c3f-9e4e-4ce7-8dde-dbfe49e956ea.html" target="_blank">出走的马蹄</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>102分钟 / 剧情 / 动作 / 中国大陆</span><span>102 分钟</span></p>
+                <p><span>导演：</span><span>左伟晨</span></p>
+                <p><span>主演：</span><span>王静海,朱家梁,柳文欢,陈方超,董小白,海子</span></p>
+                <span class="pic"><a href="/filmdetail/cd628c3f-9e4e-4ce7-8dde-dbfe49e956ea.html" target="_blank"><img src="resource/images/2020081600151261411722.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-15</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/548283b6-09c3-4ba4-a0df-11a43759d653.html" target="_blank">咱们村来了贴心人</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>97分钟 / 剧情 / 中国大陆</span><span>97 分钟</span></p>
+                <p><span>导演：</span><span>刘建宽, 何光中</span></p>
+                <p><span>主演：</span><span>朱华礼,魏玉宝</span></p>
+                <span class="pic"><a href="/filmdetail/548283b6-09c3-4ba4-a0df-11a43759d653.html" target="_blank"><img src="resource/images/20200817185010715788312.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-16</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/2c7d4991-d1c3-401f-8cd1-3df39e2c8164.html" target="_blank">通往春天的列车</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>98分钟 / 剧情 / 悬疑 / 中国大陆</span><span>99 分钟</span></p>
+                <p><span>导演：</span><span>李骥,李骥</span></p>
+                <p><span>主演：</span><span>任素汐,李岷城</span></p>
+                <span class="pic"><a href="/filmdetail/2c7d4991-d1c3-401f-8cd1-3df39e2c8164.html" target="_blank"><img src="resource/images/20200810095428907565769.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-17</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/6ba49225-71b2-4b99-a8a7-483b17bb860d.html" target="_blank">麦路人</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>粤语</span><span>114分钟 / 剧情 / 内地,香港</span><span>114 分钟</span></p>
+                <p><span>导演：</span><span>黄庆勋</span></p>
+                <p><span>主演：</span><span>郭富城,杨千嬅,万梓良,张达明,刘雅瑟,黄悦珈</span></p>
+                <span class="pic"><a href="/filmdetail/6ba49225-71b2-4b99-a8a7-483b17bb860d.html" target="_blank"><img src="resource/images/20200820110203276086944.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-17</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/9cfda775-54fb-4af2-abff-3673fdce9b82.html" target="_blank">京剧电影《大闹天宫》</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span></span><span>101 分钟</span></p>
+                <p><span>导演：</span><span>程箓</span></p>
+                <p><span>主演：</span><span>王璐,李哲,魏学雷,詹磊</span></p>
+                <span class="pic"><a href="/filmdetail/9cfda775-54fb-4af2-abff-3673fdce9b82.html" target="_blank"><img src="resource/images/emptyfilm.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-18</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/8affdad7-6ded-474c-af81-4adb32b04c30.html" target="_blank">邻里美好的一天</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>英语</span><span>107分钟 / 剧情 / 传记 / 美国,中国大陆</span><span>107 分钟</span></p>
+                <p><span>导演：</span><span>玛丽埃尔&#183;海勒</span></p>
+                <p><span>主演：</span><span>汤姆&#183;汉克斯,马修&#183;瑞斯,恩里克&#183;柯兰托尼,温迪&#183;麦凯纳,克里斯&#183;库柏,苏珊&#183;卡莱布&#183;沃森</span></p>
+                <span class="pic"><a href="/filmdetail/8affdad7-6ded-474c-af81-4adb32b04c30.html" target="_blank"><img src="resource/images/20200820144627489755358.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-18</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/6df7872e-41c5-4371-a973-7d34dfd07266.html" target="_blank">他们的生活</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>122分钟 / 剧情 / 中国大陆</span><span>122 分钟</span></p>
+                <p><span>导演：</span><span>韩钰</span></p>
+                <p><span>主演：</span><span>王舒,周玉竹</span></p>
+                <span class="pic"><a href="/filmdetail/6df7872e-41c5-4371-a973-7d34dfd07266.html" target="_blank"><img src="resource/images/20200824204626402753727.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-18</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/8d1af001-2d02-4641-9ea5-811984e3edaa.html" target="_blank">蓝色防线</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>86分钟 / 纪录片 / 战争 / 中国大陆</span><span>86 分钟</span></p>
+                <p><span>导演：</span><span>尚昌仪, 周德新, 刘欣</span></p>
+                <p><span>主演：</span><span></span></p>
+                <span class="pic"><a href="/filmdetail/8d1af001-2d02-4641-9ea5-811984e3edaa.html" target="_blank"><img src="resource/images/20200819003127574105211.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-18</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/9741c0ef-2da1-42f8-a23e-816168fffb8b.html" target="_blank">红巴山</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>89分钟 / 历史 / 战争 / 中国大陆</span><span>89 分钟</span></p>
+                <p><span>导演：</span><span>杨琳</span></p>
+                <p><span>主演：</span><span>柯家豪,杨佳佳,牛晓丽,牟瑾,太子</span></p>
+                <span class="pic"><a href="/filmdetail/9741c0ef-2da1-42f8-a23e-816168fffb8b.html" target="_blank"><img src="resource/images/202008190032177644828.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-18</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/6283e4cd-a9a4-42ec-a8d0-927179b2ae98.html" target="_blank">大闹天宫</a><span>8.5分</span></h3>
+                <p class="tip">经典重置</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>动画</span><span>101 分钟</span></p>
+                <p><span>导演：</span><span>万籁鸣 / 唐澄 / 速达 / 陈志宏</span></p>
+                <p><span>主演：</span><span>李扬 / 陈凯歌 / 陈道明 / 张国立 / 刘烨</span></p>
+                <span class="pic"><a href="/filmdetail/6283e4cd-a9a4-42ec-a8d0-927179b2ae98.html" target="_blank"><img src="resource/images/20171009150125345943778.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-18</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/ad1ceb77-e1ed-43fc-8189-24061f7a3736.html" target="_blank">朝颜</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>87分钟 / 剧情 / 爱情 / 家庭 / 中国大陆</span><span>87 分钟</span></p>
+                <p><span>导演：</span><span>陈天衣</span></p>
+                <p><span>主演：</span><span>袁梵,陈天衣,闫铜,袁小影</span></p>
+                <span class="pic"><a href="/filmdetail/ad1ceb77-e1ed-43fc-8189-24061f7a3736.html" target="_blank"><img src="resource/images/20200823003221121584132.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-22</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/cf9a7bee-1662-4243-8442-29f6279143b5.html" target="_blank">世纪之缘</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>91分钟 / 剧情 / 中国大陆</span><span>91 分钟</span></p>
+                <p><span>导演：</span><span>孙元庆</span></p>
+                <p><span>主演：</span><span>张瑞瑶,敖阳,董崇法,夏月</span></p>
+                <span class="pic"><a href="/filmdetail/cf9a7bee-1662-4243-8442-29f6279143b5.html" target="_blank"><img src="resource/images/20200823003127509217145.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-22</p>
+                </div>
+            </li>
+            <li>
+                <h3><a href="/filmdetail/1f9e0fdc-d56e-4121-a837-f8d94b0f5e1e.html" target="_blank">火山地狱</a><span>分</span></h3>
+                <p class="tip">暂无介绍</p>
+                <p class="tag fn-clear"><span>汉语普通话</span><span>犯罪 / 悬疑 / 中国大陆 / 90分钟</span><span>90 分钟</span></p>
+                <p><span>导演：</span><span>吴天戈</span></p>
+                <p><span>主演：</span><span>陈龙,王紫逸,海铃,张璐瑶</span></p>
+                <span class="pic"><a href="/filmdetail/1f9e0fdc-d56e-4121-a837-f8d94b0f5e1e.html" target="_blank"><img src="resource/images/20200131002949494636414.jpg" width="140" height="200" alt="" /></a></span>
+                <div class="show-time">
+                    <p class="clock">上映时间</p>
+                    <p class="blue fn-acenter">2020-09-25</p>
+                </div>
+            </li>
+
+        </ul>
+        <div class="fn-acenter">
+            <div class="jpage"></div>
+        </div>   
+        
+    </div>
+    <div class="active-filmtop-filmlist">
+        <div class="active">
+            <ul>
+                    <li>
+                        <p><a href="https://www.jxdyp.com/newsdetail/1708.html" target="_blank"><img src="resource/images/20200102111133607304498.jpg" width="270" height="156" alt="北京银行1元、10元观影" /></a></p>
+                        <p class="overhide"><a href="https://www.jxdyp.com/newsdetail/1708.html" target="_blank">北京银行1元、10元观影</a></p>
+                    </li>
+                    <li>
+                        <p><a href="https://www.jxdyp.com/newsdetail/1709.html" target="_blank"><img src="resource/images/20200102111441997936772.png" width="270" height="156" alt="江西银行白金卡6元观影" /></a></p>
+                        <p class="overhide"><a href="https://www.jxdyp.com/newsdetail/1709.html" target="_blank">江西银行白金卡6元观影</a></p>
+                    </li>
+            </ul>
+        </div>
+        <div class="film-top">
+            <div class="title"><span class="titb">一周票房排行</span></div>
+            <ul>
+                    <li class="fn-clear"><a href="/filmdetail/3ecf43b8-6b80-4248-a186-38f98a7cfa8d.html" title="八佰" target="_blank">八佰</a><span>9.1</span></li>
+                    <li class="fn-clear"><a href="/filmdetail/1e14378a-0fa5-4d77-be55-3ec7ba4c9b0f.html" title="我在时间尽头等你" target="_blank">我在时间尽头等你</a><span>7.9</span></li>
+                    <li class="fn-clear"><a href="/filmdetail/a2db1547-0a14-422e-b39b-a717eebfbb42.html" title="哈利&#183;波特与魔法石" target="_blank">哈利&#183;波特与魔法石</a><span>9.3</span></li>
+                    <li class="fn-clear"><a href="/filmdetail/ed1d0eaa-2574-4a0d-baef-55dd1849a222.html" title="1/2的魔法" target="_blank">1/2的魔法</a><span>8.9</span></li>
+                    <li class="fn-clear"><a href="/filmdetail/8cd19212-83ae-4efd-9449-31977c8ae404.html" title="荞麦疯长" target="_blank">荞麦疯长</a><span>6.2</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="footer">
+            <div class="info-help fn-clear">
+                <div class="container">
+                    <div class="logo"><img src="resource/images/logo_1.png" alt="江西电影票" /></div>
+                    <div class="help-nav">
+                        <ul>
+                            <li><a href="/help/usehelp.html#chooseat" target="_blank">如何选座</a></li>
+                            <li><a href="/help/usehelp.html#dopay" target="_blank">如何支付</a></li>
+                            <li><a href="/help/usehelp.html#geticket" target="_blank">如何取票</a></li>
+                            <li><a href="/help/usehelp.html#buyfailed" target="_blank">购票失败</a></li>
+                            <li><a href="/help/usehelp.html#reglogin" target="_blank">注册登录</a></li>
+                            <li><a href="/help/usehelp.html">使用帮助</a></li>
+                        </ul>
+                    </div>
+                    <div class="contact-info">
+                        <span>0791-87871177</span>
+                    </div>
+                    <span class="code"></span>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="container fn-clear">
+                    <ul>
+                        <li><a href="/help/helpindex.html" target="_blank">关于我们</a></li>
+                        <li><a href="/help/contactus.html" target="_blank">联系我们</a></li>
+                        <li><a href="/help/joinus.html" target="_blank">诚聘英才</a></li>
+                        <li><a href="/help/legalstatement.html" target="_blank">法律声明</a></li>
+                        <li><a href="/help/serviceterms.html" target="_blank">服务条款</a></li>
+                        <li><a href="/help/cooperativepartner.html" target="_blank">合作伙伴</a></li>
+                    </ul>
+                    <span>经营性ICP：赣B2-20140012&nbsp;&nbsp;<a href="http://www.beian.miit.gov.cn" rel="nofollow" target="_blank">赣ICP备14000663号</a>&nbsp; &copy;江西省影票文化传媒有限公司版权所有</span>
+                </div>
+            </div>
+        </div>
+        <div class="verlayLogin" id="verlayLogin">
+            <div class="container">
+                <h2>&nbsp;</h2>
+                <div class="tag">
+                    <ul>
+                        <li><a href="#"data-tag="2">手机验证码登录</a>/</li>
+                        <li><a href="#" data-tag="1">账户登录</a></li>
+                    </ul>
+                </div>
+                <div class="box-form" style="display:block;">
+                    <p><input name="telc" class="telc" type="text" maxlength="15" placeholder="手机号" /></p>
+                    <div class="img-code-wrap">
+                        <div class="img-code"><input name="imgCode" type="text" maxlength="8" placeholder="输入右侧验证码" /></div>
+                        <span class="img-code-show"><img src="" width="100%" /></span>
+                    </div>
+                    <p class="box-checkcode">
+                        <input name="checkCode" class="check-code" type="text" maxlength="8" placeholder="输入验证码" />
+                        <span class="btn send-checkcode">获取验证码</span>
+                    </p>
+                </div>
+
+                <div class="box-form">
+                    <p><input name="tel" class="tel" type="text" value="手机号" /></p>
+                    <p><input name="password" class="pwd bgpwd2" type="password" /></p>
+                    <div class="remember-status fn-clear">
+                        <label><input type="checkbox" name="rememberStatus" class="rememberst"/>记住密码一周</label>
+                    </div>
+                </div>
+                <div class="login"><p class="btn" id="doLogin">登录</p></div>
+                <div class="intro fn-clear">
+                    <span class="fn-left"><a href="forgetpwd.html">忘记密码</a></span>
+                    <span class="fn-right"><a href="register.html">立即注册</a></span>
+                </div>
+                
+            </div>
+        </div>
+        <div class="nav-scroll">
+            <p class="scroll-top"><a href="javascript:void(0);"></a></p>
+            <p class="feedback"><a href="/help/feedback.html" target="_blank"></a></p>
+            <p class="code">
+                <span></span>
+            </p>
+        </div>
+        <script type="text/javascript">
+            var linkLogin = "";
+            var scrollFunc = function (e) {
+                e = e || window.event;
+                if (e && e.preventDefault) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                } else {
+                    e.returnvalue = false;
+
+                    return false;
+                }
+            }
+            $(".top-nav li a").click(function () {
+                if ($(this).attr("data-flag") == 1) {
+                    linkLogin = $(this).attr("href");
+                    if ("False".toLowerCase() != "true") {
+                        $(".boxLogin").overlay({ api: true }).load();
+                        return false;
+                    }
+                }
+            });
+            $(".img-code-show img").on('click', function () {
+                $(this).attr("src", "/account/CheckCode.html?v=" + Math.random());
+            });
+            $(".main-nav .code a").hover(function () {
+                $(this).siblings(".tag").show();
+            }, function () {
+                $(this).siblings(".tag").hide();
+            });
+            $(".verlayLogin").keydown(function (e) {
+                var curKey = e.which; 
+                if (curKey == 13) {
+                    $("#doLogin").trigger("click");
+                }
+            });
+            $(".boxLogin").overlay({
+                closeOnClick: false,
+                top: 'center',
+                mask: {
+                    color: '#000',
+                    closeSpeed: 700,
+                    opacity: 0.7
+                },
+                onBeforeLoad: function (k) {
+                    $('body').on('mousewheel', function (e) {
+                        scrollFunc(e);
+                    });
+                },
+                onClose: function () {
+                    $('body').off('mousewheel');
+                }
+            });
+            var cursec = 60;
+            var submiting = false;
+            $(".verlayLogin .send-checkcode").click(function () {
+                var $this = $(this);
+                if (submiting) return false;
+                var telc = $.trim($(".verlayLogin .telc").val());
+                var imgCode = $.trim($("input[name=imgCode]").val());
+                if (!telc) {
+                    alert("请输入手机号码！");
+                    return;
+                }
+                if (!imgCode) {
+                    alert("请输入图形验证码！");
+                    return;
+                }
+                $.ajax({
+                    url: '/account/SendSmsRandom.html',
+                    data: { Mobile: telc, ValilCode: imgCode },
+                    type: 'post',
+                    dataType: 'json',
+                    beforeSend: function () {
+                        submiting = true;
+                        $this.text("正在发送");
+                        $this.addClass("disable");
+                    },
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            submiting = true;
+                            if (cursec < 60) {
+                                return;
+                            }
+                            var timer = setInterval(function () {
+                                if (cursec == 60) {
+                                    $this.addClass("disable");
+                                }
+                                $this.text(cursec + "秒后重发");
+                                if (cursec == 0) {
+                                    window.clearInterval(timer);
+                                    submiting = false;
+                                    cursec = 60;
+                                    $this.text("获取验证码");
+                                    $this.removeClass("disable");
+                                } else {
+                                    cursec--;
+                                }
+                            }, 1000);
+                        } else {
+                            $(".img-code-show img").attr("src", "/account/CheckCode.html?v=" + Math.random());
+                            submiting = false;
+                            alert(data.ErrMsg);
+                            $this.removeClass("disable");
+                            $this.text("获取验证码");
+                        }
+                    },
+                    error: function () {
+                        submiting = false;
+                        $this.removeClass("disable");
+                        alert("获取验证码失败");
+                    }
+                });
+            });
+            $("#verlayLogin input.tel").focus(function () {
+                if ($(this).val() == "手机号") {
+                    $(this).val("");
+                }
+            });
+            $("#verlayLogin input.tel").blur(function () {
+                if ($(this).val() == "") {
+                    $(this).val("手机号");
+                }
+            });
+            $("#verlayLogin input.pwd").focus(function () {
+                $(this).removeClass("bgpwd2");
+            });
+            $("#verlayLogin input.pwd").blur(function () {
+                if ($(this).val() == "") {
+                    $(this).addClass("bgpwd2");
+                }
+            });
+            $("#doLogin").click(function () {
+                var tag=$(this).attr("data-tag");
+                var tel = $.trim($(".verlayLogin .tel").val());
+                var pwd = $.trim($(".verlayLogin .pwd").val());
+                var telc = $.trim($(".verlayLogin .telc").val());
+                var checkCode = $.trim($(".verlayLogin .check-code").val());
+                var isCheckRemember = false;
+                if ($(".rememberst").is(':checked')) {
+                    isCheckRemember = true;
+                }
+                if (tag == 1) {
+                    if (!tel || tel == "手机号") {
+                        alert("请输入手机号码！");
+                        return;
+                    }
+                    if (!pwd) {
+                        alert("请输入密码！");
+                        return;
+                    }
+                    postdata = { Mobile: tel, Pass: pwd, Type: tag };
+                }
+                if (tag == 2) {
+                    if (!telc) {
+                        alert("请输入手机号码！");
+                        return;
+                    }
+                    if (!checkCode) {
+                        alert("请输入验证码！");
+                        return;
+                    }
+                    postdata = { Mobile: telc, Pass: checkCode, Type: tag };
+                }
+                $.ajax({
+                    url: '/account/VerifyMember.html',
+                    data: postdata,
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            if (isCheckRemember) {
+                                SetCookie("LocalToken", data.ErrMsg, 7);
+                                SetCookie("LocalMobile", data.Mobile, 7);
+                            }
+                            setsessionstorage(data);
+                            if (linkLogin) {
+                                window.location.href = linkLogin;
+                            } else {
+                                window.location.reload();
+                            }
+                        } else {
+                            alert(data.ErrMsg);
+                        } 
+                    },
+                    error: function () {
+                        alert("网络错误,稍后再试！");
+                    }
+                });
+            });
+            $(".loginout").click(function () {
+                loginout();
+            });
+            $(".verlayLogin .tag ul").tabs(".verlayLogin .box-form", {
+                onClick: function () {
+                    $("#doLogin").attr("data-tag", this.getCurrentTab().attr("data-tag"));
+                }
+            });
+            
+            function loginout(){
+                $.ajax({
+                    url: '/account/loginout.html',
+                    data: {},
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            clearsessionstorage();
+                            window.location = "/";
+                        } else {
+                            alert(data.ErrMsg);
+                        }
+                    },
+                    error: function () {
+                        alert("网络错误,稍后再试！");
+                    }
+                });
+            }
+            
+        </script>
+        <form id="citycodeform" method="post" enctype="application/x-www-form-urlencoded"  action="/">
+           <input type="hidden"  name="CityCode" id="ccitycode"/>
+        </form>
+        
+    <script type="text/javascript">
+        $(".box-filmlist .jpage").jPages({
+            containerID: "filmfuturelist",
+            perPage: 10,
+            delay: 30,
+            fallback: 200,
+            minHeight: false,
+            previous: "上一页",
+            next: "下一页"
+        });
+    </script>
+
+        
+    </body>
+</html>

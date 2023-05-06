@@ -1,0 +1,776 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=990, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta charset="utf-8" />
+        <meta name="renderer" content="webkit">
+        <title>修改头像_江西电影票网</title>
+        <meta name="keywords"/>
+        <meta name="description" content="江西电影票网是江西最大的电影票在线选座平台，同时江西电影票网还提供电影排期，影院信息查询、江西本土电影行业资讯等服务。看电影，来江西电影票选座"/>
+        <link href="resource/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link href="resource/css/main.css" rel="stylesheet" />
+        <link href="resource/css/style.min.css?v=20180606" rel="stylesheet" />
+        
+   <link href="resource/css/imgareaselect-default.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .imgareaselect-main {
+            width: 750px;
+            height: 440px;
+            margin: 0 auto;
+        }
+        .imgareaselect-main .top {
+            width: 730px;
+            height: 30px;
+            margin: 5px 0 0 10px;
+        }
+        .imgareaselect-main .top .msg {
+            width: 535px;
+            height: 25px;
+            color: #4DD0C8;
+            float: left;
+            padding-top: 5px;
+            overflow: hidden;
+            text-align: center;
+        }
+        .imgareaselect-main .left {
+            width: 500px;
+            height: 375px;
+            margin: 10px 0 0 10px;
+            float: left;
+            border: 1px solid #4DD0C8;
+        }
+
+        .imgareaselect-main .right {
+            width: 218px;
+            height: 375px;
+            margin: 10px 0 0 10px;
+            float: left;
+            border: 1px solid #4DD0C8;
+        }
+        .imgareaselect-main .left .mainimg {
+            text-align: center;
+            max-width: 452px;
+            height: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .imgareaselect-main .left .mainimg .imgmid {
+            display: inline-block;
+            height: 100%;
+            width: 1px;
+            vertical-align: middle;
+        }
+        .imgareaselect-main .left .mainimg img {
+            max-width: 450px;
+            max-height: 337px;
+            width: expression(width>450?"450px":width+"px");
+            height: expression(height>337?"337px":height+"px");
+            vertical-align: middle;
+        }
+        .imgareaselect-main .right .preview100 {
+            margin-top:30px;       
+            width: 64px;
+            height: 64px;
+            margin-left:auto;
+            margin-right:auto;
+            border: 1px solid #4DD0C8;
+            overflow: hidden;
+        }
+        .imgareaselect-main .right .preview100note {
+            height: 20px;
+            line-height: 20px;
+            color: #4DD0C8;
+            text-align: center;
+        }
+        .imgareaselect-main .right .preview200 {
+            width:160px;
+            height:160px;
+        margin-top:30px;       
+                margin-left:auto;
+            margin-right:auto;
+            border: 1px solid #4DD0C8;
+            overflow: hidden;
+        }
+        .imgareaselect-main .right .preview200note {
+            height: 20px;
+            line-height: 20px;
+            color: #4DD0C8;
+            text-align: center;
+        }
+        .imgareaselect-main .right .preview100 img {
+            width: 64px;
+            height:64px;
+        }
+        .imgareaselect-main .right .preview200 img {
+            width: 160px;
+            height: 160px;
+        }
+        .ifile {
+            position: absolute;
+            height: 25px;
+            opacity: 0;
+            filter: alpha(opacity = 0);
+            -moz-opacity: 0;
+            width: 360px;
+            margin-top: 4px;
+            display: none;
+        }
+        .btn_save {
+            display: block;
+            width: 95px;
+            height: 30px;
+            float: right;
+            color:#fff;
+            background-color:#4DD0C8;
+            border:0;
+            cursor: pointer;
+        }
+        .btn_fh {
+            float: left;
+            width: 95px;
+            height: 30px;
+            color:#fff;
+            background-color:#4DD0C8;
+            border:0;
+            cursor: pointer;
+        }
+        .btn_save:hover {
+            border: 0;
+            width: 95px;
+            height: 30px;
+            float: right;
+            cursor: pointer;
+        }
+        .btn_fh:hover {
+            border: 0;
+            width: 95px;
+            height: 30px;
+            float: left;
+            cursor: pointer;
+        }
+        .buttton {
+            background-color:#4DD0C8; 
+            height:30px; 
+            line-height:30px;
+            width:80px;
+            color:white;
+            text-align:center;
+            float:left;
+            cursor:pointer;
+            border:none
+        }
+        #oldphoto {
+            position:absolute;
+            width:128px;
+            height:128px;
+            top:50px;
+            left:80px;
+        }
+        .box-photo {
+            position:relative;
+        }
+    </style>
+
+        <script src="resource/js/jquery.1.7.2.min.js" type="text/javascript"></script>
+        <script src="resource/js/json2.min.js" type="text/javascript"></script>
+        <script src="resource/js/helper.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.expose.min.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.overlay.min.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.tabs.min.js" type="text/javascript"></script>
+         
+   <script type="text/javascript" src="resource/js/jquery.imgareaselect.pack.js"></script>
+   <script type="text/javascript">
+       $(function () {
+           $("#fileInput").change(function () {
+               callback('0', 'http://120.25.120.129:10081/photo/view?filename=20200901/1598959015286.png');
+           });
+           $(".btn_fh").click(function () {
+               window.location.href = '/account/usercenter.html';
+           });
+           setFrameHeight();
+           $("#fileInput").click(function () {
+               $("#oldphoto").hide();
+           });
+
+           
+       });
+       function callback(ResultCode, ErrMsg) {
+           if (ResultCode === "0") {
+               path = ErrMsg;
+               ShowImg();
+               $("#div1").css("display", "none");
+               $("#div2").css("display", "block");
+               setFrameHeight();
+           }
+           else
+               alert(ErrMsg);
+       }
+       function setFrameHeight() {
+           try {
+               var clientheight = document.body.clientHeight + 20;
+               var naviFrame = parent.document.getElementById("naviFrame");
+               naviFrame.style.height = clientheight + "px";
+           }
+           catch (ex) { }
+       }
+       function ShowImg() {
+           $(".imgareaselect-outer").remove();
+           $(".imgareaselect-handle").parent().remove();
+           $(".btn_save").show();
+           $(".preview100").html("<img alt=\"预览缩略图.\" title=\"预览缩略图.\" />");
+           $(".preview200").html("<img alt=\"预览缩略图.\" title=\"预览缩略图.\" />");
+           $(".mainimg").html("<img src='" + path + "' alt=\"单击鼠标左键拖拽选择图像区域.\" title=\"单击鼠标左键拖拽选择图像区域.\" /><div class=\"imgmid\"></div>");
+           $(".mainimg img").imgAreaSelect({ maxHeight: 300, maxWidth: 300, minHeight: 64, minWidth: 64, aspectRatio: '1:1', fadeSpeed: 200, x1: 102, y1: 102, x2: 198, y2: 198, handles: true, onSelectChange: preview });
+           $(".preview100 img").attr("src", $(".mainimg img").attr("src"));
+           $(".preview200 img").attr("src", $(".mainimg img").attr("src"));
+       }
+       var getInfo;
+       function preview(img, selection) {
+           if (!selection.width || !selection.height)
+               return;
+           $(".right div").show();
+           getInfo = selection;
+           var scale64X = 64 / selection.width;
+           var scale64Y = 64 / selection.height;
+           var scale160X = 160 / selection.width;
+           var scale160Y = 160 / selection.height;
+           $(".preview100 img").css({
+               width: Math.round(scale64X * img.width),
+               height: Math.round(scale64Y * img.height),
+               marginLeft: -Math.round(scale64X * selection.x1),
+               marginTop: -Math.round(scale64Y * selection.y1)
+           }).attr("src", $(".mainimg img").attr("src"));
+           $(".preview200 img").css({
+               width: Math.round(scale160X  * img.width),
+               height: Math.round(scale160Y  * img.height),
+               marginLeft: -Math.round(scale160X * selection.x1),
+               marginTop: -Math.round(scale160Y * selection.y1)
+           }).attr("src", $(".mainimg img").attr("src"));
+       }
+       var path;
+       function ImgSave() {
+           if (getInfo != undefined) {
+               $.ajax({
+                   url: '/account/savephoto.html',
+                   type: "POST",
+                   data: {
+                       path: path,
+                       x: getInfo.x1,
+                       y: getInfo.y1,
+                       width: getInfo.width,
+                       height: getInfo.height
+                   },
+                   beforeSend: function () {
+                       $(".mainimg").html("图片制作中,请耐心等待...")
+                   },
+                   success: function (data) {
+                       if (data.ResultCode === "0") {
+                           SetCookie("HeaderIcon", data.ErrMsg, true);
+                           window.location.href = '/account/usercenter.html';
+                       }
+                       else
+                           alert(data.ErrMsg);
+                   }
+               });
+           } else {
+               alert("请浏览图片并选择你要裁剪的区域!");
+           }
+       }
+    </script>
+
+        <script type="text/javascript">
+            $(function () {
+                $(".bottom-nav li:first").css("margin-left","0");
+                $(".bottom-nav li:last").addClass("fn-nobg");
+                $(".top-nav .user-name").text(getCookie("NickName") + "(" + getCookie("Mobile") + ")");
+                $(".main-nav .location").toggle(function () {
+                    $(this).addClass("lsec").find(".other-city").show();
+                }, function () {
+                    $(this).removeClass("lsec").find(".other-city").hide();
+                });
+                $(window).scroll(function () {
+                    if ($(window).scrollTop() > 100) {
+                        $(".nav-scroll").fadeIn(1500);
+                    } else {
+                        $(".nav-scroll").fadeOut(1500);
+                    }
+                });
+                $(".scroll-top").click(function () {
+                    $("html, body").animate({
+                        scrollTop: "0px"
+                    }, {
+                        duration: 500,
+                        easing: "swing"
+                    });
+                    return false;
+                });
+                $(".nav-scroll .code").hover(function () {
+                    $(this).find("span").show();
+                }, function () {
+                    $(this).find("span").hide();
+                });
+            });
+
+            function changecity(citycode) {
+                if (window.location.toString().indexOf("cinemalist") > -1) {
+                    window.location = "/cinemalist/" + citycode + ".html";
+                }
+                else {
+                    document.getElementById("ccitycode").value = citycode;
+                    document.getElementById("citycodeform").submit();
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="top-nav">
+                <div class="container fn-clear">
+                      <span class="tip">欢迎来到江西电影票，<span class="user-name"></span><a class="loginout" href="javascript:void(0);">退出</a></span>
+                    <ul>
+                        <li><a href="/account/usercenter.html" title="个人中心" data-flag="1">个人中心</a></li>
+                        <li><a href="/account/userorderlist.html" title="我的订单" data-flag="1">我的订单</a></li>
+                        <li><a href="/help/helpindex.html" title="帮助中心" target="_blank">帮助中心</a></li>
+                        <li>&nbsp;联系客服：0791-87871177</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main-nav">
+                <div class="container fn-clear">
+                    <div class="logo"><a href="/"><img src="resource/images/logo.png" alt="江西电影票" title="江西电影票" width="165"/></a></div>
+                    <div class="location" data-citycode="360100">
+                        <span class="lc">南昌</span>
+                        <ul class="other-city">
+                            <li><a onclick="changecity('360100')" href="javascript:void(0)">南昌</a></li>
+                            <li><a onclick="changecity('360200')" href="javascript:void(0)">景德镇</a></li>
+                            <li><a onclick="changecity('360300')" href="javascript:void(0)">萍乡</a></li>
+                            <li><a onclick="changecity('360400')" href="javascript:void(0)">九江</a></li>
+                            <li><a onclick="changecity('360500')" href="javascript:void(0)">新余</a></li>
+                            <li><a onclick="changecity('360600')" href="javascript:void(0)">鹰潭</a></li>
+                            <li><a onclick="changecity('360700')" href="javascript:void(0)">赣州</a></li>
+                            <li><a onclick="changecity('360800')" href="javascript:void(0)">吉安</a></li>
+                            <li><a onclick="changecity('360900')" href="javascript:void(0)">宜春</a></li>
+                            <li><a onclick="changecity('361000')" href="javascript:void(0)">抚州</a></li>
+                            <li><a onclick="changecity('361100')" href="javascript:void(0)">上饶</a></li>
+                        </ul>
+                    </div>
+                    <ul class="nav-list fn-clear">
+                        <li data-index="index"><a href="index.html">首页</a></li>
+                        <li data-index="film"><a href="filmshowlist.html">电影</a></li>
+                        <li data-index="cinema"><a href="cinemalist.html">影院</a></li>
+                       
+                        <li data-index="news"><a href="newslist.html">资讯</a></li>
+                    </ul>
+                    <div class="box-code-tg">
+                        
+                        <p class="code">
+                            <a href="javascript:void(0);">手机购影票</a>
+                            <span class="tag"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="body" class="main">
+                
+<div class="wrapper-user-center">
+    <div class="container fn-clear">
+        <div class="menu-usercenter">
+    <ul>
+       <li data-i="usercenter">
+            <a class="ico-usercenter"  href="usercenter.html">个人中心</a>
+            <span class="tag"></span>
+        </li>
+        <li data-i="userorderlist">
+            <a class="ico-useroder" href="userorderlist.html">我的订单</a><span class="numorder">(<em>0</em>)</span>
+            <span class="tag"></span>
+        </li>
+        
+        <li data-i="usercomment">
+            <a class="ico-usercomment"  href="usercomment.html">我的评论</a>
+            <span class="tag"></span>
+        </li>
+        
+        <li data-i="useraccount">
+            <a class="ico-account" href="useraccount.html">账户余额</a>
+            <span class="tag"></span>
+        </li>
+        <li data-i="userinfo">
+            <a class="ico-userinfo" href="userinfo.html">个人资料</a>
+            <span class="tag"></span>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+    if (getCookie("Append")) {
+        var Jxyp_Card = $.parseJSON(getCookie("Append")).Jxyp_Card;
+        var Flag = getCookie("Flag");
+        if (Jxyp_Card > 0) {
+            $(".menu-usercenter .userowncard").removeClass("fn-hide");
+        }
+        if (Flag == "1") {
+            $(".menu-usercenter .usercine").removeClass("fn-hide");
+        }
+    }
+    $(".menu-usercenter li").each(function () {
+        if ($(this).attr("data-i") == "userinfo") {
+            $(this).siblings().find(".tag").hide().end().end().addClass("select").find(".tag").show();
+        }
+    });
+</script>
+        <div class="box-con userinfo-usercenter">
+            <div class="title tag fn-clear">
+                <span><a href="userinfo.html">个人资料</a></span>
+                <span><a href="userchangepwd.html">修改密码</a></span>
+                <span class="act"><a href="userchangephoto.html">修改头像</a></span>
+            </div>
+            <div class="box-photo">
+               <div style="margin-left: 20px; margin-right: 20px;margin-top:20px; overflow: hidden; text-align: center">
+                    <div id="div1" style="width:86px; margin: 0px auto;display:block">
+                        <div style="height:40px;clear:both"></div>
+                        <div style="cursor:pointer;">
+                            <form id="uploadForm"  method="post" enctype="multipart/form-data" action="/account/uploadphoto.html" style="position:relative;width:65px;height:30px" target="hidden_frame">
+                                <div id="btnUpload" class="buttton" style="border-radius:3px!important; cursor:pointer">上传照片</div>
+                                <input type="file" id="fileInput" name="fileInput" style="float:left;width:65px;height:30px;filter:alpha(opacity:0);opacity: 0;position:absolute;top: 0px; left:0px;cursor:pointer" />
+                                <iframe name='hidden_frame' id="hidden_frame" style="display: none"></iframe>
+                            </form>
+                        </div>
+                        <div style="height:40px;clear:both"></div>
+                    </div>
+                    <div id="div2" style="display:none;text-align:center">
+                        <div class="imgareaselect-main">
+                            <div class="top">
+                                <input type="button" onclick="window.location.href = 'UploadImg.aspx';" class="btn_fh" value="返回" />
+                                <div class="msg">友情提示:单击鼠标左键拖拽选择下方图像区域.</div>
+                                <input type="button" onclick="ImgSave();" class="btn_save" value="保存" />
+                            </div>
+                            <div class="left">
+                                <div class="mainimg"></div>
+                            </div>
+                            <div class="right">
+                                <div style="text-align:center">
+                                    <div class="preview100"></div>
+                                    <div class="preview100note">64*64预览图</div>
+                                </div>
+                                <div style="text-align: center">
+                                    <div class="preview200"></div>
+                                    <div class="preview200note">160*160预览图</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="oldphoto"><img src="resource/images/11.png" alt="" width="100" height="100" /></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="footer">
+            <div class="info-help fn-clear">
+                <div class="container">
+                    <div class="logo"><img src="resource/images/logo_1.png" alt="江西电影票" /></div>
+                    <div class="help-nav">
+                        <ul>
+                            <li><a href="/help/usehelp.html#chooseat" target="_blank">如何选座</a></li>
+                            <li><a href="/help/usehelp.html#dopay" target="_blank">如何支付</a></li>
+                            <li><a href="/help/usehelp.html#geticket" target="_blank">如何取票</a></li>
+                            <li><a href="/help/usehelp.html#buyfailed" target="_blank">购票失败</a></li>
+                            <li><a href="/help/usehelp.html#reglogin" target="_blank">注册登录</a></li>
+                            <li><a href="/help/usehelp.html">使用帮助</a></li>
+                        </ul>
+                    </div>
+                    <div class="contact-info">
+                        <span>0791-87871177</span>
+                    </div>
+                    <span class="code"></span>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="container fn-clear">
+                    <ul>
+                        <li><a href="/help/helpindex.html" target="_blank">关于我们</a></li>
+                        <li><a href="/help/contactus.html" target="_blank">联系我们</a></li>
+                        <li><a href="/help/joinus.html" target="_blank">诚聘英才</a></li>
+                        <li><a href="/help/legalstatement.html" target="_blank">法律声明</a></li>
+                        <li><a href="/help/serviceterms.html" target="_blank">服务条款</a></li>
+                        <li><a href="/help/cooperativepartner.html" target="_blank">合作伙伴</a></li>
+                    </ul>
+                    <span>经营性ICP：赣B2-20140012&nbsp;&nbsp;<a href="http://www.beian.miit.gov.cn" rel="nofollow" target="_blank">赣ICP备14000663号</a>&nbsp; &copy;江西省影票文化传媒有限公司版权所有</span>
+                </div>
+            </div>
+        </div>
+        <div class="verlayLogin" id="verlayLogin">
+            <div class="container">
+                <h2>&nbsp;</h2>
+                <div class="tag">
+                    <ul>
+                        <li><a href="#"data-tag="2">手机验证码登录</a>/</li>
+                        <li><a href="#" data-tag="1">账户登录</a></li>
+                    </ul>
+                </div>
+                <div class="box-form" style="display:block;">
+                    <p><input name="telc" class="telc" type="text" maxlength="15" placeholder="手机号" /></p>
+                    <div class="img-code-wrap">
+                        <div class="img-code"><input name="imgCode" type="text" maxlength="8" placeholder="输入右侧验证码" /></div>
+                        <span class="img-code-show"><img src="" width="100%" /></span>
+                    </div>
+                    <p class="box-checkcode">
+                        <input name="checkCode" class="check-code" type="text" maxlength="8" placeholder="输入验证码" />
+                        <span class="btn send-checkcode">获取验证码</span>
+                    </p>
+                </div>
+
+                <div class="box-form">
+                    <p><input name="tel" class="tel" type="text" value="手机号" /></p>
+                    <p><input name="password" class="pwd bgpwd2" type="password" /></p>
+                    <div class="remember-status fn-clear">
+                        <label><input type="checkbox" name="rememberStatus" class="rememberst"/>记住密码一周</label>
+                    </div>
+                </div>
+                <div class="login"><p class="btn" id="doLogin">登录</p></div>
+                <div class="intro fn-clear">
+                    <span class="fn-left"><a href="/forgetpwd.html">忘记密码</a></span>
+                    <span class="fn-right"><a href="/register.html">立即注册</a></span>
+                </div>
+                
+            </div>
+        </div>
+        <div class="nav-scroll">
+            <p class="scroll-top"><a href="javascript:void(0);"></a></p>
+            <p class="feedback"><a href="/help/feedback.html" target="_blank"></a></p>
+            <p class="code">
+                <span></span>
+            </p>
+        </div>
+        <script type="text/javascript">
+            var linkLogin = "";
+            var scrollFunc = function (e) {
+                e = e || window.event;
+                if (e && e.preventDefault) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                } else {
+                    e.returnvalue = false;
+
+                    return false;
+                }
+            }
+            $(".top-nav li a").click(function () {
+                if ($(this).attr("data-flag") == 1) {
+                    linkLogin = $(this).attr("href");
+                    if ("True".toLowerCase() != "true") {
+                        $(".boxLogin").overlay({ api: true }).load();
+                        return false;
+                    }
+                }
+            });
+            $(".img-code-show img").on('click', function () {
+                $(this).attr("src", "/account/CheckCode.html?v=" + Math.random());
+            });
+            $(".main-nav .code a").hover(function () {
+                $(this).siblings(".tag").show();
+            }, function () {
+                $(this).siblings(".tag").hide();
+            });
+            $(".verlayLogin").keydown(function (e) {
+                var curKey = e.which; 
+                if (curKey == 13) {
+                    $("#doLogin").trigger("click");
+                }
+            });
+            $(".boxLogin").overlay({
+                closeOnClick: false,
+                top: 'center',
+                mask: {
+                    color: '#000',
+                    closeSpeed: 700,
+                    opacity: 0.7
+                },
+                onBeforeLoad: function (k) {
+                    $('body').on('mousewheel', function (e) {
+                        scrollFunc(e);
+                    });
+                },
+                onClose: function () {
+                    $('body').off('mousewheel');
+                }
+            });
+            var cursec = 60;
+            var submiting = false;
+            $(".verlayLogin .send-checkcode").click(function () {
+                var $this = $(this);
+                if (submiting) return false;
+                var telc = $.trim($(".verlayLogin .telc").val());
+                var imgCode = $.trim($("input[name=imgCode]").val());
+                if (!telc) {
+                    alert("请输入手机号码！");
+                    return;
+                }
+                if (!imgCode) {
+                    alert("请输入图形验证码！");
+                    return;
+                }
+                $.ajax({
+                    url: '/account/SendSmsRandom.html',
+                    data: { Mobile: telc, ValilCode: imgCode },
+                    type: 'post',
+                    dataType: 'json',
+                    beforeSend: function () {
+                        submiting = true;
+                        $this.text("正在发送");
+                        $this.addClass("disable");
+                    },
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            submiting = true;
+                            if (cursec < 60) {
+                                return;
+                            }
+                            var timer = setInterval(function () {
+                                if (cursec == 60) {
+                                    $this.addClass("disable");
+                                }
+                                $this.text(cursec + "秒后重发");
+                                if (cursec == 0) {
+                                    window.clearInterval(timer);
+                                    submiting = false;
+                                    cursec = 60;
+                                    $this.text("获取验证码");
+                                    $this.removeClass("disable");
+                                } else {
+                                    cursec--;
+                                }
+                            }, 1000);
+                        } else {
+                            $(".img-code-show img").attr("src", "/account/CheckCode.html?v=" + Math.random());
+                            submiting = false;
+                            alert(data.ErrMsg);
+                            $this.removeClass("disable");
+                            $this.text("获取验证码");
+                        }
+                    },
+                    error: function () {
+                        submiting = false;
+                        $this.removeClass("disable");
+                        alert("获取验证码失败");
+                    }
+                });
+            });
+            $("#verlayLogin input.tel").focus(function () {
+                if ($(this).val() == "手机号") {
+                    $(this).val("");
+                }
+            });
+            $("#verlayLogin input.tel").blur(function () {
+                if ($(this).val() == "") {
+                    $(this).val("手机号");
+                }
+            });
+            $("#verlayLogin input.pwd").focus(function () {
+                $(this).removeClass("bgpwd2");
+            });
+            $("#verlayLogin input.pwd").blur(function () {
+                if ($(this).val() == "") {
+                    $(this).addClass("bgpwd2");
+                }
+            });
+            $("#doLogin").click(function () {
+                var tag=$(this).attr("data-tag");
+                var tel = $.trim($(".verlayLogin .tel").val());
+                var pwd = $.trim($(".verlayLogin .pwd").val());
+                var telc = $.trim($(".verlayLogin .telc").val());
+                var checkCode = $.trim($(".verlayLogin .check-code").val());
+                var isCheckRemember = false;
+                if ($(".rememberst").is(':checked')) {
+                    isCheckRemember = true;
+                }
+                if (tag == 1) {
+                    if (!tel || tel == "手机号") {
+                        alert("请输入手机号码！");
+                        return;
+                    }
+                    if (!pwd) {
+                        alert("请输入密码！");
+                        return;
+                    }
+                    postdata = { Mobile: tel, Pass: pwd, Type: tag };
+                }
+                if (tag == 2) {
+                    if (!telc) {
+                        alert("请输入手机号码！");
+                        return;
+                    }
+                    if (!checkCode) {
+                        alert("请输入验证码！");
+                        return;
+                    }
+                    postdata = { Mobile: telc, Pass: checkCode, Type: tag };
+                }
+                $.ajax({
+                    url: '/account/VerifyMember.html',
+                    data: postdata,
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            if (isCheckRemember) {
+                                SetCookie("LocalToken", data.ErrMsg, 7);
+                                SetCookie("LocalMobile", data.Mobile, 7);
+                            }
+                            setsessionstorage(data);
+                            if (linkLogin) {
+                                window.location.href = linkLogin;
+                            } else {
+                                window.location.reload();
+                            }
+                        } else {
+                            alert(data.ErrMsg);
+                        } 
+                    },
+                    error: function () {
+                        alert("网络错误,稍后再试！");
+                    }
+                });
+            });
+            $(".loginout").click(function () {
+                loginout();
+            });
+            $(".verlayLogin .tag ul").tabs(".verlayLogin .box-form", {
+                onClick: function () {
+                    $("#doLogin").attr("data-tag", this.getCurrentTab().attr("data-tag"));
+                }
+            });
+            
+            function loginout(){
+                $.ajax({
+                    url: '/account/loginout.html',
+                    data: {},
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            clearsessionstorage();
+                            window.location = "/";
+                        } else {
+                            alert(data.ErrMsg);
+                        }
+                    },
+                    error: function () {
+                        alert("网络错误,稍后再试！");
+                    }
+                });
+            }
+            
+        </script>
+        <form id="citycodeform" method="post" enctype="application/x-www-form-urlencoded"  action="/">
+           <input type="hidden"  name="CityCode" id="ccitycode"/>
+        </form>
+        
+       
+    </body>
+</html>

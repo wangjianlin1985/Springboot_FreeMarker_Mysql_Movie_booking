@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=990, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta charset="utf-8" />
+        <meta name="renderer" content="webkit">
+        <title>江西电影票网_江西最大的电影在线选座购票平台</title>
+        <meta name="keywords"/>
+        <meta name="description" content="江西电影票网是江西最大的电影票在线选座平台，同时江西电影票网还提供电影排期，影院信息查询、江西本土电影行业资讯等服务。看电影，来江西电影票选座"/>
+        <link href="resource/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link href="resource/css/main.css" rel="stylesheet" />
+        <link href="resource/css/style.min.css?v=20180606" rel="stylesheet" />
+        
+        <script src="resource/js/jquery.1.7.2.min.js" type="text/javascript"></script>
+        <script src="resource/js/json2.min.js" type="text/javascript"></script>
+        <script src="resource/js/helper.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.expose.min.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.overlay.min.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.tabs.min.js" type="text/javascript"></script>
+         <script src="GetShowSiteState.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var siteArr = new Array();
+        var siteAll = new Array();
+        var siteAllTemp = {};
+        var submiting = false;
+        var NormalPrice = parseFloat("36.0");
+        function getseat(Sites, GraphRow, GraphCol) {
+            for (var i = 0; i < Sites.length; i++) {
+                var site = Sites[i];
+                if (site.GraphRow === GraphRow && site.GraphCol === GraphCol)
+                    return site;
+            }
+            return null;
+        }
+        function setseat(seatno, seatrow, seatcol) {
+            var html = '<div id="' + seatno + '" class="seatinfo">' + seatrow + "排" + seatcol + "座" + '</div>';
+            $("#seatchoose").append(html);
+            var seatchoose = document.getElementById("seatchoose");
+            if (siteArr.length > 0) {
+                if ('jxyp_web' == "jxyp_yzf") {
+                    if (siteArr.length == 1)
+                        $(".choose-result .total strong").text("10");
+                    else
+                        $(".choose-result .total strong").text(NormalPrice * (siteArr.length - 1) + 10);
+                }
+                else
+                    $(".choose-result .total strong").text(NormalPrice * siteArr.length);
+            }
+            document.getElementById("lblmsg").style.display = 'none';
+        }
+        function getchdIndex(nodeArr, tagnode) {
+            for (var i = 0; i < nodeArr.length; i++) {
+                if (tagnode == nodeArr[i])
+                    return i;
+            }
+            return -1;
+        }
+        function seatclick(obj) {
+            var src = obj.lastChild.src;
+            src = src.substr(src.lastIndexOf("/") + 1);
+            if (src === "seat_able.png") {
+                if (siteArr.length > 3) {
+                    alert("一次最多只能选择4个座位");
+                }
+                else {
+                    var seatchoose = document.getElementById("seatchoose");
+                    if (siteArr.length == 0)
+                        $("#btnconfirm").removeClass("disable");
+                    obj.lastChild.src = 'resource/images/seat_seled.png';
+                    var seatno = obj.getAttribute("seatno");
+                    siteArr.push(seatno);
+                    siteAllTemp = {};
+                    siteAllTemp.seatno = seatno;
+                    siteAllTemp.seatname = obj.getAttribute("seatrow") + '排' + obj.getAttribute("seatcol") + '座';
+                    siteAll.push(siteAllTemp);
+                    setseat(seatno, obj.getAttribute("seatrow"), obj.getAttribute("seatcol"));
+                    obj.firstChild.style.visibility = "collapse";
+                }
+            }
+            else if (src === "seat_love.png") {
+                if (siteArr.length > 2) {
+                    alert("一次最多只能选择4个座位");
+                }
+                else {
+                    var seatchoose = document.getElementById("seatchoose");
+                    if (siteArr.length == 0)
+                        $("#btnconfirm").removeClass("disable");
+                    var tdNodeArr = obj.parentNode.childNodes;
+                    var cindex = getchdIndex(tdNodeArr, obj);
+                    var otherobj = null;
+                    var loveSite = obj.getAttribute("loveSite");
+                    if (loveSite == "1")
+                        otherobj = tdNodeArr[cindex + 1].firstChild; //情侣座首座
+                    else
+                        otherobj = tdNodeArr[cindex - 1].firstChild; //情侣座二座   
+                    obj.lastChild.src = 'resource/images/seat_seled.png';
+                    otherobj.src = 'resource/images/seat_seled.png';
+                    var seatno = obj.getAttribute("seatno");
+                    siteArr.push(seatno);
+                    siteAllTemp = {};
+                    siteAllTemp.seatno = seatno;
+                    siteAllTemp.seatname = obj.getAttribute("seatrow") + '排' + obj.getAttribute("seatcol") + '座';
+                    siteAll.push(siteAllTemp);
+                    setseat(seatno, obj.getAttribute("seatrow"), obj.getAttribute("seatcol"));
+                    seatno = otherobj.getAttribute("seatno");
+                    siteArr.push(seatno);
+                    siteAllTemp = {};
+                    siteAllTemp.seatno = seatno;
+                    siteAllTemp.seatname = otherobj.parentNode.getAttribute("seatrow") + '排' + otherobj.parentNode.getAttribute("seatcol") + '座';
+                    siteAll.push(siteAllTemp);
+                    setseat(seatno, otherobj.parentNode.getAttribute("seatrow"), otherobj.parentNode.getAttribute("seatcol"));
+                }
+            }
+            else if (src === "seat_seled.png") {
+                var loveSite = obj.getAttribute("loveSite");
+                if (loveSite === "0") {
+                    obj.lastChild.src = 'resource/images/seat_able.png';
+                    var seatno = obj.getAttribute("seatno");
+                    siteArr.splice($.inArray(seatno, siteArr), 1);
+                    obj.firstChild.style.visibility = "visible";
+                    document.getElementById("seatchoose").removeChild(document.getElementById(seatno));
+                    if (siteArr.length == 0) {
+                        $(".choose-result .total strong").text(0);
+                    } else {
+                        if ('jxyp_web' == "jxyp_yzf")
+                        {
+                            if (siteArr.length == 1)
+                                $(".choose-result .total strong").text("10");
+                            else
+                                $(".choose-result .total strong").text(NormalPrice * (siteArr.length-1)+10);
+                        }
+                        else
+                           $(".choose-result .total strong").text(NormalPrice * siteArr.length);
+                    }
+                    document.getElementById("lblmsg").style.display = 'none';
+                }
+                else {
+                    var tdNodeArr = obj.parentNode.childNodes;
+                    var cindex = getchdIndex(tdNodeArr, obj, 0);
+                    var otherobj = null;
+                    if (loveSite == "1")
+                        otherobj = tdNodeArr[cindex + 1].firstChild; //情侣座首座
+                    else
+                        otherobj = tdNodeArr[cindex - 1].firstChild; //情侣座二座 
+                    otherobj.src = 'resource/images/seat_love.png';
+                    obj.lastChild.src = 'resource/images/seat_love.png';
+                    var seatno = obj.getAttribute("seatno");
+                    document.getElementById("seatchoose").removeChild(document.getElementById(seatno));
+                    siteArr.splice($.inArray(seatno, siteArr), 1);
+                    seatno = otherobj.getAttribute("seatno");
+                    document.getElementById("seatchoose").removeChild(document.getElementById(seatno));
+                    siteArr.splice($.inArray(seatno, siteArr), 1);
+                }
+                if (siteArr.length == 0) {
+                    document.getElementById("lblmsg").style.display = 'block';
+                }
+            }
+            $(".box-seatchoose .tip em").text(siteArr.length);
+        }
+        function getSeatNames(siteInfo) {
+            var siteInfo = siteInfo.split('|');
+            var siteaTemp = [];
+            for (var i = 0; i < siteInfo.length; i++) {
+                for (var j = 0; j < siteAll.length; j++) {
+                    if (siteAll[j].seatno == siteInfo[i]) {
+                        siteaTemp.push(siteAll[j].seatname);
+                        break;
+                    }
+                }
+            }
+            siteaTemp = siteaTemp.join(",");
+            return siteaTemp;
+        }
+
+        function confirmorder(CinemaID, ShowNo, SiteInfo) {
+            if (submiting) return;
+            if (siteArr.length == 0) {
+                alert("请至少选择一个座位");
+                return;
+            }
+            if ('False'.toLowerCase() == "true") {
+                $.ajax({
+                    url: '/pay/LockSite.html',
+                    type: 'post',
+                    data: { CinemaID: CinemaID, ShowNo: ShowNo, SiteInfo: SiteInfo, SiteName: getSeatNames(SiteInfo) },
+                    beforeSend: function () {
+                        submiting = true;
+                        $("#btnconfirm").addClass("disabled");
+                        showMask('正在确认座位信息,请稍后...');
+                    },
+                    success: function (respData) {
+                        if (respData.ResultCode == "0") {
+                            delCookie("LockSiteInfo");
+                            window.location = "/pay/pay/" + respData.LocalOrderNo + ".html";
+                        }
+                        else
+                            alert(respData.ErrMsg);
+                    },
+                    complete: function () {
+                        submiting = false;
+                        $("#btnconfirm").removeClass("disabled");
+                        closeLoadMask();
+                    },
+                    error: function (type) {
+                        submiting = false;
+                        $("#btnconfirm").removeClass("disabled");
+                        closeLoadMask();
+                    }
+                });
+            }
+            else {
+                SetCookie('LockSiteInfo', SiteInfo, true);
+                $(".boxLogin").overlay({ api: true }).load();
+            }
+        }
+        $(function () {
+            $(".screen-info .box-screen-today li").each(function () {
+                var $this = $(this);
+                var showNo = $this.attr("data-showno");
+                if (showNo == "1000000109357044") {
+                    $this.siblings().removeClass("act");
+                    $this.addClass("act");
+                } else {
+                    $this.click(function () {
+                        window.location = '/filmchooseseat/' + showNo + "_" + '68e520d5-f8b9-4484-8bf7-4252754dd2c9' + "_" + '86b854c9-050f-4eec-bda4-13c8b377a30d' + "_" + '2020-08-28' + '.html';
+                    });
+                }
+            }).hover(function () {
+                $(this).addClass("bg");
+            },
+            function () {
+                $(this).removeClass("bg");
+            });
+            $(".change-showtime").toggle(function () {
+                $(".box-screen-today").show();
+            },
+            function () {
+                $(".box-screen-today").hide();
+            });
+            $(".change-screenings").bind("click", function () {
+                window.location = "cinemashow.html?CinemaID=" + CinemaID + "&CinemaName=" + CinemaName + "&Addr=" + Addr + "&HaveATM=" + HaveATM + "&NetworkStatus=" + NetworkStatus + "&flimId=" + flimId + "&source=" + shareConfig.Source + "&chooseDate=" + day;
+            });
+            $("#backbtn").bind("click", function () {
+                window.location = "cinemashow.html?CinemaID=" + CinemaID + "&CinemaName=" + CinemaName + "&Addr=" + Addr + "&HaveATM=" + HaveATM + "&NetworkStatus=" + NetworkStatus + "&flimId=" + flimId + "&source=" + shareConfig.Source + "&chooseDate=" + day;
+            });
+            $("#btnconfirm").bind("click", function () { confirmorder('68e520d5-f8b9-4484-8bf7-4252754dd2c9', '1000000109357044', siteArr.join("|")) });
+            var respData = GetShowSiteStates;
+			if (respData.ResultCode == "0") {
+                        var GraphRow = parseInt(respData.ErrMsg.split('-')[0]);
+                        var GraphCol = parseInt(respData.ErrMsg.split('-')[1]);
+                        var strHtml = '<table id="seattable" class="seatdt">';
+                        var chooseseatArr = [];
+                        if (getCookie("LockSiteInfo") != null)
+                            chooseseatArr = getCookie("LockSiteInfo").split('|');
+                        var indexdtHtml = '<table id="indextable" class="seatdt">';
+                        for (var i = 1; i <= GraphRow; i++) {
+                            var isadd = false;
+                            for (var j = 1; j <= GraphCol; j++) {
+                                var seat = getseat(respData.List, i, j);
+                                if (seat != null) {
+                                    if (!isadd) {
+                                        strHtml += '<tr>';
+                                        indexdtHtml += '<tr><td align="center" valign="middle" >' + seat.SeatRow + '</td></tr>';
+                                        isadd = true;
+                                    }
+                                    if (seat.State === "0") {
+                                        if ($.inArray(seat.SeatNo, chooseseatArr) > -1) {
+                                            siteArr.push(seat.SeatNo);
+                                            siteAllTemp = {};
+                                            siteAllTemp.seatno = seat.SeatNo;
+                                            siteAllTemp.seatname = seat.SeatRow + '排' + seat.SeatCol + '座';
+                                            siteAll.push(siteAllTemp);
+                                            setseat(seat.SeatNo, seat.SeatRow, seat.SeatCol);
+                                            strHtml += '<td style="width:28px;position:relative"  seatcol="' + seat.SeatCol + '" seatrow="' + seat.SeatRow + '" seatno="' + seat.SeatNo + '" loveSite="' + seat.loveSite + '" onclick="seatclick(this)"><div style="visibility:collapse" class="seatno">' + seat.SeatCol + '</div><img width="28px" height="20px" src="resource/images/seat_seled.png"/></td>';
+                                        }
+                                        else {
+                                            if (seat.loveSite == "0")
+                                                strHtml += '<td style="width:28px;position:relative;cursor:pointer"  seatcol="' + seat.SeatCol + '" seatrow="' + seat.SeatRow + '" seatno="' + seat.SeatNo + '" loveSite="' + seat.loveSite + '" onclick="seatclick(this)"><div class="seatno">' + seat.SeatCol + '</div><img style="z-index:120;" width="28px" height="20px" src="resource/images/seat_able.png" /></td>';
+                                            else if (seat.loveSite == "-1" || seat.loveSite == "-2")
+                                                strHtml += '<td>&nbsp;</td>';
+                                            else
+                                                strHtml += '<td style="width:28px;cursor:pointer"  seatcol="' + seat.SeatCol + '" seatrow="' + seat.SeatRow + '" seatno="' + seat.SeatNo + '" loveSite="' + seat.loveSite + '" onclick="seatclick(this)"><img width="28px" height="20px" src="resource/images/seat_love.png"/></td>';
+                                        }
+                                    }
+                                    else
+                                        strHtml += '<td style="width:28px;"><img width="28px" height="20px" src="resource/images/seat_unable.png"/></td>';
+                                }
+                                else {
+                                    if (isadd)
+                                        strHtml += '<td>&nbsp;</td>';
+                                }
+                            }
+                            strHtml += "</tr>"
+                        }
+                        strHtml += "</table>";
+                        indexdtHtml += "</table>";
+                        $(".film-choose-seat").append(indexdtHtml);
+                        document.getElementById("seatcontainer").innerHTML = strHtml;
+                        var seattable = document.getElementById("seattable");
+                        var indextable = document.getElementById("indextable");
+                        var seatcontainer = document.getElementById("seatcontainer");
+                        var xwidth = 0;
+                        if (seattable.clientWidth > seatcontainer.clientWidth) {
+                            var xwidth = (seattable.clientWidth - seatcontainer.clientWidth) / 2;
+                        }
+                    }
+                    else
+                        alert(respData.ErrMsg);
+        });
+</script>   
+
+        <script type="text/javascript">
+            $(function () {
+                $(".bottom-nav li:first").css("margin-left","0");
+                $(".bottom-nav li:last").addClass("fn-nobg");
+                $(".top-nav .user-name").text(getCookie("NickName") + "(" + getCookie("Mobile") + ")");
+                $(".main-nav .location").toggle(function () {
+                    $(this).addClass("lsec").find(".other-city").show();
+                }, function () {
+                    $(this).removeClass("lsec").find(".other-city").hide();
+                });
+                $(window).scroll(function () {
+                    if ($(window).scrollTop() > 100) {
+                        $(".nav-scroll").fadeIn(1500);
+                    } else {
+                        $(".nav-scroll").fadeOut(1500);
+                    }
+                });
+                $(".scroll-top").click(function () {
+                    $("html, body").animate({
+                        scrollTop: "0px"
+                    }, {
+                        duration: 500,
+                        easing: "swing"
+                    });
+                    return false;
+                });
+                $(".nav-scroll .code").hover(function () {
+                    $(this).find("span").show();
+                }, function () {
+                    $(this).find("span").hide();
+                });
+            });
+
+            function changecity(citycode) {
+                if (window.location.toString().indexOf("cinemalist") > -1) {
+                    window.location = "/cinemalist/" + citycode + ".html";
+                }
+                else {
+                    document.getElementById("ccitycode").value = citycode;
+                    document.getElementById("citycodeform").submit();
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="top-nav">
+                <div class="container fn-clear">
+                      <span class="tip">欢迎来到江西电影票<a rel="#verlayLogin" href="javascript:void(0)" class="boxLogin blue">登录</a><a href="/register.html">注册</a></span>
+                    <ul>
+                        <li><a href="/account/usercenter.html" title="个人中心" data-flag="1">个人中心</a></li>
+                        <li><a href="/account/userorderlist.html" title="我的订单" data-flag="1">我的订单</a></li>
+                        <li><a href="/help/helpindex.html" title="帮助中心" target="_blank">帮助中心</a></li>
+                        <li>&nbsp;联系客服：0791-87871177</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main-nav">
+                <div class="container fn-clear">
+                    <div class="logo"><a href="/"><img src="resource/images/logo.png" alt="江西电影票" title="江西电影票" width="165"/></a></div>
+                    <div class="location" data-citycode="360100">
+                        <span class="lc">南昌</span>
+                        <ul class="other-city">
+                            <li><a onclick="changecity('360100')" href="javascript:void(0)">南昌</a></li>
+                            <li><a onclick="changecity('360200')" href="javascript:void(0)">景德镇</a></li>
+                            <li><a onclick="changecity('360300')" href="javascript:void(0)">萍乡</a></li>
+                            <li><a onclick="changecity('360400')" href="javascript:void(0)">九江</a></li>
+                            <li><a onclick="changecity('360500')" href="javascript:void(0)">新余</a></li>
+                            <li><a onclick="changecity('360600')" href="javascript:void(0)">鹰潭</a></li>
+                            <li><a onclick="changecity('360700')" href="javascript:void(0)">赣州</a></li>
+                            <li><a onclick="changecity('360800')" href="javascript:void(0)">吉安</a></li>
+                            <li><a onclick="changecity('360900')" href="javascript:void(0)">宜春</a></li>
+                            <li><a onclick="changecity('361000')" href="javascript:void(0)">抚州</a></li>
+                            <li><a onclick="changecity('361100')" href="javascript:void(0)">上饶</a></li>
+                        </ul>
+                    </div>
+                    <ul class="nav-list fn-clear">
+                        <li data-index="index"><a href="index.html">首页</a></li>
+                        <li data-index="film"><a href="filmshowlist.html">电影</a></li>
+                        <li data-index="cinema"><a href="cinemalist.html">影院</a></li>
+                        
+                        <li data-index="news"><a href="newslist.html">资讯</a></li>
+                        
+                    </ul>
+                    <div class="box-code-tg">
+                        
+                        <p class="code">
+                            <a href="javascript:void(0);">手机购影票</a>
+                            <span class="tag"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="body" class="main">
+                <div class="wrapper-film-chooseseat">
+    <div class="tip-nav-choosseeat">
+        <ul>
+            <li class="wd1">1.选择影片场次</li>
+            <li class="wd2 act">2.在线选座</li>
+            <li class="wd3">3.确认订单支付</li>
+            <li class="wd4">4.影院取票观影</li>
+        </ul>
+    </div>
+    <div class="fiml-chooseseat fn-clear">
+        <div class="film-choose-seat">
+            <div class="bg_screen clearfix"><span>荧幕</span></div>
+            <div class="seat-description fn-acenter">
+                <p class="fn-clear">
+                    <img src="resource/images/seat_able.png" /><span>可选</span>
+                    <img class="pl10" src="resource/images/seat_seled.png" /><span>已选</span>
+                    <img class="pl10" src="resource/images/seat_unable.png" /><span>已售</span>
+                    <img class="pl10" src="resource/images/seat_love.png" />
+                    <img src="resource/images/seat_love.png" /><span>情侣座</span>
+                    </p>
+            </div>
+            <div class="box-seat-des">
+                <div id="seatcontainer"></div>
+            </div>
+        </div>
+        <div class="box-film-info">
+            <div class="film-info">
+                <h2>绝地战警：疾速追击 </h2>
+                <p>片长：124分钟</p>
+                <p>语言：英语</p>
+                <span class="pic"><img src="resource/images/20200727124744776336354.jpg" width="72" height="100" /></span>
+            </div>
+            <div class="film-detail">
+                <p><span class="cor999">影院：</span><span>江西省南昌市聚丰主题影院</span></p>
+                <p><span class="cor999">影厅：</span><span>9号厅</span></p>
+                <p><span class="cor999">票价：</span><span>36.0 元/张</span></p>
+                <div class="screen-info fn-clear">
+                    <span class="cor999">场次：</span>
+                    <span class="red">08月28日 22:25</span>
+                    <span class="change-showtime">更换场次</span>
+                    <div class="box-screen-today">
+                        <div class="th fn-clear">
+                            <p class="p1">放映时间</p>
+                            <p class="p2">语言版本</p>
+                            <p class="p3">影厅</p>
+                            <p class="p4">现价/影院价（元）</p>
+                        </div>
+                        <ul>
+                            
+                            
+                                <li class="fn-clear" data-showNo="1000000109357044">
+                                    <div class="p1">
+                                        <p class="showtime">22:25</p>
+                                    </div>
+                                    <div class="p2"><p>英语</p></div>
+                                    <div class="p3"><p>9号厅</p></div>
+                                    <div class="p4"><p><strong>36.0</strong>/<em>50</em></p></div>
+                                </li>   
+                                
+                        </ul>
+                    </div>
+                </div>
+                <div class="box-seatchoose">
+                    <div id="seatchoose" class="fn-clear">
+                        <div id="lblmsg" class="cor999">请选择座位</div>
+                    </div>
+                    <p class="tip">已选择<em>0</em>个座位，再次点击座位可以取消</p>
+                    <span class="tg cor999">座位：</span>
+                </div>
+                
+            </div>
+            <div class="choose-result">
+                <p class="total"><span class="cor999">总计：</span><strong>0</strong><em class="fn-bold">元</em></p>
+                <p><a class="btn" id="btnconfirm" href="javascript:void(0)">立即购票</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="tip-description-choosseeat">
+        <h3><span class="titb">使用说明</span></h3>
+        <p>
+            1.选择你要预定的座位，重复点击取消所选座位。<br />
+            2.每笔订单最多可选购4张电影票，情侣座不单卖。<br />
+            3.选座时，请尽量选择相邻座位，请不要留下单个座位。<br />
+            4.下单后请于15分钟内完成支付，超时系统将不保留座位。<br />
+            5.电影票售出后暂不支持退换。<br />
+            6.购票过程产生的各项咨询，请拨打客户电话0791-87871177。
+        </p>
+    </div>
+</div>
+        </div>
+        <div class="footer">
+            <div class="info-help fn-clear">
+                <div class="container">
+                    <div class="logo"><img src="resource/images/logo_1.png" alt="江西电影票" /></div>
+                    <div class="help-nav">
+                        <ul>
+                            <li><a href="/help/usehelp.html#chooseat" target="_blank">如何选座</a></li>
+                            <li><a href="/help/usehelp.html#dopay" target="_blank">如何支付</a></li>
+                            <li><a href="/help/usehelp.html#geticket" target="_blank">如何取票</a></li>
+                            <li><a href="/help/usehelp.html#buyfailed" target="_blank">购票失败</a></li>
+                            <li><a href="/help/usehelp.html#reglogin" target="_blank">注册登录</a></li>
+                            <li><a href="/help/usehelp.html">使用帮助</a></li>
+                        </ul>
+                    </div>
+                    <div class="contact-info">
+                        <span>0791-87871177</span>
+                    </div>
+                    <span class="code"></span>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="container fn-clear">
+                    <ul>
+                        <li><a href="/help/helpindex.html" target="_blank">关于我们</a></li>
+                        <li><a href="/help/contactus.html" target="_blank">联系我们</a></li>
+                        <li><a href="/help/joinus.html" target="_blank">诚聘英才</a></li>
+                        <li><a href="/help/legalstatement.html" target="_blank">法律声明</a></li>
+                        <li><a href="/help/serviceterms.html" target="_blank">服务条款</a></li>
+                        <li><a href="/help/cooperativepartner.html" target="_blank">合作伙伴</a></li>
+                    </ul>
+                    <span>经营性ICP：赣B2-20140012&nbsp;&nbsp;<a href="http://www.beian.miit.gov.cn" rel="nofollow" target="_blank">赣ICP备14000663号</a>&nbsp; &copy;江西省影票文化传媒有限公司版权所有</span>
+                </div>
+            </div>
+        </div>
+        <div class="verlayLogin" id="verlayLogin">
+            <div class="container">
+                <h2>&nbsp;</h2>
+                <div class="tag">
+                    <ul>
+                        <li><a href="#"data-tag="2">手机验证码登录</a>/</li>
+                        <li><a href="#" data-tag="1">账户登录</a></li>
+                    </ul>
+                </div>
+                <div class="box-form" style="display:block;">
+                    <p><input name="telc" class="telc" type="text" maxlength="15" placeholder="手机号" /></p>
+                    <div class="img-code-wrap">
+                        <div class="img-code"><input name="imgCode" type="text" maxlength="8" placeholder="输入右侧验证码" /></div>
+                        <span class="img-code-show"><img src="" width="100%" /></span>
+                    </div>
+                    <p class="box-checkcode">
+                        <input name="checkCode" class="check-code" type="text" maxlength="8" placeholder="输入验证码" />
+                        <span class="btn send-checkcode">获取验证码</span>
+                    </p>
+                </div>
+
+                <div class="box-form">
+                    <p><input name="tel" class="tel" type="text" value="手机号" /></p>
+                    <p><input name="password" class="pwd bgpwd2" type="password" /></p>
+                    <div class="remember-status fn-clear">
+                        <label><input type="checkbox" name="rememberStatus" class="rememberst"/>记住密码一周</label>
+                    </div>
+                </div>
+                <div class="login"><p class="btn" id="doLogin">登录</p></div>
+                <div class="intro fn-clear">
+                    <span class="fn-left"><a href="/forgetpwd.html">忘记密码</a></span>
+                    <span class="fn-right"><a href="/register.html">立即注册</a></span>
+                </div>
+                
+            </div>
+        </div>
+        <div class="nav-scroll">
+            <p class="scroll-top"><a href="javascript:void(0);"></a></p>
+            <p class="feedback"><a href="/help/feedback.html" target="_blank"></a></p>
+            <p class="code">
+                <span></span>
+            </p>
+        </div>
+        <script type="text/javascript">
+            var linkLogin = "";
+            var scrollFunc = function (e) {
+                e = e || window.event;
+                if (e && e.preventDefault) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                } else {
+                    e.returnvalue = false;
+
+                    return false;
+                }
+            }
+            $(".top-nav li a").click(function () {
+                if ($(this).attr("data-flag") == 1) {
+                    linkLogin = $(this).attr("href");
+                    if ("False".toLowerCase() != "true") {
+                        $(".boxLogin").overlay({ api: true }).load();
+                        return false;
+                    }
+                }
+            });
+            $(".img-code-show img").on('click', function () {
+                $(this).attr("src", "/account/CheckCode.html?v=" + Math.random());
+            });
+            $(".main-nav .code a").hover(function () {
+                $(this).siblings(".tag").show();
+            }, function () {
+                $(this).siblings(".tag").hide();
+            });
+            $(".verlayLogin").keydown(function (e) {
+                var curKey = e.which; 
+                if (curKey == 13) {
+                    $("#doLogin").trigger("click");
+                }
+            });
+            $(".boxLogin").overlay({
+                closeOnClick: false,
+                top: 'center',
+                mask: {
+                    color: '#000',
+                    closeSpeed: 700,
+                    opacity: 0.7
+                },
+                onBeforeLoad: function (k) {
+                    $('body').on('mousewheel', function (e) {
+                        scrollFunc(e);
+                    });
+                },
+                onClose: function () {
+                    $('body').off('mousewheel');
+                }
+            });
+            var cursec = 60;
+            var submiting = false;
+            $(".verlayLogin .send-checkcode").click(function () {
+                var $this = $(this);
+                if (submiting) return false;
+                var telc = $.trim($(".verlayLogin .telc").val());
+                var imgCode = $.trim($("input[name=imgCode]").val());
+                if (!telc) {
+                    alert("请输入手机号码！");
+                    return;
+                }
+                if (!imgCode) {
+                    alert("请输入图形验证码！");
+                    return;
+                }
+                $.ajax({
+                    url: '/account/SendSmsRandom.html',
+                    data: { Mobile: telc, ValilCode: imgCode },
+                    type: 'post',
+                    dataType: 'json',
+                    beforeSend: function () {
+                        submiting = true;
+                        $this.text("正在发送");
+                        $this.addClass("disable");
+                    },
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            submiting = true;
+                            if (cursec < 60) {
+                                return;
+                            }
+                            var timer = setInterval(function () {
+                                if (cursec == 60) {
+                                    $this.addClass("disable");
+                                }
+                                $this.text(cursec + "秒后重发");
+                                if (cursec == 0) {
+                                    window.clearInterval(timer);
+                                    submiting = false;
+                                    cursec = 60;
+                                    $this.text("获取验证码");
+                                    $this.removeClass("disable");
+                                } else {
+                                    cursec--;
+                                }
+                            }, 1000);
+                        } else {
+                            $(".img-code-show img").attr("src", "/account/CheckCode.html?v=" + Math.random());
+                            submiting = false;
+                            alert(data.ErrMsg);
+                            $this.removeClass("disable");
+                            $this.text("获取验证码");
+                        }
+                    },
+                    error: function () {
+                        submiting = false;
+                        $this.removeClass("disable");
+                        alert("获取验证码失败");
+                    }
+                });
+            });
+            $("#verlayLogin input.tel").focus(function () {
+                if ($(this).val() == "手机号") {
+                    $(this).val("");
+                }
+            });
+            $("#verlayLogin input.tel").blur(function () {
+                if ($(this).val() == "") {
+                    $(this).val("手机号");
+                }
+            });
+            $("#verlayLogin input.pwd").focus(function () {
+                $(this).removeClass("bgpwd2");
+            });
+            $("#verlayLogin input.pwd").blur(function () {
+                if ($(this).val() == "") {
+                    $(this).addClass("bgpwd2");
+                }
+            });
+            $("#doLogin").click(function () {
+                var tag=$(this).attr("data-tag");
+                var tel = $.trim($(".verlayLogin .tel").val());
+                var pwd = $.trim($(".verlayLogin .pwd").val());
+                var telc = $.trim($(".verlayLogin .telc").val());
+                var checkCode = $.trim($(".verlayLogin .check-code").val());
+                var isCheckRemember = false;
+                if ($(".rememberst").is(':checked')) {
+                    isCheckRemember = true;
+                }
+                if (tag == 1) {
+                    if (!tel || tel == "手机号") {
+                        alert("请输入手机号码！");
+                        return;
+                    }
+                    if (!pwd) {
+                        alert("请输入密码！");
+                        return;
+                    }
+                    postdata = { Mobile: tel, Pass: pwd, Type: tag };
+                }
+                if (tag == 2) {
+                    if (!telc) {
+                        alert("请输入手机号码！");
+                        return;
+                    }
+                    if (!checkCode) {
+                        alert("请输入验证码！");
+                        return;
+                    }
+                    postdata = { Mobile: telc, Pass: checkCode, Type: tag };
+                }
+                $.ajax({
+                    url: '/account/VerifyMember.html',
+                    data: postdata,
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            if (isCheckRemember) {
+                                SetCookie("LocalToken", data.ErrMsg, 7);
+                                SetCookie("LocalMobile", data.Mobile, 7);
+                            }
+                            setsessionstorage(data);
+                            if (linkLogin) {
+                                window.location.href = linkLogin;
+                            } else {
+                                window.location.reload();
+                            }
+                        } else {
+                            alert(data.ErrMsg);
+                        } 
+                    },
+                    error: function () {
+                        alert("网络错误,稍后再试！");
+                    }
+                });
+            });
+            $(".loginout").click(function () {
+                loginout();
+            });
+            $(".verlayLogin .tag ul").tabs(".verlayLogin .box-form", {
+                onClick: function () {
+                    $("#doLogin").attr("data-tag", this.getCurrentTab().attr("data-tag"));
+                }
+            });
+            
+            function loginout(){
+                $.ajax({
+                    url: '/account/loginout.html',
+                    data: {},
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            clearsessionstorage();
+                            window.location = "/";
+                        } else {
+                            alert(data.ErrMsg);
+                        }
+                    },
+                    error: function () {
+                        alert("网络错误,稍后再试！");
+                    }
+                });
+            }
+            
+        </script>
+        <form id="citycodeform" method="post" enctype="application/x-www-form-urlencoded"  action="/">
+           <input type="hidden"  name="CityCode" id="ccitycode"/>
+        </form>
+        
+       
+    </body>
+</html>

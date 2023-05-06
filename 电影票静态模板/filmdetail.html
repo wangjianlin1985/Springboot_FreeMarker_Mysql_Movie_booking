@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=990, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta charset="utf-8" />
+        <meta name="renderer" content="webkit">
+        <title>绝地战警：疾速追击电影影讯、影评、绝地战警：疾速追击在线购票_江西电影票网</title>
+        <meta name="keywords"/>
+        <meta name="description" content="江西电影票网提供绝地战警：疾速追击电影影讯、影评、绝地战警：疾速追击在线购票功能，更多绝地战警：疾速追击电影信息请关注江西电影票网"/>
+        <link href="resource/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link href="resource/css/main.css" rel="stylesheet" />
+        <link href="resource/css/style.min.css?v=20180606" rel="stylesheet" />
+        
+        <script src="resource/js/jquery.1.7.2.min.js" type="text/javascript"></script>
+        <script src="resource/js/json2.min.js" type="text/javascript"></script>
+        <script src="resource/js/helper.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.expose.min.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.overlay.min.js" type="text/javascript"></script>
+        <script src="resource/js/jquery.tool.tabs.min.js" type="text/javascript"></script>
+         
+    <link href="resource/css/jquery.jPages.css" rel="stylesheet" />
+    <script src="resource/js/jquery.jPages.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            
+            var dataCon;
+            if ($(".intro .con").height() > 52) {
+                dataCon = $(".intro .con").text();
+                $(".intro .con").text($(".intro .con").attr("data-t"));
+                $(".film-info-detail .flag").show();
+            }
+            $(".film-info-detail .flag").toggle(function () {
+                $(".intro .con").text(dataCon)
+                $(this).css("bottom", "30px").text("收起");
+                $(".intro").removeClass("ovhide").addClass("tag");
+            }, function () {
+                $(".intro .con").text($(".intro .con").attr("data-t"));
+                $(this).css("bottom", "40px").text("展开")
+                $(".intro").removeClass("tag").addClass("ovhide");
+            });
+            $(".message-list .jpage").jPages({
+                containerID: "message-container",
+                perPage: 10,
+                delay: 30,
+                fallback: 200,
+                minHeight: false,
+                previous: "上一页",
+                next: "下一页"
+            });
+        });
+    </script>
+
+        <script type="text/javascript">
+            $(function () {
+                $(".bottom-nav li:first").css("margin-left","0");
+                $(".bottom-nav li:last").addClass("fn-nobg");
+                $(".top-nav .user-name").text(getCookie("NickName") + "(" + getCookie("Mobile") + ")");
+                $(".main-nav .location").toggle(function () {
+                    $(this).addClass("lsec").find(".other-city").show();
+                }, function () {
+                    $(this).removeClass("lsec").find(".other-city").hide();
+                });
+                $(window).scroll(function () {
+                    if ($(window).scrollTop() > 100) {
+                        $(".nav-scroll").fadeIn(1500);
+                    } else {
+                        $(".nav-scroll").fadeOut(1500);
+                    }
+                });
+                $(".scroll-top").click(function () {
+                    $("html, body").animate({
+                        scrollTop: "0px"
+                    }, {
+                        duration: 500,
+                        easing: "swing"
+                    });
+                    return false;
+                });
+                $(".nav-scroll .code").hover(function () {
+                    $(this).find("span").show();
+                }, function () {
+                    $(this).find("span").hide();
+                });
+            });
+
+            function changecity(citycode) {
+                if (window.location.toString().indexOf("cinemalist") > -1) {
+                    window.location = "/cinemalist/" + citycode + ".html";
+                }
+                else {
+                    document.getElementById("ccitycode").value = citycode;
+                    document.getElementById("citycodeform").submit();
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="top-nav">
+                <div class="container fn-clear">
+                      <span class="tip">欢迎来到江西电影票<a rel="#verlayLogin" href="javascript:void(0)" class="boxLogin blue">登录</a><a href="/register.html">注册</a></span>
+                    <ul>
+                        <li><a href="/account/usercenter.html" title="个人中心" data-flag="1">个人中心</a></li>
+                        <li><a href="/account/userorderlist.html" title="我的订单" data-flag="1">我的订单</a></li>
+                        <li><a href="/help/helpindex.html" title="帮助中心" target="_blank">帮助中心</a></li>
+                        <li>&nbsp;联系客服：0791-87871177</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main-nav">
+                <div class="container fn-clear">
+                    <div class="logo"><a href="/"><img src="resource/images/logo.png" alt="江西电影票" title="江西电影票" width="165"/></a></div>
+                    <div class="location" data-citycode="360100">
+                        <span class="lc">南昌</span>
+                        <ul class="other-city">
+                            <li><a onclick="changecity('360100')" href="javascript:void(0)">南昌</a></li>
+                            <li><a onclick="changecity('360200')" href="javascript:void(0)">景德镇</a></li>
+                            <li><a onclick="changecity('360300')" href="javascript:void(0)">萍乡</a></li>
+                            <li><a onclick="changecity('360400')" href="javascript:void(0)">九江</a></li>
+                            <li><a onclick="changecity('360500')" href="javascript:void(0)">新余</a></li>
+                            <li><a onclick="changecity('360600')" href="javascript:void(0)">鹰潭</a></li>
+                            <li><a onclick="changecity('360700')" href="javascript:void(0)">赣州</a></li>
+                            <li><a onclick="changecity('360800')" href="javascript:void(0)">吉安</a></li>
+                            <li><a onclick="changecity('360900')" href="javascript:void(0)">宜春</a></li>
+                            <li><a onclick="changecity('361000')" href="javascript:void(0)">抚州</a></li>
+                            <li><a onclick="changecity('361100')" href="javascript:void(0)">上饶</a></li>
+                        </ul>
+                    </div>
+                    <ul class="nav-list fn-clear">
+                        <li data-index="index"><a href="index.html">首页</a></li>
+                        <li data-index="film"><a href="filmshowlist.html">电影</a></li>
+                        <li data-index="cinema"><a href="cinemalist.html">影院</a></li>
+                      
+                        <li data-index="news"><a href="newslist.html">资讯</a></li>
+                        
+                    </ul>
+                    <div class="box-code-tg">
+                        
+                        <p class="code">
+                            <a href="javascript:void(0);">手机购影票</a>
+                            <span class="tag"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="body" class="main">
+                
+<div class="wrap-detail">
+    <div class="wrapper-film-infodetail" style="background:url(resource/images/ico_bg_3.jpg) repeat-y center top;">
+        <div class="box-film-infodetail">
+            <div class="film-info-detail">
+                <h1>
+                    <span>绝地战警：疾速追击</span>
+                    <em>8.2</em>
+
+                </h1>
+                <p class="excellent">暂无信息</p>
+                <p>
+                    <span>导演：</span>
+                    <span>阿迪尔&#183;埃尔&#183;阿比, 比拉勒&#183;法拉赫</span>
+                </p>
+                <p class="actor">
+                    <span>主演：</span>
+                    <span class="con">威尔&#183;史密斯,马丁&#183;劳伦斯</span>
+                </p>
+                <p>
+                    <span>语言：</span>
+                    <span>英语</span>
+                </p>
+                <p>
+                    <span>片长：</span>
+                    <span>124 分钟</span>
+                </p>
+                <p>
+                    <span>上映：</span>
+                    <span>2020-08-14</span>
+                </p>
+                <p class="intro ovhide">
+                    <span>剧情：</span>
+                    <span class="con" data-t="曾制作《珍珠港》、《壮志凌云》、《加勒比海盗》系列等爆款电影的好莱坞金牌制片人全新倾力打造的《绝地战警：疾速追击》，讲述了迈阿密警员麦克（威尔&#183;史密斯饰）遭遇神秘黑帮势力的暗杀伏击，为了迎战势力庞大火......">曾制作《珍珠港》、《壮志凌云》、《加勒比海盗》系列等爆款电影的好莱坞金牌制片人全新倾力打造的《绝地战警：疾速追击》，讲述了迈阿密警员麦克（威尔&#183;史密斯饰）遭遇神秘黑帮势力的暗杀伏击，为了迎战势力庞大火力惊人的黑帮分子，解决隐藏在暗处的危机，麦克找回曾经的搭档马库斯（马丁&#183;劳伦斯饰），“嘴炮二人组”再度集结开启沙雕模式，不仅时刻上演逗比互怼，更在迈阿密街头与黑帮展开空前绝后的飙车枪战大戏。这对最佳搭档究竟能否在枪林弹雨下突出重围，找出幕后黑手完成绝地反杀？</span>
+                </p>
+                <span class="img-main"><img src="resource/images/2020072712474473238814.jpg" width="210" height="285" alt="绝地战警：疾速追击" /></span>
+                <div class="bdsharebuttonbox" data-tag="share_2">
+                    <a class="bds_more" data-cmd="more">分享</a>
+                </div>
+                <a href="javascript:void(0);" class="flag">展开</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container fn-clear">
+            <div class="film-pics-detail">
+                <ul class="fn-clear">
+                            <li>
+                                <a class="filmVideo"><img src="resource/images/20200727124830969708933.jpg" width="150" height="100" /></a>
+                                <a href="javascript:void(0)" rel="#verlayVideo" class="video-play"></a>
+                            </li>
+                                <li>
+                                    <a rel="#verlayPics" href="javascript:void(0)" class="filmPics"><img data-index="0" src="resource/images/20200727124806607441351.jpg" width="150" height="100" /></a>
+                                </li>
+                                <li>
+                                    <a rel="#verlayPics" href="javascript:void(0)" class="filmPics"><img data-index="1" src="resource/images/20200727124808846642333.jpg" width="150" height="100" /></a>
+                                </li>
+                                <li>
+                                    <a rel="#verlayPics" href="javascript:void(0)" class="filmPics"><img data-index="2" src="resource/images/20200727124811095686902.jpg" width="150" height="100" /></a>
+                                </li>
+                                <li>
+                                    <a rel="#verlayPics" href="javascript:void(0)" class="filmPics"><img data-index="3" src="resource/images/20200727124813296815932.jpg" width="150" height="100" /></a>
+                                </li>
+
+                </ul>
+                <div class="total">
+                    <p class="bd">
+                        <span>剧照：</span>
+                        <strong>10</strong>
+                    </p>
+                    <p>
+                        <span>视频：</span>
+                        <strong>1</strong>
+                    </p>
+                </div>
+            </div>
+                    <div class="film-schedule-detail pt30">
+                <div class="schedule-filte">
+                    <div class="title">
+                        <span class="pq">排期购票</span>
+                        <span data-rel="#scrollComment" name="scrollComment" class="do-flim-comment">影评</span>
+                    </div>
+                    <div class="cinema">
+                        <ul class="fn-clear">
+                                    <li data-cid="7cf4a4e4-605e-41ba-97d6-10b90650a643" data-fid="86b854c9-050f-4eec-bda4-13c8b377a30d">
+                                        <a href="javascript:void(0);">苏宁影城(北京东路店)</a>
+                                    </li>
+									<li data-cid="7cf4a4e4-605e-41ba-97d6-10b90650a643" data-fid="86b854c9-050f-4eec-bda4-13c8b377a30d">
+                                        <a href="javascript:void(0);">苏宁影城(北京东路店)</a>
+                                    </li>
+                        </ul>
+                        <span class="tg cor999">影院：</span>
+                    </div>
+                    <div class="date">
+                        <ul class="fn-clear film-date-list">
+                                    <li data-index="0">
+                                        <a href="javascript:void(0);">2020-08-27</a>
+                                    </li>
+									<li data-index="0">
+                                        <a href="javascript:void(0);">2020-08-27</a>
+                                    </li>
+                        </ul>
+                        <span class="tg cor999">日期：</span>
+                    </div>
+                </div>
+                <div class="title pb10 pt30 cinematb">
+                    <span class="titb"><a href="/cinemacreenings/7cf4a4e4-605e-41ba-97d6-10b90650a643.html" target="_blank">苏宁影城(北京东路店)</a></span>
+                    <span class="cor999 pl10">青山湖区北京东路458号锦海东方银座三楼</span>
+                </div>
+                <div class="schedule-list">
+                            <ul data-time="2020-08-27" class="con ">
+                                <li class="th fn-clear">
+                                    <p class="p1">放映时间</p>
+                                    <p class="p2">语言版本</p>
+                                    <p class="p3">影厅</p>
+                                    <p class="p4">现价/影院价（元）</p>
+                                    <p class="p5">选座购票</p>
+                                </li>
+                                    <li class="fn-clear">
+                                        <div class="p1">
+                                            <p class="showtime">17:00</p>
+                                            <p>19:04散场</p>
+                                        </div>
+                                        <div class="p2">
+                                            <p>2D/英语</p>
+                                        </div>
+                                        <div class="p3">
+                                            <p>2号儿童激光厅</p>
+                                        </div>
+                                        <div class="p4">
+                                            <p>
+                                                <strong>24.9</strong>
+                                                    <span>/</span><em>62</em>
+                                            </p>
+                                        </div>
+                                        <div class="p5">
+                                            <a href="javascript:void(0)" data-url="filmchooseseat.html" onclick="chooseseat(this,'0','0')" class="btn">选座购票</a>
+                                        </div>
+                                    </li>
+                            </ul>
+
+                </div>
+            </div>
+        <div class="comment-hot-detail pt30 fn-clear">
+            <div class="comment">
+                <div class="title pb10" id="scrollComment">
+                    <span class="titb">用户评论</span>
+                    <span>共0条评论</span>
+                </div>
+                <div class="message-send">
+                    <div class="box-send">
+                        <div class="do-box-score">
+                            <div class="do-score" data-average="0" data-id="doscore"></div>
+                            <span class="result">请评分</span>
+                        </div>
+                        <div id="recomment" class="do-message" contenteditable="true"></div>
+                    </div>
+                    <p class="fn-clear pt30">
+                        <a href="javascript:void(0)" class="btn fn-right">发表评论</a>
+                    </p>
+                    <span class="photo"><img id="userheader" src="resource/images/ico_tb_lg.png" width="64" height="64" /></span>
+                </div>
+                <div class="message-list pt30">
+                    <ul id="message-container">
+						<li>
+                                <div class="username-score fn-clear">
+                                        <span class="fn-left"> 手机用户1282</span>
+                                    <p class="fn-left ypscore" data-average="7" data-id="9" >
+										
+									</p>
+                                </div>
+                                <p class="message-con">还不错</p>
+                                <p class="time">
+                                        <span class="fn-right">2分钟前</span>
+
+                                </p>
+
+                                <span class="photo">
+                                        <img src="resource/images/ico_tb_lg.png" width="64" height="64">
+                                </span>
+                                
+                            </li>
+                    </ul>
+                        <p class="error">还没有评论，抢个沙发~</p>
+
+                </div>
+            </div>
+            <div class="film-hot">
+                <div class="title pb10">
+                    <span class="titb">正在热映</span>
+                </div>
+                <ul>
+                        <li>
+                            <h3 class="overhide">
+                                <a href="/filmDetail/8f451de8-0148-495f-87b5-00634b7634fb.html" target="_blank">寻梦环游记</a>
+                            </h3>
+                            <div class="score" data-average="9.4" data-id="4"></div>
+                            <p class="info">
+                                墨西哥亡灵节
+                            </p>
+                            <span class="img"><a href="/filmdetail/8f451de8-0148-495f-87b5-00634b7634fb.html" target="_blank"><img src="resource/images/20171120090729666696221.jpg" width="72" height="100" /></a></span>
+                        </li>
+                        <li>
+                            <h3 class="overhide">
+                                <a href="/filmDetail/b6b91f25-dd5d-4f43-9e05-053614e6fb8b.html" target="_blank">魔发精灵2</a>
+                            </h3>
+                            <div class="score" data-average="8.6" data-id="4"></div>
+                            <p class="info">
+                                暂无介绍
+                            </p>
+                            <span class="img"><a href="/filmdetail/b6b91f25-dd5d-4f43-9e05-053614e6fb8b.html" target="_blank"><img src="resource/images/20200810095509516857465.jpg" width="72" height="100" /></a></span>
+                        </li>
+                        <li>
+                            <h3 class="overhide">
+                                <a href="/filmDetail/86b854c9-050f-4eec-bda4-13c8b377a30d.html" target="_blank">绝地战警：疾速追击</a>
+                            </h3>
+                            <div class="score" data-average="8.2" data-id="4"></div>
+                            <p class="info">
+                                暂无介绍
+                            </p>
+                            <span class="img"><a href="/filmdetail/86b854c9-050f-4eec-bda4-13c8b377a30d.html" target="_blank"><img src="resource/images/2020072712474473238814.jpg" width="72" height="100" /></a></span>
+                        </li>
+                        <li>
+                            <h3 class="overhide">
+                                <a href="/filmDetail/bcd9569b-1026-4047-864a-15dbc7249a54.html" target="_blank">大话西游之大圣娶亲</a>
+                            </h3>
+                            <div class="score" data-average="8.8" data-id="4"></div>
+                            <p class="info">
+                                一生所爱
+                            </p>
+                            <span class="img"><a href="/filmdetail/bcd9569b-1026-4047-864a-15dbc7249a54.html" target="_blank"><img src="resource/images/20170328102804077577419.jpg" width="72" height="100" /></a></span>
+                        </li>
+                        <li>
+                            <h3 class="overhide">
+                                <a href="/filmDetail/654a3e31-a45a-4915-ba7d-213edd85e483.html" target="_blank">误杀</a>
+                            </h3>
+                            <div class="score" data-average="9.2" data-id="4"></div>
+                            <p class="info">
+                                殊死一搏的较量。
+                            </p>
+                            <span class="img"><a href="/filmdetail/654a3e31-a45a-4915-ba7d-213edd85e483.html" target="_blank"><img src="resource/images/20191203112536837491049.jpg" width="72" height="100" /></a></span>
+                        </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="verlayPics" id="verlayPics">
+    <div id="slider" class="verlay-film-pics">
+        <ul class="slides">
+                <li>
+                    <img src="resource/images/20200727124806565405811.jpg" width="600" height="400" />
+                </li>
+                <li>
+                    <img src="resource/images/20200727124808776308429.jpg" width="600" height="400" />
+                </li>
+                <li>
+                    <img src="resource/images/20200727124811016609410.jpg" width="600" height="400" />
+                </li>
+                <li>
+                    <img src="resource/images/20200727124813263623980.jpg" width="600" height="400" />
+                </li>
+                <li>
+                    <img src="resource/images/20200727124815870099281.jpg" width="600" height="400" />
+                </li>
+                <li>
+                    <img src="resource/images/20200727124818355436326.jpg" width="600" height="400" />
+                </li>
+                <li>
+                    <img src="resource/images/20200727124821423792989.jpg" width="600" height="400" />
+                </li>
+                <li>
+                    <img src="resource/images/2020072712482394726798.jpg" width="600" height="400" />
+                </li>
+                <li>
+                    <img src="resource/images/20200727124826408165891.jpg" width="600" height="400" />
+                </li>
+                <li>
+                    <img src="resource/images/20200727124828810515444.jpg" width="600" height="400" />
+                </li>
+        </ul>
+    </div>
+    <div id="carousel" class="verlay-film-thumb">
+        <ul class="slides">
+                <li data-i="0">
+                    <img src="resource/images/20200727124806636743303.jpg" width="120" height="80" />
+                </li>
+                <li data-i="1">
+                    <img src="resource/images/20200727124808871049509.jpg" width="120" height="80" />
+                </li>
+                <li data-i="2">
+                    <img src="resource/images/20200727124811123034078.jpg" width="120" height="80" />
+                </li>
+                <li data-i="3">
+                    <img src="resource/images/20200727124813327103108.jpg" width="120" height="80" />
+                </li>
+                <li data-i="4">
+                    <img src="resource/images/20200727124815998992312.jpg" width="120" height="80" />
+                </li>
+                <li data-i="5">
+                    <img src="resource/images/20200727124818501892945.jpg" width="120" height="80" />
+                </li>
+                <li data-i="6">
+                    <img src="resource/images/20200727124821675739052.jpg" width="120" height="80" />
+                </li>
+                <li data-i="7">
+                    <img src="resource/images/2020072712482406148241.jpg" width="120" height="80" />
+                </li>
+                <li data-i="8">
+                    <img src="resource/images/20200727124826517515334.jpg" width="120" height="80" />
+                </li>
+                <li data-i="9">
+                    <img src="resource/images/20200727124828924174887.jpg" width="120" height="80" />
+                </li>
+        </ul>
+    </div>
+</div>
+<div class="verlayVideo" id="verlayVideo">
+    <div class="box-video">
+        <ul class="slides">
+                        <li data-thumb="resource/images/20200727124830969708933.jpg" data-video="resource/images/111.mp4">
+                            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="600" height="400">
+                                <param name="movie" value="resource/images/flvplayer.swf" />
+                                <param name="quality" value="high" />
+                                <param name="allowFullScreen" value="true" />
+                                <param name="IsAutoPlay" value="1" />
+                                <param name="wmode" value="transparent" />
+                                <param name="FlashVars" value="vcastr_file=resource/images/111.mp4" />
+                                <embed src="resource/images/flvplayer.swf" allowfullscreen="true" flashvars="vcastr_file=https://bizcommon.alicdn.com/KM596pxVraOsnEmgAP7/5nv3FQYSaEMZRReqDNd__sd.mp4" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="600" height="400"></embed>
+                            </object>
+                        </li>
+        </ul>
+    </div>
+</div>
+
+        </div>
+        <div class="footer">
+            <div class="info-help fn-clear">
+                <div class="container">
+                    <div class="logo"><img src="resource/images/logo_1.png" alt="江西电影票" /></div>
+                    <div class="help-nav">
+                        <ul>
+                            <li><a href="/help/usehelp.html#chooseat" target="_blank">如何选座</a></li>
+                            <li><a href="/help/usehelp.html#dopay" target="_blank">如何支付</a></li>
+                            <li><a href="/help/usehelp.html#geticket" target="_blank">如何取票</a></li>
+                            <li><a href="/help/usehelp.html#buyfailed" target="_blank">购票失败</a></li>
+                            <li><a href="/help/usehelp.html#reglogin" target="_blank">注册登录</a></li>
+                            <li><a href="/help/usehelp.html">使用帮助</a></li>
+                        </ul>
+                    </div>
+                    <div class="contact-info">
+                        <span>0791-87871177</span>
+                    </div>
+                    <span class="code"></span>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="container fn-clear">
+                    <ul>
+                        <li><a href="/help/helpindex.html" target="_blank">关于我们</a></li>
+                        <li><a href="/help/contactus.html" target="_blank">联系我们</a></li>
+                        <li><a href="/help/joinus.html" target="_blank">诚聘英才</a></li>
+                        <li><a href="/help/legalstatement.html" target="_blank">法律声明</a></li>
+                        <li><a href="/help/serviceterms.html" target="_blank">服务条款</a></li>
+                        <li><a href="/help/cooperativepartner.html" target="_blank">合作伙伴</a></li>
+                    </ul>
+                    <span>经营性ICP：赣B2-20140012&nbsp;&nbsp;<a href="http://www.beian.miit.gov.cn" rel="nofollow" target="_blank">赣ICP备14000663号</a>&nbsp; &copy;江西省影票文化传媒有限公司版权所有</span>
+                </div>
+            </div>
+        </div>
+        <div class="verlayLogin" id="verlayLogin">
+            <div class="container">
+                <h2>&nbsp;</h2>
+                <div class="tag">
+                    <ul>
+                        <li><a href="#"data-tag="2">手机验证码登录</a>/</li>
+                        <li><a href="#" data-tag="1">账户登录</a></li>
+                    </ul>
+                </div>
+                <div class="box-form" style="display:block;">
+                    <p><input name="telc" class="telc" type="text" maxlength="15" placeholder="手机号" /></p>
+                    <div class="img-code-wrap">
+                        <div class="img-code"><input name="imgCode" type="text" maxlength="8" placeholder="输入右侧验证码" /></div>
+                        <span class="img-code-show"><img src="" width="100%" /></span>
+                    </div>
+                    <p class="box-checkcode">
+                        <input name="checkCode" class="check-code" type="text" maxlength="8" placeholder="输入验证码" />
+                        <span class="btn send-checkcode">获取验证码</span>
+                    </p>
+                </div>
+
+                <div class="box-form">
+                    <p><input name="tel" class="tel" type="text" value="手机号" /></p>
+                    <p><input name="password" class="pwd bgpwd2" type="password" /></p>
+                    <div class="remember-status fn-clear">
+                        <label><input type="checkbox" name="rememberStatus" class="rememberst"/>记住密码一周</label>
+                    </div>
+                </div>
+                <div class="login"><p class="btn" id="doLogin">登录</p></div>
+                <div class="intro fn-clear">
+                    <span class="fn-left"><a href="/forgetpwd.html">忘记密码</a></span>
+                    <span class="fn-right"><a href="/register.html">立即注册</a></span>
+                </div>
+                
+            </div>
+        </div>
+        <div class="nav-scroll">
+            <p class="scroll-top"><a href="javascript:void(0);"></a></p>
+            <p class="feedback"><a href="/help/feedback.html" target="_blank"></a></p>
+            <p class="code">
+                <span></span>
+            </p>
+        </div>
+        <script type="text/javascript">
+            var linkLogin = "";
+            var scrollFunc = function (e) {
+                e = e || window.event;
+                if (e && e.preventDefault) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                } else {
+                    e.returnvalue = false;
+
+                    return false;
+                }
+            }
+            $(".top-nav li a").click(function () {
+                if ($(this).attr("data-flag") == 1) {
+                    linkLogin = $(this).attr("href");
+                    if ("False".toLowerCase() != "true") {
+                        $(".boxLogin").overlay({ api: true }).load();
+                        return false;
+                    }
+                }
+            });
+            $(".img-code-show img").on('click', function () {
+                $(this).attr("src", "/account/CheckCode.html?v=" + Math.random());
+            });
+            $(".main-nav .code a").hover(function () {
+                $(this).siblings(".tag").show();
+            }, function () {
+                $(this).siblings(".tag").hide();
+            });
+            $(".verlayLogin").keydown(function (e) {
+                var curKey = e.which; 
+                if (curKey == 13) {
+                    $("#doLogin").trigger("click");
+                }
+            });
+            $(".boxLogin").overlay({
+                closeOnClick: false,
+                top: 'center',
+                mask: {
+                    color: '#000',
+                    closeSpeed: 700,
+                    opacity: 0.7
+                },
+                onBeforeLoad: function (k) {
+                    $('body').on('mousewheel', function (e) {
+                        scrollFunc(e);
+                    });
+                },
+                onClose: function () {
+                    $('body').off('mousewheel');
+                }
+            });
+            var cursec = 60;
+            var submiting = false;
+            $(".verlayLogin .send-checkcode").click(function () {
+                var $this = $(this);
+                if (submiting) return false;
+                var telc = $.trim($(".verlayLogin .telc").val());
+                var imgCode = $.trim($("input[name=imgCode]").val());
+                if (!telc) {
+                    alert("请输入手机号码！");
+                    return;
+                }
+                if (!imgCode) {
+                    alert("请输入图形验证码！");
+                    return;
+                }
+                $.ajax({
+                    url: '/account/SendSmsRandom.html',
+                    data: { Mobile: telc, ValilCode: imgCode },
+                    type: 'post',
+                    dataType: 'json',
+                    beforeSend: function () {
+                        submiting = true;
+                        $this.text("正在发送");
+                        $this.addClass("disable");
+                    },
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            submiting = true;
+                            if (cursec < 60) {
+                                return;
+                            }
+                            var timer = setInterval(function () {
+                                if (cursec == 60) {
+                                    $this.addClass("disable");
+                                }
+                                $this.text(cursec + "秒后重发");
+                                if (cursec == 0) {
+                                    window.clearInterval(timer);
+                                    submiting = false;
+                                    cursec = 60;
+                                    $this.text("获取验证码");
+                                    $this.removeClass("disable");
+                                } else {
+                                    cursec--;
+                                }
+                            }, 1000);
+                        } else {
+                            $(".img-code-show img").attr("src", "/account/CheckCode.html?v=" + Math.random());
+                            submiting = false;
+                            alert(data.ErrMsg);
+                            $this.removeClass("disable");
+                            $this.text("获取验证码");
+                        }
+                    },
+                    error: function () {
+                        submiting = false;
+                        $this.removeClass("disable");
+                        alert("获取验证码失败");
+                    }
+                });
+            });
+            $("#verlayLogin input.tel").focus(function () {
+                if ($(this).val() == "手机号") {
+                    $(this).val("");
+                }
+            });
+            $("#verlayLogin input.tel").blur(function () {
+                if ($(this).val() == "") {
+                    $(this).val("手机号");
+                }
+            });
+            $("#verlayLogin input.pwd").focus(function () {
+                $(this).removeClass("bgpwd2");
+            });
+            $("#verlayLogin input.pwd").blur(function () {
+                if ($(this).val() == "") {
+                    $(this).addClass("bgpwd2");
+                }
+            });
+            $("#doLogin").click(function () {
+                var tag=$(this).attr("data-tag");
+                var tel = $.trim($(".verlayLogin .tel").val());
+                var pwd = $.trim($(".verlayLogin .pwd").val());
+                var telc = $.trim($(".verlayLogin .telc").val());
+                var checkCode = $.trim($(".verlayLogin .check-code").val());
+                var isCheckRemember = false;
+                if ($(".rememberst").is(':checked')) {
+                    isCheckRemember = true;
+                }
+                if (tag == 1) {
+                    if (!tel || tel == "手机号") {
+                        alert("请输入手机号码！");
+                        return;
+                    }
+                    if (!pwd) {
+                        alert("请输入密码！");
+                        return;
+                    }
+                    postdata = { Mobile: tel, Pass: pwd, Type: tag };
+                }
+                if (tag == 2) {
+                    if (!telc) {
+                        alert("请输入手机号码！");
+                        return;
+                    }
+                    if (!checkCode) {
+                        alert("请输入验证码！");
+                        return;
+                    }
+                    postdata = { Mobile: telc, Pass: checkCode, Type: tag };
+                }
+                $.ajax({
+                    url: '/account/VerifyMember.html',
+                    data: postdata,
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            if (isCheckRemember) {
+                                SetCookie("LocalToken", data.ErrMsg, 7);
+                                SetCookie("LocalMobile", data.Mobile, 7);
+                            }
+                            setsessionstorage(data);
+                            if (linkLogin) {
+                                window.location.href = linkLogin;
+                            } else {
+                                window.location.reload();
+                            }
+                        } else {
+                            alert(data.ErrMsg);
+                        } 
+                    },
+                    error: function () {
+                        alert("网络错误,稍后再试！");
+                    }
+                });
+            });
+            $(".loginout").click(function () {
+                loginout();
+            });
+            $(".verlayLogin .tag ul").tabs(".verlayLogin .box-form", {
+                onClick: function () {
+                    $("#doLogin").attr("data-tag", this.getCurrentTab().attr("data-tag"));
+                }
+            });
+            
+            function loginout(){
+                $.ajax({
+                    url: '/account/loginout.html',
+                    data: {},
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.ResultCode == "0") {
+                            clearsessionstorage();
+                            window.location = "/";
+                        } else {
+                            alert(data.ErrMsg);
+                        }
+                    },
+                    error: function () {
+                        alert("网络错误,稍后再试！");
+                    }
+                });
+            }
+            
+        </script>
+        <form id="citycodeform" method="post" enctype="application/x-www-form-urlencoded"  action="/">
+           <input type="hidden"  name="CityCode" id="ccitycode"/>
+        </form>
+        
+    <link href="resource/css/jquery.jRating.css" rel="stylesheet" />
+    <link href="resource/css/jquery.flexslider.css" rel="stylesheet" />
+    <script src="resource/js/jquery.jRating.min.js" type="text/javascript"></script>
+    <script src="resource/js/jquery.flexslider.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        if (!isnull(getCookie("HeaderIcon")))
+            $("#userheader").attr("src", getCookie("HeaderIcon"));
+        $(function () {
+            $(".schedule-filte .cinema li:first").addClass("act");
+            $(".schedule-filte .film-date-list li:first").addClass("act");
+            $(".film-date-list li").live('click', function () {
+                var time = $(this).text();
+                $(this).siblings().removeClass("act").end().addClass("act");
+                $(".schedule-list ul").each(function () {
+                    if ($(this).attr("data-time") == time) {
+                        $(this).siblings().addClass("fn-hide").end().removeClass("fn-hide");
+                    }
+                });
+            });
+            $(".message-send .btn").click(function () {
+                var Score = $(this).parent().parent().find(".result>em").text();
+                var Comment = $("#recomment").text();
+                if (!Score) {
+                    alert("请评分!");
+                    return;
+                }
+                if (Comment == "") {
+                    alert("内容不能为空!");
+                    return;
+                }
+                if ("False".toLowerCase() == "true") {
+                    $.ajax({
+                        url: '/home/PublishComment',
+                        data: {
+                            NickName: getCookie("NickName"),
+                            HeaderIcon: getCookie("HeaderIcon"),
+                            ID: "86b854c9-050f-4eec-bda4-13c8b377a30d",
+                            Score: Score,
+                            Comment: Comment,
+                            Type: 'Film'
+                        },
+                        type: 'post',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.ResultCode == "0") {
+                                alert("提交评论成功！");
+                                window.location.reload()
+                            } else {
+                                alert("提交评论失败，请稍后再试！");
+                            }
+                        },
+                        error: function () {
+                            alert("网络错误,稍后再试！");
+                        }
+                    });
+                } else {
+                    $(".boxLogin").overlay({ api: true }).load();
+                }
+            });
+            $(".schedule-filte .cinema li").click(function () {
+                var fid = $(this).attr("data-fid");
+                var cid = $(this).attr("data-cid");
+                $(this).siblings().removeClass("act").end().addClass("act");
+                $.ajax({
+                    url: '/home/GetFilmShow',
+                    data: {
+                        FilmID: fid,
+                        CinemaID: cid
+                    },
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        var html = tghtml = " ";
+                        var val = data[0].Value;
+                        var addrStr = data[0].Key.split("|");
+                        var cinemaId = addrStr[0];
+                        var cinemaName = addrStr[1];
+                        var addr = addrStr[2];
+                        var chtml = '<a href="/cinemacreenings/' + cid + '.html" target="_blank">' + cinemaName + '</a>';
+                        $(".cinematb span:first").html(chtml);
+                        $(".cinematb span:last").text(addr);
+                        var m = 0;
+                        for (var k in val) {
+                            if (m == 0) {
+                                tghtml += '<li class="act"><a href="javascript:void(0)">' + k + '</a></li>';
+                                html += '<ul data-time="' + k + '" class="con pans"><li class="th fn-clear"><p class="p1">放映时间</p><p class="p2">语言版本</p><p class="p3">影厅</p><p class="p4">现价/影院价（元）</p><p class="p5">选座购票</p></li>';
+                            } else {
+                                tghtml += '<li><a href="javascript:void(0)">' + k + '</a></li>';
+                                html += '<ul data-time="' + k + '" class="con pans fn-hide"><li class="th fn-clear"><p class="p1">放映时间</p><p class="p2">语言版本</p><p class="p3">影厅</p><p class="p4">现价/影院价（元）</p><p class="p5">选座购票</p></li>';
+                            }
+                            m++;
+                            html += '';
+                            var j = val[k];
+                            for (var i = 0; i < j.length; i++) {
+                                html += '<li class="fn-clear">';
+                                html += '<div class="p1"><p class="showtime">' + j[i].ShowTime + '</p><p>' + j[i].Leave + ' 散场</p></div>';
+                                html += '<div class="p2"><p>' + j[i].ShowType + '</p></div>';
+                                html += '<div class="p3"><p>' + j[i].HallNo + '</p></div>';
+                                html += '<div class="p4"><p><strong>' + ('jxyp_web'=="jxyp_yzf"?"10":j[i].NormalPrice) + '</strong>';
+                                html += (!isNaN(j[i].CinemaPrice) && parseFloat(j[i].CinemaPrice) > parseFloat(j[i].NormalPrice)) ? '<span>/</span><em>' + j[i].CinemaPrice + '</em>' : '';
+                                html += '</p></div><div class="p5"><a data-url="/home/filmchooseseat/' + j[i].ShowNo + "_" + j[i].CinemaID + "_" + '86b854c9-050f-4eec-bda4-13c8b377a30d' + '.html" href="javascript:void(0);" onclick="chooseseat(this,' + "'" + j[i].IsWanDa + "'" + ',' + "'" + j[i].NetworkStatus + "'" + ')" class="btn">选座购票</a></div>';
+                                html += '</li>';
+                            }
+                            html += '</ul>';
+                        }
+                        $(".schedule-filte .film-date-list").html(tghtml);
+                        $(".schedule-list").html(html);
+                    },
+                    error: function () {
+                        alert("网络错误，稍后再试！");
+                    }
+                });
+            });
+            $(".do-flim-comment").click(function () {
+                $("html, body").animate({
+                    scrollTop: $($(this).attr("data-rel")).offset().top + "px"
+                }, {
+                    duration: 500,
+                    easing: "swing"
+                });
+                return false;
+            });
+            $("#recomment").focus(function () {
+                if ("False".toLowerCase() != "true") {
+                    $(".boxLogin").overlay({ api: true }).load();
+                    return false;
+                }
+            });
+            $(".message-send .do-score").jRating({
+                rateMax: 10,
+                sendRequest: false,
+                rateInfosX: -35,
+                rateInfosY: 15,
+                canRateAgain: true,
+                nbRates: 5,
+                bigStarsPath: 'resource/images/ico_tb_stars.png',
+                onClick: function (e, r) {
+                    $(".do-box-score .result").html("<em>" + r + "</em>" + "分");
+                    if ("False".toLowerCase() != "true") {
+                        $(".boxLogin").overlay({ api: true }).load();
+                    }
+                }
+            });
+            $('.score').jRating({
+                rateMax: 10,
+                isDisabled: true,
+                bigStarsPath: 'resource/images/ico_tb_stars.png'
+            });
+            $('.ypscore').jRating({
+                rateMax: 10,
+                isDisabled: true,
+                bigStarsPath: 'resource/images/ico_tb_stars.png'
+            });
+            $('.score').each(function () {
+                if ($(this).attr("data-average") != "0") {
+                    var html = "<span class='jscore'>" + $(this).attr("data-average") + "</span>";
+                    $(this).append(html);
+                }
+            });
+        });
+        var test;
+        var $slider;
+        $(".filmPics").overlay({
+            closeOnClick: false,
+            top: 'center',
+            mask: {
+                color: '#333',
+                closeSpeed: 700,
+                opacity: 0.8
+            },
+            onBeforeLoad: function () {
+                $('body').on('mousewheel', function (e) {
+                    scrollFunc(e);
+                });
+            },
+            onLoad: function (e) {
+                $('#carousel').flexslider({
+                    animation: "slide",
+                    controlNav: false,
+                    directionNav:false,
+                    animationLoop: false,
+                    slideshow: false,
+                    itemWidth: 120,
+                    startAt: $(e.target).attr("data-index"),
+                    asNavFor: '#slider'
+                });
+                $('#slider').flexslider({
+                    animation: "fade",
+                    controlNav: false,
+                    animationLoop: false,
+                    slideshow: false,
+                    startAt: $(e.target).attr("data-index"),
+                    sync: "#carousel",
+                    after: function () {
+                        $(".verlay-film-thumb .flex-direction-nav").show();
+                        var idx = parseInt($("#carousel .slides li.flex-active-slide").attr("data-i"));
+                        if (((idx + 1) % 5) == 0) {
+                            $("#carousel").flexslider("next");
+                        }
+                    }
+                });
+                $(".filmPics").each(function (i) {
+                    $(this).click(function () {
+                        $('#carousel').flexslider(i);
+                        $('#slider').flexslider(i);
+                    });
+                });
+            },
+            onClose: function () {
+                $('body').off('mousewheel');
+            }
+        });
+        $(".video-play").overlay({
+            closeOnClick: false,
+            top: 'center',
+            mask: {
+                color: '#333',
+                closeSpeed: 100,
+                opacity: 0.8
+            },
+            onBeforeLoad: function () {
+                $('body').on('mousewheel', function (e) {
+                    scrollFunc(e);
+                });
+            },
+            onBeforeLoad: function (e) {
+                $('.box-video').flexslider({
+                    animation: "fade",
+                    slideshow: false,
+                    controlNav: "thumbnails",
+                    after: function (e) {
+                        var video = $(".box-video .slides li").eq(e.currentSlide);
+                        var html = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="600" height="400">';
+                        html += '<param name="movie" value="resource/images/flvplayer.swf" />';
+                        html += '<param name="quality" value="high" />';
+                        html += '<param name="allowFullScreen" value="true" />';
+                        html += '<param name="wmode" value="transparent"/>';
+                        html += '<param name="FlashVars" value="vcastr_file=' + video.attr("data-video") + '&&IsAutoPlay=1" />';
+                        html += '<embed src="resource/images/flvplayer.swf" allowfullscreen="true" flashvars="vcastr_file=' + video.attr("data-video") + '&&IsAutoPlay=1" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="600" height="400"></embed>';
+                        html += '</object>';
+                        video.siblings().empty();
+                        video.html(html);
+                    }
+                });
+                $("#verlayVideo .flex-control-thumbs li").each(function () {
+                    $(this).css("backgroundImage", "url('" + $(this).find("img").attr("src") + "')");
+                    $(this).find("img").attr("src", "resource/images/ico_tb_5.png");
+                });
+
+            },
+            onClose: function () {
+                $('body').off('mousewheel');
+            }
+        });
+        function chooseseat(obj, IsWanDa, NetworkStatus) {
+            if (NetworkStatus == "-1") {
+                alert('影院售票故障,暂停售票服务');
+                return;
+            } else if (NetworkStatus == "1") {
+                alert('该影院暂未开通网售');
+                return;
+            }
+            
+            var url = $(obj).attr("data-url");
+            //url = url.substring(0, url.lastIndexOf(".")) + '_' + $(".schedule-filte .film-date-list .act a").text() + ".html";
+            window.location = url;
+        }
+        window._bd_share_config = {
+            share: [{
+                "tag": "share_2",
+                "bdSize": 32
+            }]
+        }
+        with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5)];
+    </script>
+
+        
+    </body>
+</html>
